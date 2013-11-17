@@ -42,10 +42,11 @@ public class UserInterface extends JFrame {
 	private TypedJComponent[] getTypedComponents() {
 		Container contentPane = this.getContentPane();
 		Component[] components = contentPane.getComponents();
-		TypedJComponent[] typedComponents = new TypedJComponent[components.length];
+		TypedJComponent[] typedComponents = new TypedJComponent[components.length + 1];
 		for (int index = 0; index < components.length; index++) {
 			typedComponents[index] = (TypedJComponent) components[index];
 		}
+		typedComponents[components.length] = (TypedJComponent) contentPane;
 		return typedComponents;
 	}
 
