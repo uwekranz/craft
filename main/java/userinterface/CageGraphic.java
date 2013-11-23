@@ -3,7 +3,7 @@ package userinterface;
 import java.awt.Component;
 import java.awt.Graphics;
 
-public class CageGraphic extends TypedJPanel {
+public class CageGraphic extends TypedJComponent {
 
 	private Boolean hasBeenPainted = false;
 	private SnakeGraphic snakeGraphic = new SnakeGraphic();

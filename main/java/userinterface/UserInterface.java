@@ -40,8 +40,8 @@ public class UserInterface extends JFrame {
 		return false;
 	}
 
-	public Boolean hasContentPaneOfType(Class<? extends TypedJPanel> type) {
-		return ((TypedJPanel) getContentPane()).getSubClass() == type;
+	public Boolean hasContentPaneOfType(Class<? extends TypedJComponent> type) {
+		return ((TypedJComponent) getContentPane()).getSubClass() == type;
 	}
 
 	private TypedJComponent[] getTypedComponents() {
