@@ -8,19 +8,15 @@ import javax.swing.JFrame;
 
 public class UserInterface extends JFrame {
 
-	private CageGraphic cageGraphic;
-
 	public UserInterface() {
 		super();
-		this.cageGraphic = new CageGraphic();
-		setContentPane(cageGraphic);
+		setContentPane(new CageGraphic());
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public UserInterface(CageGraphic cageGraphic) {
 		super();
-		this.cageGraphic = cageGraphic;
 		setContentPane(cageGraphic);
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +24,7 @@ public class UserInterface extends JFrame {
 
 	public void display() {
 		setVisible(true);
+		((CageGraphic) getContentPane()).paintComponent(getGraphics());
 	}
 
 	public Boolean hasComponentOfType(Class<? extends TypedJComponent> type) {
@@ -57,10 +54,6 @@ public class UserInterface extends JFrame {
 
 	public CageGraphic getCageGraphic() {
 		return (CageGraphic) getContentPane();
-	}
-
-	public void setCageGraphic(CageGraphic cageGraphic) {
-		this.cageGraphic = cageGraphic;
 	}
 
 }

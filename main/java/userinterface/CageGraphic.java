@@ -6,17 +6,17 @@ import java.awt.Graphics;
 public class CageGraphic extends TypedJComponent {
 
 	private Boolean hasBeenPainted = false;
-	private SnakeGraphic snakeGraphic = new SnakeGraphic();
 
 	public CageGraphic() {
 		super();
 		add(new FoodGraphic());
-		add(snakeGraphic);
+		add(new SnakeGraphic());
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		g.drawRect(100, 100, 500, 500);
 		hasBeenPainted = true;
 	}
 
@@ -43,7 +43,4 @@ public class CageGraphic extends TypedJComponent {
 		return hasBeenPainted;
 	}
 
-	public SnakeGraphic getSnakeGraphic() {
-		return snakeGraphic;
-	}
 }

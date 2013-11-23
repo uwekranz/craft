@@ -7,12 +7,10 @@ public class SnakeGame {
 	UserInterface userInterface;
 
 	public SnakeGame() {
-		super();
 		this.userInterface = new UserInterface();
 	}
 
 	public SnakeGame(UserInterface userInterface) {
-		super();
 		this.userInterface = userInterface;
 	}
 
