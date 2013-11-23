@@ -27,7 +27,7 @@ public class UserInterfaceTest {
 
 	@Test
 	public void itShould_ContainACageGraphicComponent() {
-		assertThat(userInterface.hasComponentOfType(CageGraphic.class),
+		assertThat(userInterface.hasContentPaneOfType(CageGraphic.class),
 				is(true));
 	}
 

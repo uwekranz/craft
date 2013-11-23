@@ -1,15 +1,23 @@
 package userinterface;
 
 import java.awt.Component;
+import java.awt.Graphics;
 
-public class CageGraphic extends TypedJComponent {
+public class CageGraphic extends TypedJPanel {
 
 	private Boolean hasBeenPainted = false;
+	private SnakeGraphic snakeGraphic = new SnakeGraphic();
 
 	public CageGraphic() {
 		super();
 		add(new FoodGraphic());
-		add(new SnakeGraphic());
+		add(snakeGraphic);
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		hasBeenPainted = true;
 	}
 
 	public Boolean hasComponentOfType(Class<? extends TypedJComponent> type) {
@@ -33,5 +41,9 @@ public class CageGraphic extends TypedJComponent {
 
 	public Boolean hasBeenPainted() {
 		return hasBeenPainted;
+	}
+
+	public SnakeGraphic getSnakeGraphic() {
+		return snakeGraphic;
 	}
 }

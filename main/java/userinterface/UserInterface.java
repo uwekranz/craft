@@ -12,15 +12,16 @@ public class UserInterface extends JFrame {
 
 	public UserInterface() {
 		super();
+		this.cageGraphic = new CageGraphic();
+		setContentPane(cageGraphic);
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(new CageGraphic());
 	}
 
 	public UserInterface(CageGraphic cageGraphic) {
 		super();
 		this.cageGraphic = cageGraphic;
-		getContentPane().add(cageGraphic);
+		setContentPane(cageGraphic);
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -39,6 +40,10 @@ public class UserInterface extends JFrame {
 		return false;
 	}
 
+	public Boolean hasContentPaneOfType(Class<? extends TypedJPanel> type) {
+		return ((TypedJPanel) getContentPane()).getSubClass() == type;
+	}
+
 	private TypedJComponent[] getTypedComponents() {
 		Container contentPane = this.getContentPane();
 		Component[] components = contentPane.getComponents();
@@ -48,6 +53,14 @@ public class UserInterface extends JFrame {
 		}
 		typedComponents[components.length] = (TypedJComponent) contentPane;
 		return typedComponents;
+	}
+
+	public CageGraphic getCageGraphic() {
+		return (CageGraphic) getContentPane();
+	}
+
+	public void setCageGraphic(CageGraphic cageGraphic) {
+		this.cageGraphic = cageGraphic;
 	}
 
 }

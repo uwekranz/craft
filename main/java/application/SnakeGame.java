@@ -4,7 +4,17 @@ import userinterface.UserInterface;
 
 public class SnakeGame {
 
-	UserInterface userInterface = new UserInterface();
+	UserInterface userInterface;
+
+	public SnakeGame() {
+		super();
+		this.userInterface = new UserInterface();
+	}
+
+	public SnakeGame(UserInterface userInterface) {
+		super();
+		this.userInterface = userInterface;
+	}
 
 	public static void main(String[] arguments) {
 		SnakeGame snakeGame = new SnakeGame();

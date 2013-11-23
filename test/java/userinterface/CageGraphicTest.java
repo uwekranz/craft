@@ -5,6 +5,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import application.SnakeGame;
+
 public class CageGraphicTest {
 
 	private CageGraphic cageGraphic = new CageGraphic();
@@ -20,11 +22,11 @@ public class CageGraphicTest {
 	}
 
 	@Test
-	public void itShould_PaintItsSelf_WhenTheUserInterfaceIsDisplayed() {
-		UserInterface userInterface = new UserInterface(cageGraphic);
-		userInterface.display();
+	public void itShouldPaintItsSelf_WhenGameHasStarted() {
+		SnakeGame snakeGame = new SnakeGame();
+		snakeGame.start();
+		CageGraphic cageGraphic = snakeGame.getUserInterface().getCageGraphic();
 
 		assertThat(cageGraphic.hasBeenPainted(), is(true));
 	}
-
 }
