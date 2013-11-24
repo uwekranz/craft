@@ -13,18 +13,23 @@ public class CageGraphicTest {
 
 	@Test
 	public void itShould_ContainAFoodGraphicComponet() {
-		assertThat(cageGraphic.hasComponentOfType(FoodGraphic.class), is(true));
+		assertThatCageGraphicHasComponentOfType(FoodGraphic.class);
+	}
+
+	private void assertThatCageGraphicHasComponentOfType(Class<? extends TypedJComponent> type) {
+		assertThat(cageGraphic.hasComponentOfType(type), is(true));
 	}
 
 	@Test
 	public void itShould_ContainASnakeGraphicComponet() {
-		assertThat(cageGraphic.hasComponentOfType(SnakeGraphic.class), is(true));
+		assertThatCageGraphicHasComponentOfType(SnakeGraphic.class);
 	}
 
 	@Test
 	public void itShould_PaintItsSelf_WhenGameHasStarted() {
 		UserInterface userInterface = new UserInterface();
 		SnakeGame.start(userInterface);
+
 		assertThat(userInterface.cageGraphic_HasBeenPainted(), is(true));
 	}
 }
