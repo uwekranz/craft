@@ -56,4 +56,8 @@ public class UserInterface extends JFrame {
 		return (CageGraphic) getContentPane();
 	}
 
+	public Boolean cageGraphic_HasBeenPainted() {
+		return getCageGraphic().hasBeenPainted();
+	}
+
 }

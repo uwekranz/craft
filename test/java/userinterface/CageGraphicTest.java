@@ -23,10 +23,8 @@ public class CageGraphicTest {
 
 	@Test
 	public void itShould_PaintItsSelf_WhenGameHasStarted() {
-		SnakeGame snakeGame = new SnakeGame();
-		snakeGame.start();
-		CageGraphic cageGraphic = snakeGame.getUserInterface().getCageGraphic();
-
-		assertThat(cageGraphic.hasBeenPainted(), is(true));
+		UserInterface userInterface = new UserInterface();
+		SnakeGame.start(userInterface);
+		assertThat(userInterface.cageGraphic_HasBeenPainted(), is(true));
 	}
 }

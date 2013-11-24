@@ -18,8 +18,7 @@ public class UserInterfaceTest {
 
 	@Test
 	public void itShould_BeVisible_WhenGameStarted() {
-		SnakeGame snakeGame = new SnakeGame(userInterface);
-		snakeGame.start();
+		SnakeGame.start(userInterface);
 
 		assertThat(userInterface.isVisible(), is(true));
 	}

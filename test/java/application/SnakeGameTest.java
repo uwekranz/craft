@@ -10,7 +10,6 @@ import userinterface.UserInterface;
 public class SnakeGameTest {
 
 	UserInterface userInterface = mock(UserInterface.class);
-	SnakeGame snakeGame = new SnakeGame(userInterface);
 
 	@Test
 	public void itShould_NotCrash_WhenRunningItsMainMethod() {
@@ -19,7 +18,7 @@ public class SnakeGameTest {
 
 	@Test
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
-		snakeGame.start();
+		SnakeGame.start(userInterface);
 		verify(userInterface).display();
 	}
 }
