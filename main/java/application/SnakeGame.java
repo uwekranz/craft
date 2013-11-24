@@ -23,10 +23,6 @@ public class SnakeGame {
 		userInterface.display();
 	}
 
-	public void setUserInterface(UserInterface userInterface) {
-		this.userInterface = userInterface;
-	}
-
 	public UserInterface getUserInterface() {
 		return userInterface;
 	}

@@ -22,7 +22,7 @@ public class CageGraphicTest {
 	}
 
 	@Test
-	public void itShouldPaintItsSelf_WhenGameHasStarted() {
+	public void itShould_PaintItsSelf_WhenGameHasStarted() {
 		SnakeGame snakeGame = new SnakeGame();
 		snakeGame.start();
 		CageGraphic cageGraphic = snakeGame.getUserInterface().getCageGraphic();
