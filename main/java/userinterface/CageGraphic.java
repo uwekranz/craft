@@ -43,4 +43,14 @@ public class CageGraphic extends TypedJComponent {
 		return hasBeenPainted;
 	}
 
+	public SnakeGraphic getSnakeGraphic() {
+		TypedJComponent[] typedComponents = this.getTypedComponents();
+		for (TypedJComponent typedComponent : typedComponents) {
+			if (typedComponent.getSubClass() == SnakeGraphic.class) {
+				return (SnakeGraphic) typedComponent;
+			}
+		}
+		return null;
+	}
+
 }

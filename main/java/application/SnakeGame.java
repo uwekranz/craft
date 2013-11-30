@@ -15,7 +15,7 @@ public class SnakeGame {
 		userInterface.display();
 	}
 
-	public UserInterface getUserInterface() {
+	public static UserInterface getUserInterface() {
 		return userInterface;
 	}
 }

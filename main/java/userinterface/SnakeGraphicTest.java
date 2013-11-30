@@ -11,9 +11,8 @@ public class SnakeGraphicTest {
 	@Test
 	public void itShouldPaintItsSelf_WhenGameHasStarted() {
 		SnakeGame snakeGame = new SnakeGame();
-		snakeGame.start();
-		SnakeGraphic snakeGraphic = snakeGame.getUserInterface()
-				.getCageGraphic().getSnakeGraphic();
+		SnakeGame.start(new UserInterface());
+		SnakeGraphic snakeGraphic = SnakeGame.getUserInterface().getCageGraphic().getSnakeGraphic();
 
 		assertThat(snakeGraphic.hasBeenPainted(), is(true));
 	}
