@@ -5,19 +5,22 @@ import java.awt.Graphics;
 
 public class CageGraphic extends TypedJComponent {
 
-	private Boolean hasBeenPainted = false;
+	private boolean cageHasBeenPainted = false;
+	private boolean foodHasBeenPainted = false;
+	private boolean snakeHasBeenPainted = false;
 
 	public CageGraphic() {
 		super();
-		add(new FoodGraphic());
-		add(new SnakeGraphic());
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawRect(100, 100, 500, 500);
-		hasBeenPainted = true;
+	protected void paintComponent(Graphics graphics) {
+		graphics.drawRect(100, 50, 100, 100);
+		cageHasBeenPainted = true;
+		graphics.drawOval(500, 500, 25, 25);
+		foodHasBeenPainted = true;
+		graphics.drawLine(1000, 100, 100, 100);
+		snakeHasBeenPainted = true;
 	}
 
 	public Boolean hasComponentOfType(Class<? extends TypedJComponent> type) {
@@ -40,7 +43,7 @@ public class CageGraphic extends TypedJComponent {
 	}
 
 	public Boolean hasBeenPainted() {
-		return hasBeenPainted;
+		return cageHasBeenPainted;
 	}
 
 	public SnakeGraphic getSnakeGraphic() {
@@ -51,6 +54,24 @@ public class CageGraphic extends TypedJComponent {
 			}
 		}
 		return null;
+	}
+
+	public FoodGraphic getFoodGraphic() {
+		TypedJComponent[] typedComponents = this.getTypedComponents();
+		for (TypedJComponent typedComponent : typedComponents) {
+			if (typedComponent.getSubClass() == FoodGraphic.class) {
+				return (FoodGraphic) typedComponent;
+			}
+		}
+		return null;
+	}
+
+	public Boolean FoodGraphicHasBeenPainted() {
+		return foodHasBeenPainted;
+	}
+
+	public Boolean SnakeGraphicHasBeenPainted() {
+		return snakeHasBeenPainted;
 	}
 
 }
