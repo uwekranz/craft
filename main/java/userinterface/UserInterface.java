@@ -10,12 +10,12 @@ public class UserInterface extends JFrame {
 
 	public UserInterface() {
 		super();
-		setContentPane(new CageGraphic());
+		setContentPane(new GameView());
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public UserInterface(CageGraphic cageGraphic) {
+	public UserInterface(GameView cageGraphic) {
 		super();
 		setContentPane(cageGraphic);
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -24,7 +24,7 @@ public class UserInterface extends JFrame {
 
 	public void display() {
 		setVisible(true);
-		((CageGraphic) getContentPane()).paintComponent(getGraphics());
+		((GameView) getContentPane()).paintComponent(getGraphics());
 	}
 
 	public Boolean hasComponentOfType(Class<? extends TypedJComponent> type) {
@@ -52,8 +52,8 @@ public class UserInterface extends JFrame {
 		return typedComponents;
 	}
 
-	public CageGraphic getCageGraphic() {
-		return (CageGraphic) getContentPane();
+	public GameView getCageGraphic() {
+		return (GameView) getContentPane();
 	}
 
 	public Boolean cageGraphic_HasBeenPainted() {
