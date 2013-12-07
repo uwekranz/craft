@@ -12,6 +12,6 @@ public class FoodGraphicTest {
 	public void itShouldPaintItsSelf_WhenGameHasStarted() {
 		SnakeGame.start(new UserInterface());
 
-		assertThat(SnakeGame.getUserInterface().getCageGraphic().FoodGraphicHasBeenPainted(), is(true));
+		assertThat(SnakeGame.getUserInterface().getCageGraphic().FoodHasBeenPainted(), is(true));
 	}
 }
