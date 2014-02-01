@@ -6,7 +6,7 @@ public class CagePainter {
 
 	private static boolean cageHasBeenPainted = false;
 
-	public static void paintCage(Graphics graphics) {
+	public static void paint(Graphics graphics) {
 		graphics.drawRect(100, 50, 100, 100);
 		cageHasBeenPainted = true;
 	}

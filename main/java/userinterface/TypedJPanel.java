@@ -10,11 +10,6 @@ public abstract class TypedJPanel extends JPanel {
 		subClassType = this.getClass();
 	}
 
-	public TypedJPanel(Class<? extends TypedJPanel> subClassType) {
-		super();
-		this.subClassType = subClassType;
-	}
-
 	public Class<? extends TypedJPanel> getSubClass() {
 		return subClassType;
 	}

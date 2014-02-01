@@ -6,7 +6,7 @@ public class FoodPainter {
 
 	private static boolean foodHasBeenPainted;
 
-	public static void drawFood(Graphics graphics) {
+	public static void paint(Graphics graphics) {
 		graphics.drawOval(500, 500, 25, 25);
 		foodHasBeenPainted = true;
 	}

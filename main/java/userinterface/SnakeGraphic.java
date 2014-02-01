@@ -13,7 +13,6 @@ public class SnakeGraphic extends TypedJComponent {
 	}
 
 	public Boolean hasBeenPainted() {
-		// TODO Auto-generated method stub
 		return hasBeenPainted;
 	}
 

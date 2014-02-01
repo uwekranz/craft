@@ -6,7 +6,7 @@ public class SnakePainter {
 
 	private static boolean snakeHasBeenPainted = false;
 
-	public static void paintSnake(Graphics graphics) {
+	public static void paint(Graphics graphics) {
 		graphics.drawLine(1000, 100, 100, 100);
 		snakeHasBeenPainted = true;
 	}

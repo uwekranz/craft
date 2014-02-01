@@ -11,11 +11,6 @@ public class TypedJComponent extends JComponent {
 		subClassType = this.getClass();
 	}
 
-	public TypedJComponent(Class<? extends TypedJComponent> subClassType) {
-		super();
-		this.subClassType = subClassType;
-	}
-
 	public Class<? extends TypedJComponent> getSubClass() {
 		return subClassType;
 	}

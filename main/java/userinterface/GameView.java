@@ -16,15 +16,15 @@ public class GameView extends TypedJComponent {
 	}
 
 	private void paintSnake(Graphics graphics) {
-		SnakePainter.paintSnake(graphics);
+		SnakePainter.paint(graphics);
 	}
 
 	private void paintFood(Graphics graphics) {
-		FoodPainter.drawFood(graphics);
+		FoodPainter.paint(graphics);
 	}
 
 	private void paintCage(Graphics graphics) {
-		CagePainter.paintCage(graphics);
+		CagePainter.paint(graphics);
 	}
 
 	protected Boolean CageHasBeenPainted() {
