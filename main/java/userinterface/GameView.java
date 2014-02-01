@@ -35,7 +35,7 @@ public class GameView extends TypedJComponent {
 		return FoodPainter.hasFoodBeenPainted();
 	}
 
-	protected Boolean SnakeHasBeenPainted() {
+	protected Boolean snakeHasBeenPainted() {
 		return SnakePainter.hasSnakeBeenPainted();
 	}
 

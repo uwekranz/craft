@@ -1,9 +1,10 @@
 package model;
+
 public class Snake {
 
 	private int length;
 
-	public void eat(SnakeFood unitOfFood) {
+	public void eat() {
 		length += 1;
 	}
 

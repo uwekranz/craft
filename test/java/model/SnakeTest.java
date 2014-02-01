@@ -12,12 +12,11 @@ public class SnakeTest {
 
 	@Test
 	public void itShouldGetLongerWhenItEats() {
-		int theSnakesInitialLength = snake.getLength();
-		SnakeFood food = new SnakeFood();
-		snake.eat(food);
-		int theSnakesCurrentLength = snake.getLength();
+		int snakesInitialLength = snake.getLength();
+		snake.eat();
+		int snakesCurrentLength = snake.getLength();
 
-		assertThat(theSnakesInitialLength, is(lessThan(theSnakesCurrentLength)));
+		assertThat(snakesInitialLength, is(lessThan(snakesCurrentLength)));
 	}
 
 }
