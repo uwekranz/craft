@@ -25,8 +25,7 @@ public class UserInterfaceTest {
 
 	@Test
 	public void itShould_ContainACageGraphicComponent() {
-		assertThat(userInterface.hasContentPaneOfType(GameView.class),
-				is(true));
+		assertThat(userInterface.hasContentPaneOfType(GameView.class), is(true));
 	}
 
 }
