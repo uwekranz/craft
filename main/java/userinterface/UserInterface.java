@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 public class UserInterface extends JFrame {
 
+	private static final long serialVersionUID = -8899145683554470655L;
 	private static final Dimension DEFAULT_SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public UserInterface() {

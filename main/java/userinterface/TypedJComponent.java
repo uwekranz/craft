@@ -4,6 +4,7 @@ import javax.swing.JComponent;
 
 public class TypedJComponent extends JComponent {
 
+	private static final long serialVersionUID = 2327194918604614238L;
 	private final Class<? extends TypedJComponent> subClassType;
 
 	public TypedJComponent() {

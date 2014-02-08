@@ -4,6 +4,10 @@ import java.awt.Graphics;
 
 public class GameView extends TypedJComponent {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -837919897890926903L;
 	private SnakePainter snakePainter = new SnakePainter();
 	private FoodPainter foodPainter = new FoodPainter();
 	private CagePainter cagePainter = new CagePainter();
