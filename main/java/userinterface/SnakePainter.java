@@ -4,15 +4,32 @@ import java.awt.Graphics;
 
 public class SnakePainter {
 
-	private boolean snakeHasBeenPainted = false;
+	private boolean hasPainted = false;
+	private boolean paintsRegularly = false;
 
 	public void paint(Graphics graphics) {
 		graphics.drawLine(1000, 100, 100, 100);
-		snakeHasBeenPainted = true;
+		hasPainted = true;
 	}
 
-	public Boolean hasSnakeBeenPainted() {
-		return snakeHasBeenPainted;
+	public boolean hasPainted() {
+		return hasPainted;
+	}
+
+	public boolean paintsRegularly() {
+		return paintsRegularly;
+	}
+
+	public void paintRegularly(Graphics graphics) {
+		paint(graphics);
+		new Thread() {
+
+			@Override
+			public void run() {
+				paintsRegularly = true;
+				super.run();
+			}
+		}.start();
 	}
 
 }

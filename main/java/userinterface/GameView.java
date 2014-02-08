@@ -4,10 +4,8 @@ import java.awt.Graphics;
 
 public class GameView extends TypedJComponent {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -837919897890926903L;
+
 	private SnakePainter snakePainter = new SnakePainter();
 	private FoodPainter foodPainter = new FoodPainter();
 	private CagePainter cagePainter = new CagePainter();
@@ -20,11 +18,11 @@ public class GameView extends TypedJComponent {
 	protected void paintComponent(Graphics graphics) {
 		paintCage(graphics);
 		paintFood(graphics);
-		paintSnake(graphics);
+		paintSnakeRegularly(graphics);
 	}
 
-	private void paintSnake(Graphics graphics) {
-		snakePainter.paint(graphics);
+	private void paintSnakeRegularly(Graphics graphics) {
+		snakePainter.paintRegularly(graphics);
 	}
 
 	private void paintFood(Graphics graphics) {
@@ -35,7 +33,7 @@ public class GameView extends TypedJComponent {
 		cagePainter.paint(graphics);
 	}
 
-	protected Boolean CageHasBeenPainted() {
+	protected Boolean cageHasBeenPainted() {
 		return cagePainter.hasCageBeenPainted();
 	}
 
@@ -44,7 +42,11 @@ public class GameView extends TypedJComponent {
 	}
 
 	protected Boolean snakeHasBeenPainted() {
-		return snakePainter.hasSnakeBeenPainted();
+		return snakePainter.hasPainted();
+	}
+
+	public Boolean snakeIsPaintedRegularly() {
+		return snakePainter.paintsRegularly();
 	}
 
 }

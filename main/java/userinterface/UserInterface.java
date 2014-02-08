@@ -19,7 +19,7 @@ public class UserInterface extends JFrame {
 
 	public void display() {
 		setVisible(true);
-		GameView gameView = (GameView) getContentPane();
+		GameView gameView = getGameView();
 		gameView.paintComponent(getGraphics());
 	}
 
@@ -27,12 +27,12 @@ public class UserInterface extends JFrame {
 		return ((TypedJComponent) getContentPane()).getSubClass() == type;
 	}
 
-	public GameView getGameView() {
+	protected GameView getGameView() {
 		return (GameView) getContentPane();
 	}
 
-	public Boolean cageGraphic_HasBeenPainted() {
-		return getGameView().CageHasBeenPainted();
+	protected boolean cageGraphic_HasBeenPainted() {
+		return getGameView().cageHasBeenPainted();
 	}
 
 }
