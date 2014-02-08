@@ -26,12 +26,12 @@ public class UserInterface extends JFrame {
 		return ((TypedJComponent) getContentPane()).getSubClass() == type;
 	}
 
-	public GameView getCageGraphic() {
+	public GameView getGameView() {
 		return (GameView) getContentPane();
 	}
 
 	public Boolean cageGraphic_HasBeenPainted() {
-		return getCageGraphic().CageHasBeenPainted();
+		return getGameView().CageHasBeenPainted();
 	}
 
 }

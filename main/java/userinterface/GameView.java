@@ -4,6 +4,9 @@ import java.awt.Graphics;
 
 public class GameView extends TypedJComponent {
 
+	private FoodPainter foodPainter = new FoodPainter();
+	private CagePainter cagePainter = new CagePainter();
+
 	public GameView() {
 		super();
 	}
@@ -20,19 +23,19 @@ public class GameView extends TypedJComponent {
 	}
 
 	private void paintFood(Graphics graphics) {
-		FoodPainter.paint(graphics);
+		foodPainter.paint(graphics);
 	}
 
 	private void paintCage(Graphics graphics) {
-		CagePainter.paint(graphics);
+		cagePainter.paint(graphics);
 	}
 
 	protected Boolean CageHasBeenPainted() {
-		return CagePainter.hasCageBeenPainted();
+		return cagePainter.hasCageBeenPainted();
 	}
 
 	protected Boolean FoodHasBeenPainted() {
-		return FoodPainter.hasFoodBeenPainted();
+		return foodPainter.hasFoodBeenPainted();
 	}
 
 	protected Boolean snakeHasBeenPainted() {

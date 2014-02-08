@@ -4,14 +4,14 @@ import java.awt.Graphics;
 
 public class FoodPainter {
 
-	private static boolean foodHasBeenPainted;
+	private boolean foodHasBeenPainted;
 
-	public static void paint(Graphics graphics) {
+	public void paint(Graphics graphics) {
 		graphics.drawOval(500, 500, 25, 25);
 		foodHasBeenPainted = true;
 	}
 
-	public static boolean hasFoodBeenPainted() {
+	public boolean hasFoodBeenPainted() {
 		return foodHasBeenPainted;
 	}
 

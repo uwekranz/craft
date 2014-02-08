@@ -12,6 +12,6 @@ public class SnakeGraphicTest {
 	public void itShouldPaintItsSelf_WhenGameHasStarted() {
 		SnakeGame.start(new UserInterface());
 
-		assertThat(SnakeGame.getUserInterface().getCageGraphic().snakeHasBeenPainted(), is(true));
+		assertThat(SnakeGame.getUserInterface().getGameView().snakeHasBeenPainted(), is(true));
 	}
 }
