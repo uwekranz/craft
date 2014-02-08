@@ -13,12 +13,12 @@ public class SnakeGameTest {
 
 	@Test
 	public void itShould_NotCrash_WhenRunningItsMainMethod() {
-		SnakeGame.main(null);
+		new SnakeGame().main(null);
 	}
 
 	@Test
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
-		SnakeGame.start(userInterface);
+		new SnakeGame().start(userInterface);
 		verify(userInterface).display();
 	}
 }

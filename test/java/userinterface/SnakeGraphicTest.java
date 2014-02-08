@@ -10,8 +10,9 @@ import application.SnakeGame;
 public class SnakeGraphicTest {
 	@Test
 	public void itShouldPaintItsSelf_WhenGameHasStarted() {
-		SnakeGame.start(new UserInterface());
+		SnakeGame snakeGame = new SnakeGame();
+		snakeGame.start(new UserInterface());
 
-		assertThat(SnakeGame.getUserInterface().getGameView().snakeHasBeenPainted(), is(true));
+		assertThat(snakeGame.getUserInterface().getGameView().snakeHasBeenPainted(), is(true));
 	}
 }
