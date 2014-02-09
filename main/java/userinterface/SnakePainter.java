@@ -22,14 +22,16 @@ public class SnakePainter {
 
 	public void paintRegularly(Graphics graphics) {
 		paint(graphics);
-		new Thread() {
+		paintEvery100Milliseconds(graphics);
+	}
 
-			@Override
-			public void run() {
-				paintsRegularly = true;
-				super.run();
-			}
-		}.start();
+	private void paintEvery100Milliseconds(Graphics graphics) {
+		SnakePaintingEvery100Milliseconds snakePaintingEvery100Milliseconds = new SnakePaintingEvery100Milliseconds(this, graphics);
+		snakePaintingEvery100Milliseconds.start();
+	}
+
+	public void setPaintsRegularly(boolean paintsRegularly) {
+		this.paintsRegularly = paintsRegularly;
 	}
 
 }
