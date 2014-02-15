@@ -21,8 +21,8 @@ public class SnakePainter {
 	}
 
 	public void paintRegularly(Graphics graphics) {
-		paint(graphics);
 		paintEvery100Milliseconds(graphics);
+		hasPainted = true;
 	}
 
 	private void paintEvery100Milliseconds(Graphics graphics) {
