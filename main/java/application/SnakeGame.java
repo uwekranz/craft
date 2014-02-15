@@ -4,14 +4,14 @@ import userinterface.UserInterface;
 
 public class SnakeGame {
 
-	static UserInterface userInterface;
+	UserInterface userInterface;
 
 	public void main(String[] arguments) {
-		start(new UserInterface());
+		startWithUserInsterface(new UserInterface());
 	}
 
-	public void start(UserInterface userInterface) {
-		SnakeGame.userInterface = userInterface;
+	public void startWithUserInsterface(UserInterface userInterface) {
+		this.userInterface = userInterface;
 		userInterface.display();
 	}
 

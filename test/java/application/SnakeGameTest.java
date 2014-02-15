@@ -18,7 +18,7 @@ public class SnakeGameTest {
 
 	@Test
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
-		new SnakeGame().start(userInterface);
+		new SnakeGame().startWithUserInsterface(userInterface);
 		verify(userInterface).display();
 	}
 }

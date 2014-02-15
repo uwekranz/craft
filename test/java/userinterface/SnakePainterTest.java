@@ -14,7 +14,7 @@ public class SnakePainterTest {
 	@Before
 	public void prepareTests() {
 		snakeGame = new SnakeGame();
-		snakeGame.start(new UserInterface());
+		snakeGame.startWithUserInsterface(new UserInterface());
 	}
 
 	@Test
