@@ -2,7 +2,9 @@ package userinterface;
 
 import java.awt.Graphics;
 
-public class GameView extends TypedJComponent {
+import javax.swing.JComponent;
+
+public class GameView extends JComponent {
 
 	private static final long serialVersionUID = -837919897890926903L;
 

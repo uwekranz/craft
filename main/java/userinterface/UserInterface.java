@@ -20,11 +20,8 @@ public class UserInterface extends JFrame {
 	public void display() {
 		setVisible(true);
 		GameView gameView = getGameView();
-		gameView.paintComponent(getGraphics());
-	}
 
-	public Boolean hasContentPaneOfType(Class<? extends TypedJComponent> type) {
-		return ((TypedJComponent) getContentPane()).getSubClass() == type;
+		gameView.paintComponent(getGraphics());
 	}
 
 	protected GameView getGameView() {
