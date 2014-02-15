@@ -11,7 +11,7 @@ public class SnakeTest {
 	private Snake snake = new Snake();
 
 	@Test
-	public void itShouldGetLongerWhenItEats() {
+	public void itShouldGetLonger_WhenItEats() {
 		int snakesInitialLength = snake.getLength();
 		snake.eat();
 		int snakesCurrentLength = snake.getLength();

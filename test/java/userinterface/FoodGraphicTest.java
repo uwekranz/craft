@@ -5,14 +5,11 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import application.SnakeGame;
-
 public class FoodGraphicTest {
 	@Test
-	public void itShouldPaintItsSelf_WhenGameHasStarted() {
-		SnakeGame snakeGame = new SnakeGame();
+	public void itShouldGetPainted_WhenTheUserInterfaceIsDisplayed() {
 		UserInterface userInterface = new UserInterface();
-		snakeGame.startWithUserInsterface(userInterface);
+		userInterface.display();
 
 		assertThat(userInterface.getGameView().FoodHasBeenPainted(), is(true));
 	}
