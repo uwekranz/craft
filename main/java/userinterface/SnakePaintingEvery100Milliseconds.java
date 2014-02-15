@@ -6,7 +6,6 @@ public class SnakePaintingEvery100Milliseconds extends Thread {
 
 	private SnakePainter snakePainter;
 	private Graphics graphics;
-	private boolean snakePainterPaintsRegularly;
 
 	public SnakePaintingEvery100Milliseconds(SnakePainter snakePainter, Graphics graphics) {
 		super();
