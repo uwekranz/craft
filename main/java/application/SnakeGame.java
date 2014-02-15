@@ -9,7 +9,7 @@ public class SnakeGame {
 	}
 
 	public void startWithUserInsterface(UserInterface userInterface) {
-		userInterface.display();
+		userInterface.displayGameView();
 	}
 
 }

@@ -20,7 +20,7 @@ public class SnakeGameTest {
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
 		UserInterface userInterface = mock(UserInterface.class);
 		snakeGame.startWithUserInsterface(userInterface);
-		verify(userInterface).display();
+		verify(userInterface).displayGameView();
 	}
 
 }

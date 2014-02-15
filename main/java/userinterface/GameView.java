@@ -39,7 +39,7 @@ public class GameView extends JComponent {
 		return cagePainter.hasCageBeenPainted();
 	}
 
-	protected Boolean FoodHasBeenPainted() {
+	protected Boolean hasFoodBeenPainted() {
 		return foodPainter.hasFoodBeenPainted();
 	}
 

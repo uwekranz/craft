@@ -12,15 +12,14 @@ public class UserInterface extends JFrame {
 
 	public UserInterface() {
 		super();
-		setContentPane(new GameView());
 		setSize(DEFAULT_SCREEN_SIZE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public void display() {
+	public void displayGameView() {
+		GameView gameView = new GameView();
+		setContentPane(gameView);
 		setVisible(true);
-		GameView gameView = getGameView();
-
 		gameView.paintComponent(getGraphics());
 	}
 
