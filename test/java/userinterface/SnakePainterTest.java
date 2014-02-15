@@ -10,11 +10,13 @@ import application.SnakeGame;
 
 public class SnakePainterTest {
 	SnakeGame snakeGame;
+	UserInterface userInterface = new UserInterface();
 
 	@Before
 	public void prepareTests() {
 		snakeGame = new SnakeGame();
-		snakeGame.startWithUserInsterface(new UserInterface());
+		userInterface = new UserInterface();
+		snakeGame.startWithUserInsterface(userInterface);
 	}
 
 	@Test
@@ -29,7 +31,7 @@ public class SnakePainterTest {
 	}
 
 	private Boolean snakeHasBeenPainted(SnakeGame snakeGame) {
-		return snakeGame.getUserInterface().getGameView().snakeHasBeenPainted();
+		return userInterface.getGameView().snakeHasBeenPainted();
 	}
 
 	@Test
@@ -40,7 +42,7 @@ public class SnakePainterTest {
 	}
 
 	private Boolean snakeIsPaintedRegularly(SnakeGame snakeGame) {
-		return snakeGame.getUserInterface().getGameView().snakeIsPaintedRegularly();
+		return userInterface.getGameView().snakeIsPaintedRegularly();
 	}
 
 }
