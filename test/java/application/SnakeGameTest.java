@@ -10,15 +10,16 @@ import userinterface.UserInterface;
 public class SnakeGameTest {
 
 	UserInterface userInterface = mock(UserInterface.class);
+	SnakeGame snakeGame = new SnakeGame();
 
 	@Test
 	public void itShould_NotCrash_WhenRunningItsMainMethod() {
-		new SnakeGame().main(null);
+		snakeGame.main(null);
 	}
 
 	@Test
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
-		new SnakeGame().startWithUserInsterface(userInterface);
+		snakeGame.startWithUserInsterface(userInterface);
 		verify(userInterface).display();
 	}
 }
