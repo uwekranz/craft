@@ -2,7 +2,7 @@ package model;
 
 public class Snake {
 
-	private int length;
+	private int length = 1;
 
 	public void eat() {
 		length += 1;
