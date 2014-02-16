@@ -1,4 +1,4 @@
-package userinterface;
+package view;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -6,7 +6,9 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import application.SnakeGame;
+import view.SnakePainter;
+import view.UserInterface;
+import controller.SnakeGame;
 
 public class SnakePainterTest {
 	SnakeGame snakeGame;
@@ -16,7 +18,7 @@ public class SnakePainterTest {
 	public void prepareTests() {
 		snakeGame = new SnakeGame();
 		userInterface = new UserInterface();
-		snakeGame.startWithUserInsterface(userInterface);
+		snakeGame.startWithUserInterface(userInterface);
 	}
 
 	@Test

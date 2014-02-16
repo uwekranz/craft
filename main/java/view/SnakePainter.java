@@ -1,4 +1,4 @@
-package userinterface;
+package view;
 
 import java.awt.Graphics;
 

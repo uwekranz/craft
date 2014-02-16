@@ -1,9 +1,12 @@
-package userinterface;
+package view;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+
+import view.GameView;
+import view.UserInterface;
 
 public class FoodGraphicTest {
 	@Test

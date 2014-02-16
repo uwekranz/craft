@@ -1,11 +1,13 @@
-package application;
+package applicationBoundary;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 
-import userinterface.UserInterface;
+import controller.SnakeGame;
+import applicationBoundary.ApplicationBoundary;
+import view.UserInterface;
 
 public class ApplicationBoundaryTest {
 
@@ -19,7 +21,7 @@ public class ApplicationBoundaryTest {
 	@Test
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
 		UserInterface userInterface = mock(UserInterface.class);
-		new SnakeGame().startWithUserInsterface(userInterface);
+		new SnakeGame().startWithUserInterface(userInterface);
 		verify(userInterface).displayView();
 	}
 
