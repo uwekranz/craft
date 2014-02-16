@@ -9,7 +9,7 @@ public class FoodGraphicTest {
 	@Test
 	public void itShouldGetPainted_WhenTheUserInterfaceIsDisplayed() {
 		UserInterface userInterface = new UserInterface();
-		userInterface.displayGameView();
+		userInterface.displayView();
 		GameView gameView = userInterface.getGameView();
 
 		assertThat(gameView.hasFoodBeenPainted(), is(true));

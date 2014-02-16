@@ -16,7 +16,7 @@ public class UserInterface extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public void displayGameView() {
+	public void displayView() {
 		GameView gameView = new GameView();
 		setContentPane(gameView);
 		setVisible(true);

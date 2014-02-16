@@ -30,7 +30,7 @@ public class SnakePainterTest {
 		assertThat(snakeHasBeenPainted(snakeGame), is(true));
 	}
 
-	private Boolean snakeHasBeenPainted(SnakeGame snakeGame) {
+	private Boolean snakeHasBeenPainted(SnakeGame snakeGame2) {
 		return userInterface.getGameView().snakeHasBeenPainted();
 	}
 
@@ -41,7 +41,7 @@ public class SnakePainterTest {
 		assertThat(snakeIsPaintedRegularly(snakeGame), is(true));
 	}
 
-	private Boolean snakeIsPaintedRegularly(SnakeGame snakeGame) {
+	private Boolean snakeIsPaintedRegularly(SnakeGame snakeGame2) {
 		return userInterface.getGameView().snakeIsPaintedRegularly();
 	}
 

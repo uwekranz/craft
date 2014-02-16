@@ -7,20 +7,20 @@ import org.junit.Test;
 
 import userinterface.UserInterface;
 
-public class SnakeGameTest {
+public class ApplicationBoundaryTest {
 
-	SnakeGame snakeGame = new SnakeGame();
+	ApplicationBoundary applicationBoundary = new ApplicationBoundary();
 
 	@Test
 	public void itShould_NotCrash_WhenRunningItsMainMethod() {
-		snakeGame.main(null);
+		ApplicationBoundary.main(null);
 	}
 
 	@Test
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
 		UserInterface userInterface = mock(UserInterface.class);
-		snakeGame.startWithUserInsterface(userInterface);
-		verify(userInterface).displayGameView();
+		new SnakeGame().startWithUserInsterface(userInterface);
+		verify(userInterface).displayView();
 	}
 
 }
