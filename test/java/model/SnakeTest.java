@@ -46,4 +46,5 @@ public class SnakeTest {
 
 		assertThat(snakesDirectionOfMovement, is(Direction.RIGHT));
 	}
+
 }
