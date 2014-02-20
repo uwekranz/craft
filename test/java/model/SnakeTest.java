@@ -22,12 +22,12 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void itShouldHaveLengthOne_OnCreation() {
+	public void theSnakesInitialLengthIsOne() {
 		assertThat(theSnakesInitialLength, is(1));
 	}
 
 	@Test
-	public void itShouldGetLonger_WhenItEats() {
+	public void theSnakeBecomesLongerWhenItEats() {
 		snake.eat();
 		int theSnakesLengthAfterEating = snake.getLength();
 
@@ -35,7 +35,7 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void theSnakesInitialLocation_IsTheOrigin() {
+	public void theSnakesInitialLocationIsTheOrigin() {
 		Point theSnakesInitialLocation = snake.getLocation();
 		Point theOrigin = new Point(0, 0);
 
@@ -43,18 +43,26 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void itShouldBeMoving_ToTheRight_OnCreation() {
-		Direction theSnakesDirectionOfMovement = snake.getDirectionOfMovement();
+	public void theSnakesInitialDirectionOfMovementIsRight() {
+		Direction theSnakesInitialDirectionOfMovement = snake.getDirectionOfMovement();
 
-		assertThat(theSnakesDirectionOfMovement, is(RIGHT));
+		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));
 	}
 
 	@Test
-	public void itIsLocated_AtPoint0And1_WhenItHasMovedRightOnce() {
+	public void theSnakesFirstCoordinateIsOne_AfterItHasMovedRightOnce() {
 		snake.moveRight();
-		Point snakesLocation = snake.getLocation();
+		int snakesFirstLocationCoordinate = snake.getFirstLocationCoordinate();
 
-		assertThat(snakesLocation, is(new Point(1, 0)));
+		assertThat(snakesFirstLocationCoordinate, is(1));
+	}
+
+	@Test
+	public void theSnakesSecondCoordinateIsZero_AfterItHasMovedRightOnce() {
+		snake.moveRight();
+		int snakesSecondLocationCoordinate = snake.getSecondLocationCoordinate();
+
+		assertThat(snakesSecondLocationCoordinate, is(0));
 	}
 
 }

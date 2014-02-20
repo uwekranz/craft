@@ -27,4 +27,11 @@ public class Snake {
 		location.move(1, 0);
 	}
 
+	public int getFirstLocationCoordinate() {
+		return location.x;
+	}
+
+	public int getSecondLocationCoordinate() {
+		return location.y;
+	}
 }
