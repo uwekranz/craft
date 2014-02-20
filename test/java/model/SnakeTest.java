@@ -47,4 +47,12 @@ public class SnakeTest {
 		assertThat(snakesDirectionOfMovement, is(Direction.RIGHT));
 	}
 
+	@Test
+	public void itIsLocated_AtPoint0And1_WhenItHasMovedRightOnce() {
+		snake.moveRight();
+		Point snakesLocation = snake.getLocation();
+
+		assertThat(snakesLocation, is(new Point(1, 0)));
+	}
+
 }
