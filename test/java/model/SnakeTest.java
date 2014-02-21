@@ -1,7 +1,7 @@
 package model;
 
-import static model.Axis.HORIZONTAL;
-import static model.Axis.VERTICAL;
+import static model.Axis.HORIZONTAL_COORDINATE;
+import static model.Axis.VERTICAL_COORDINATE;
 import static model.Direction.RIGHT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -33,7 +33,6 @@ public class SnakeTest {
 	public void theSnakeBecomesLongerWhenItEats() {
 		snake.eat();
 		int theSnakesLengthAfterEating = snake.getLength();
-
 		assertThat(theSnakesInitialLength, is(lessThan(theSnakesLengthAfterEating)));
 	}
 
@@ -41,35 +40,30 @@ public class SnakeTest {
 	public void theSnakesInitialLocationIsTheOrigin() {
 		Point theSnakesInitialLocation = snake.getLocation();
 		Point theOrigin = new Point(0, 0);
-
 		assertThat(theSnakesInitialLocation, is(theOrigin));
 	}
 
 	@Test
 	public void theSnakesInitialDirectionOfMovementIsRight() {
 		Direction theSnakesInitialDirectionOfMovement = snake.getDirectionOfMovement();
-
 		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));
 	}
 
 	@Test
-	public void theSnakesHorizontalCoordinateIsOne_AfterItHasMovedRightOnce() {
+	public void theSnakesHorizontalCoordinateIsOneAfterItHasMovedRightOnce() {
 		snake.moveRight();
-
-		assertCoordinate(HORIZONTAL, is(1));
+		assertThatTheSnakes(HORIZONTAL_COORDINATE, is(1));
 	}
 
 	@Test
-	public void theSnakesVerticalCoordinateIsZero_AfterItHasMovedRightOnce() {
+	public void theSnakesVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
 		snake.moveRight();
-
-		assertCoordinate(VERTICAL, is(0));
+		assertThatTheSnakes(VERTICAL_COORDINATE, is(0));
 	}
 
-	private void assertCoordinate(Axis vertical, Matcher<Integer> matcher) {
-		int snakesVerticalCoordinate = snake.getCoordinate(vertical);
-
-		assertThat(snakesVerticalCoordinate, matcher);
+	private void assertThatTheSnakes(Axis vertical, Matcher<Integer> matcher) {
+		int theSnakesVerticalCoordinate = snake.getCoordinate(vertical);
+		assertThat(theSnakesVerticalCoordinate, matcher);
 	}
 
 }

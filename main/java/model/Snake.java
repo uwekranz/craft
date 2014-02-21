@@ -28,7 +28,7 @@ public class Snake {
 	}
 
 	public int getCoordinate(Axis axis) {
-		if (axis == Axis.HORIZONTAL)
+		if (axis == Axis.HORIZONTAL_COORDINATE)
 			return location.x;
 		else
 			return location.y;
