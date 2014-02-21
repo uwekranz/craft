@@ -44,15 +44,14 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void theSnakesInitialDirectionOfMovementIsRight() {
-		Direction theSnakesInitialDirectionOfMovement = snake.getDirectionOfMovement();
-		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));
-	}
-
-	@Test
 	public void theSnakesHorizontalCoordinateIsOneAfterItHasMovedRightOnce() {
 		snake.moveRight();
 		assertThatTheSnakes(HORIZONTAL_COORDINATE, is(1));
+	}
+
+	private void assertThatTheSnakes(Axis vertical, Matcher<Integer> matcher) {
+		int theSnakesVerticalCoordinate = snake.getCoordinate(vertical);
+		assertThat(theSnakesVerticalCoordinate, matcher);
 	}
 
 	@Test
@@ -61,9 +60,9 @@ public class SnakeTest {
 		assertThatTheSnakes(VERTICAL_COORDINATE, is(0));
 	}
 
-	private void assertThatTheSnakes(Axis vertical, Matcher<Integer> matcher) {
-		int theSnakesVerticalCoordinate = snake.getCoordinate(vertical);
-		assertThat(theSnakesVerticalCoordinate, matcher);
+	@Test
+	public void theSnakesInitialDirectionOfMovementIsRight() {
+		Direction theSnakesInitialDirectionOfMovement = snake.getDirectionOfMovement();
+		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));
 	}
-
 }
