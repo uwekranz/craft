@@ -27,8 +27,11 @@ public class Snake {
 		location.move(1, 0);
 	}
 
-	public int getFirstLocationCoordinate() {
-		return location.x;
+	public int getCoordinate(Axis axis) {
+		if (axis == Axis.HORIZONTAL)
+			return location.x;
+		else
+			return location.y;
 	}
 
 	public int getSecondLocationCoordinate() {

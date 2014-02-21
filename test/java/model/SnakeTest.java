@@ -1,5 +1,7 @@
 package model;
 
+import static model.Axis.HORIZONTAL;
+import static model.Axis.VERTICAL;
 import static model.Direction.RIGHT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -7,6 +9,7 @@ import static org.hamcrest.Matchers.lessThan;
 
 import java.awt.Point;
 
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,19 +53,23 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void theSnakesFirstCoordinateIsOne_AfterItHasMovedRightOnce() {
+	public void theSnakesHorizontalCoordinateIsOne_AfterItHasMovedRightOnce() {
 		snake.moveRight();
-		int snakesFirstLocationCoordinate = snake.getFirstLocationCoordinate();
 
-		assertThat(snakesFirstLocationCoordinate, is(1));
+		assertCoordinate(HORIZONTAL, is(1));
 	}
 
 	@Test
-	public void theSnakesSecondCoordinateIsZero_AfterItHasMovedRightOnce() {
+	public void theSnakesVerticalCoordinateIsZero_AfterItHasMovedRightOnce() {
 		snake.moveRight();
-		int snakesSecondLocationCoordinate = snake.getSecondLocationCoordinate();
 
-		assertThat(snakesSecondLocationCoordinate, is(0));
+		assertCoordinate(VERTICAL, is(0));
+	}
+
+	private void assertCoordinate(Axis vertical, Matcher<Integer> matcher) {
+		int snakesVerticalCoordinate = snake.getCoordinate(vertical);
+
+		assertThat(snakesVerticalCoordinate, matcher);
 	}
 
 }
