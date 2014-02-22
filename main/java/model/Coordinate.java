@@ -1,5 +1,5 @@
 package model;
 
-public enum Axis {
+public enum Coordinate {
 	HORIZONTAL_COORDINATE, VERTICAL_COORDINATE
 }

@@ -23,12 +23,8 @@ public class Snake {
 		return Direction.RIGHT;
 	}
 
-	public void moveRight() {
-		location.move(1, 0);
-	}
-
-	public int getCoordinate(Axis axis) {
-		if (axis == Axis.HORIZONTAL_COORDINATE)
+	public int getCoordinate(Coordinate axis) {
+		if (axis == Coordinate.HORIZONTAL_COORDINATE)
 			return location.x;
 		else
 			return location.y;
@@ -36,5 +32,9 @@ public class Snake {
 
 	public int getSecondLocationCoordinate() {
 		return location.y;
+	}
+
+	public void move(Direction right) {
+		location.move(1, 0);
 	}
 }
