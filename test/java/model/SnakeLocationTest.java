@@ -1,7 +1,6 @@
 package model;
 
 import static model.Coordinate.VERTICAL_COORDINATE;
-import static model.Direction.LEFT;
 import static model.Direction.RIGHT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -36,11 +35,6 @@ public class SnakeLocationTest {
 	public void theSnakesVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
 		snake.move(RIGHT);
 		SnakeLocationAsserter.assertThatTheSnakes(VERTICAL_COORDINATE, is(0), snake);
-	}
-
-	@Test
-	public void theSnakesVerticalCoordinateIsOneAfterItHasMovedLeftOnce() {
-		SnakeLocationAsserter.theSnakesHorizontalCoordinateIsOneAfterItHasMovedIntoDirection(LEFT, snake);
 	}
 
 }
