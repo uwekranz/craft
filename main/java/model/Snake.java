@@ -4,6 +4,11 @@ import java.awt.Point;
 
 public class Snake {
 
+	public Snake whichIsMoving(){
+		beginToMove();
+		return this;
+	}
+
 	private int length = 1;
 	private Point location = new Point(0, 0);
 
@@ -34,7 +39,32 @@ public class Snake {
 		return location.y;
 	}
 
-	public void move(Direction right) {
-		location.move(1, 0);
+	public void move() {
+		move(getDirectionOfMovement()); 
 	}
+
+	public void move(Direction direction) {
+		int stepDistance = 10;
+		switch (direction) {
+		case DOWN:
+			location.move(0, stepDistance);
+			break;
+		case LEFT:
+			location.move(-stepDistance, 0);
+			break;
+		case RIGHT:
+			location.move(getLocation().x + stepDistance, getLocation().y);
+			break;
+		case UP:
+			location.move(0, -stepDistance);
+			break;
+		}
+		System.out.println("Snake location is: "+ location);
+	}
+	
+	public void beginToMove() {
+		Thread thread = new SnakeMovement(this);
+		thread.start();
+	}
+
 }

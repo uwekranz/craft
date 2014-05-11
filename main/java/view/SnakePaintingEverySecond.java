@@ -2,12 +2,12 @@ package view;
 
 import java.awt.Graphics;
 
-public class SnakePaintingEvery100Milliseconds extends Thread {
+public class SnakePaintingEverySecond extends Thread {
 
 	private SnakePainter snakePainter;
 	private Graphics graphics;
 
-	public SnakePaintingEvery100Milliseconds(SnakePainter snakePainter, Graphics graphics) {
+	public SnakePaintingEverySecond(SnakePainter snakePainter, Graphics graphics) {
 		super();
 		this.snakePainter = snakePainter;
 		this.graphics = graphics;
@@ -18,10 +18,9 @@ public class SnakePaintingEvery100Milliseconds extends Thread {
 		while (true) {
 			snakePainter.paint(graphics);
 			try {
-				Thread.sleep(100);
 				snakePainter.setPaintsRegularly(true);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

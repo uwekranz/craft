@@ -1,6 +1,11 @@
 package view;
 
+import static model.Model.getSnakeLocation;
+
 import java.awt.Graphics;
+import java.awt.Point;
+
+import model.Model;
 
 public class SnakePainter {
 
@@ -8,7 +13,8 @@ public class SnakePainter {
 	private boolean paintsRegularly = false;
 
 	public void paint(Graphics graphics) {
-		graphics.drawLine(1000, 100, 100, 100);
+		Point snakeLocation = getSnakeLocation();
+		graphics.drawLine(snakeLocation.x, 100, snakeLocation.x + 100, 100);
 		hasPainted = true;
 	}
 
@@ -26,7 +32,7 @@ public class SnakePainter {
 	}
 
 	private void paintEvery100Milliseconds(Graphics graphics) {
-		SnakePaintingEvery100Milliseconds snakePaintingEvery100Milliseconds = new SnakePaintingEvery100Milliseconds(this, graphics);
+		SnakePaintingEverySecond snakePaintingEvery100Milliseconds = new SnakePaintingEverySecond(this, graphics);
 		snakePaintingEvery100Milliseconds.start();
 	}
 

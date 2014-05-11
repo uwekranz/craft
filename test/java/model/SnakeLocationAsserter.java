@@ -9,13 +9,13 @@ import org.hamcrest.Matcher;
 
 public class SnakeLocationAsserter {
 
-	public static void isOneAfterItHasMoved(Direction direction, Snake snake) {
-		theSnakesHorizontalCoordinateIsOneAfterItHasMovedIntoDirection(direction, snake);
+	public static void isTenAfterItHasMoved(Direction direction, Snake snake) {
+		theSnakesHorizontalCoordinateIsTenAfterItHasMovedIntoDirection(direction, snake);
 	}
 
-	public static void theSnakesHorizontalCoordinateIsOneAfterItHasMovedIntoDirection(Direction direction, Snake snake) {
+	public static void theSnakesHorizontalCoordinateIsTenAfterItHasMovedIntoDirection(Direction direction, Snake snake) {
 		snake.move(RIGHT);
-		assertThatTheSnakes(HORIZONTAL_COORDINATE, is(1), snake);
+		assertThatTheSnakes(HORIZONTAL_COORDINATE, is(10), snake);
 	}
 
 	static void assertThatTheSnakes(Coordinate coordinate, Matcher<Integer> matcher, Snake snake) {
