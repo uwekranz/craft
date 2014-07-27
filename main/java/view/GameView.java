@@ -12,6 +12,8 @@ public class GameView extends JComponent {
 	private FoodPainter foodPainter = new FoodPainter();
 	private CagePainter cagePainter = new CagePainter();
 
+	private Boolean isPaintedRegularly = false;
+
 	public GameView() {
 		super();
 	}
@@ -20,11 +22,11 @@ public class GameView extends JComponent {
 	protected void paintComponent(Graphics graphics) {
 		paintCage(graphics);
 		paintFood(graphics);
-		paintSnakeRegularly(graphics);
+		paintSnake(graphics);
 	}
 
-	private void paintSnakeRegularly(Graphics graphics) {
-		snakePainter.paintRegularly(graphics);
+	private void paintSnake(Graphics graphics) {
+		snakePainter.paint(graphics);
 	}
 
 	private void paintFood(Graphics graphics) {
@@ -47,8 +49,18 @@ public class GameView extends JComponent {
 		return snakePainter.hasPainted();
 	}
 
-	public Boolean snakeIsPaintedRegularly() {
-		return snakePainter.paintsRegularly();
+	public void repaintGameViewRegularly(GameView gameView) {
+		GameViewRepaintingEverySecond gameViewRepaintingEverySecond = new GameViewRepaintingEverySecond(
+				gameView);
+		gameViewRepaintingEverySecond.start();
+	}
+
+	public Boolean isPaintedRegularly() {
+		return isPaintedRegularly;
+	}
+
+	public void setIsPaintedRegularly(boolean isPaintedRegularly) {
+		this.isPaintedRegularly = isPaintedRegularly;
 	}
 
 }

@@ -6,8 +6,6 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.SnakePainter;
-import view.UserInterface;
 import controller.SnakeGame;
 
 public class SnakePainterTest {
@@ -22,9 +20,8 @@ public class SnakePainterTest {
 	}
 
 	@Test
-	public void itHasNotPaintedYet_WhenItsNewlyCreated() {
-		SnakePainter snakePainter = new SnakePainter();
-		assertThat(snakePainter.paintsRegularly(), is(false));
+	public void itIsNotPaintedRegularlyYet_WhenItIsNewlyCreated() {
+		assertThat(userInterface.isPaintedRegularly(), is(false));
 	}
 
 	@Test
@@ -37,14 +34,10 @@ public class SnakePainterTest {
 	}
 
 	@Test
-	public void itShouldPaintRegularly_WhenGameHasStarted() throws InterruptedException {
+	public void itShouldPaintRegularly_WhenGameHasStarted()
+			throws InterruptedException {
 		Thread.sleep(1000);
-
-		assertThat(snakeIsPaintedRegularly(snakeGame), is(true));
-	}
-
-	private Boolean snakeIsPaintedRegularly(SnakeGame snakeGame2) {
-		return userInterface.getGameView().snakeIsPaintedRegularly();
+		assertThat(userInterface.isPaintedRegularly(), is(true));
 	}
 
 }
