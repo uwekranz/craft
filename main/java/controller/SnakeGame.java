@@ -1,17 +1,16 @@
 package controller;
 
-import model.Model;
+import model.GameModel;
 import view.UserInterface;
 
 public class SnakeGame {
-	
-	Model model = new Model();
-	
+
+	GameModel model = new GameModel();
 	public void startWithUserInterface(UserInterface userInterface) {
 		userInterface.displayView();
 	}
 
-	public Model getModel() {
+	public GameModel getModel() {
 		return model;
 	}
 

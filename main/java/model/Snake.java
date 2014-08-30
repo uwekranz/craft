@@ -4,13 +4,13 @@ import java.awt.Point;
 
 public class Snake {
 
-	public Snake whichIsMoving(){
+	private int length = 1;
+	private Point location = new Point(0, 0);
+
+	public Snake whichIsMoving() {
 		beginToMove();
 		return this;
 	}
-
-	private int length = 1;
-	private Point location = new Point(0, 0);
 
 	public void eat() {
 		length += 1;
@@ -40,7 +40,7 @@ public class Snake {
 	}
 
 	public void move() {
-		move(getDirectionOfMovement()); 
+		move(getDirectionOfMovement());
 	}
 
 	public void move(Direction direction) {
@@ -59,9 +59,9 @@ public class Snake {
 			location.move(0, -stepDistance);
 			break;
 		}
-		System.out.println("Snake location is: "+ location);
+		System.out.println("Snake location is: " + location);
 	}
-	
+
 	public void beginToMove() {
 		Thread thread = new SnakeMovement(this);
 		thread.start();
