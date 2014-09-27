@@ -13,7 +13,6 @@ public class UserInterface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static final Dimension DEFAULT_SCREEN_SIZE = Toolkit
 			.getDefaultToolkit().getScreenSize();
-
 	private GameView gameView;
 
 	public UserInterface(Controller controller) {
@@ -28,6 +27,7 @@ public class UserInterface extends JFrame {
 	}
 
 	public void displayView() {
+		setContentPane(gameView);
 		setVisible(true);
 		gameView.paintComponent(getGraphics());
 		gameView.repaintGameViewRegularly(gameView);
@@ -37,12 +37,12 @@ public class UserInterface extends JFrame {
 		return (GameView) getContentPane();
 	}
 
-	public Boolean isPaintedRegularly() {
-		return gameView.isPaintedRegularly();
-	}
-
 	public void setSnakePainter(SnakePainter snakePainter) {
 		gameView.setSnakePainter(snakePainter);
+	}
+
+	public Boolean isPaintedRegularly() {
+		return gameView.isPaintedRegularly();
 	}
 
 }
