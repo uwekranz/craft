@@ -1,13 +1,11 @@
 package model;
 
-import java.awt.Point;
-
 import applicationBoundary.SnakeGameLogger;
 
 public class Snake {
 
-	private int length = 1;
-	private Location location = new Location(new Point(0, 0));
+	private int bodyLength = 1;
+	private Location location = new Location(0, 0);
 	private Direction directionOfMovement = Direction.RIGHT;
 
 	public Snake whichIsMoving() {
@@ -16,11 +14,11 @@ public class Snake {
 	}
 
 	public void eat() {
-		length += 1;
+		bodyLength += 1;
 	}
 
-	public int getLength() {
-		return length;
+	public int getBodyLength() {
+		return bodyLength;
 	}
 
 	public Location getLocation() {
@@ -43,24 +41,18 @@ public class Snake {
 		int stepDistance = 10;
 		switch (direction) {
 		case DOWN:
-			location.setCoordinates(
-					getLocation().getCoordinate(Axis.HORIZONTAL),
-					getLocation().getCoordinate(Axis.VERTICAL) + stepDistance);
+			location.setCoordinates(getLocation().getCoordinate(Axis.HORIZONTAL_AXIS),
+					getLocation().getCoordinate(Axis.VERTICAL_AXIS) + stepDistance);
 			break;
 		case LEFT:
-			location.setCoordinates(-stepDistance, getLocation()
-					.getCoordinate(Axis.VERTICAL));
+			location.setCoordinates(-stepDistance, getLocation().getCoordinate(Axis.VERTICAL_AXIS));
 			break;
 		case RIGHT:
-			location.setCoordinates(
-					getLocation().getCoordinate(Axis.HORIZONTAL)
-							+ stepDistance,
-					getLocation().getCoordinate(Axis.VERTICAL));
+			location.setCoordinates(getLocation().getCoordinate(Axis.HORIZONTAL_AXIS) + stepDistance, getLocation()
+					.getCoordinate(Axis.VERTICAL_AXIS));
 			break;
 		case UP:
-			location.setCoordinates(
-					getLocation().getCoordinate(Axis.HORIZONTAL),
-					-stepDistance);
+			location.setCoordinates(getLocation().getCoordinate(Axis.HORIZONTAL_AXIS), -stepDistance);
 			break;
 		}
 		move(stepDistance);

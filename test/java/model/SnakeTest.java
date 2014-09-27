@@ -15,7 +15,7 @@ public class SnakeTest {
 	@Before
 	public void setUp() {
 		snake = new Snake();
-		theSnakesInitialLength = snake.getLength();
+		theSnakesInitialLength = snake.getBodyLength();
 	}
 
 	@Test
@@ -26,8 +26,10 @@ public class SnakeTest {
 	@Test
 	public void theSnakeBecomesLongerWhenItEats() {
 		snake.eat();
-		int theSnakesLengthAfterEating = snake.getLength();
-		assertThat(theSnakesInitialLength, is(lessThan(theSnakesLengthAfterEating)));
+
+		int theSnakesLengthAfterEating = snake.getBodyLength();
+		assertThat(theSnakesInitialLength,
+				is(lessThan(theSnakesLengthAfterEating)));
 	}
 
 }

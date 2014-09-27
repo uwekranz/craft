@@ -59,8 +59,7 @@ public class UserInterfaceTest {
 		pressTheDownKey();
 
 		Thread.sleep(200);
-		verify(controllerMock).setDirectionOfSnakeMovement(
-				Matchers.any(Direction.class));
+		verify(controllerMock).setDirectionOfSnakeMovement(Matchers.any(Direction.class));
 	}
 
 	private void pressTheDownKey() throws AWTException {
@@ -70,8 +69,7 @@ public class UserInterfaceTest {
 	}
 
 	@Test
-	public void itShouldPaintRegularly_WhenViewHasBeenDisplayed()
-			throws Exception {
+	public void itShouldPaintRegularly_WhenViewHasBeenDisplayed() throws Exception {
 		Thread.sleep(10);
 		assertThat(userInterface.isPaintedRegularly(), is(true));
 	}

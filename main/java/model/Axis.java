@@ -1,5 +1,5 @@
 package model;
 
 public enum Axis {
-	HORIZONTAL, VERTICAL
+	HORIZONTAL_AXIS, VERTICAL_AXIS
 }

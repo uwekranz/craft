@@ -6,8 +6,12 @@ public class Location {
 
 	private Point coordinates;
 
-	public Location(Point point) {
-		this.coordinates = point;
+	public Location(int horizontalCoordinate, int verticalCoordinate) {
+		this.coordinates = new Point(horizontalCoordinate, verticalCoordinate);
+	}
+
+	public Location() {
+		this.coordinates = new Point(0, 0);
 	}
 
 	@Override
@@ -16,7 +20,7 @@ public class Location {
 	}
 
 	public int getCoordinate(Axis axis) {
-		if (axis.equals(Axis.HORIZONTAL))
+		if (axis.equals(Axis.HORIZONTAL_AXIS))
 			return coordinates.x;
 		return coordinates.y;
 	}

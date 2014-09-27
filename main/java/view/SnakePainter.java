@@ -16,10 +16,10 @@ public class SnakePainter {
 
 	public void paint(Graphics graphics) {
 		Location snakeLocation = model.getSnakeLocation();
-		graphics.drawLine(snakeLocation.getCoordinate(Axis.HORIZONTAL),
-				snakeLocation.getCoordinate(Axis.VERTICAL),
-				snakeLocation.getCoordinate(Axis.HORIZONTAL) + 100,
-				snakeLocation.getCoordinate(Axis.VERTICAL));
+		graphics.drawLine(snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS),
+				snakeLocation.getCoordinate(Axis.VERTICAL_AXIS),
+				snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS) + 100,
+				snakeLocation.getCoordinate(Axis.VERTICAL_AXIS));
 	}
 
 }
