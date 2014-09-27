@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import model.GameModel;
 import controller.Controller;
 import controller.DownKeyListener;
 
@@ -22,7 +21,7 @@ public class UserInterface extends JFrame {
 		setSize(DEFAULT_SCREEN_SIZE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		gameView = new GameView(new GameModel());
+		gameView = new GameView(controller.getGameModel());
 		setContentPane(gameView);
 
 		addKeyListener(new DownKeyListener(controller));

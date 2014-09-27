@@ -15,8 +15,8 @@ public class GameView extends JComponent {
 
 	private Boolean isPaintedRegularly = false;
 
-	public GameView(GameModel model) {
-		snakePainter = new SnakePainter(model);
+	public GameView(GameModel gameModel) {
+		snakePainter = new SnakePainter(gameModel);
 		foodPainter = new FoodPainter();
 	}
 

@@ -1,9 +1,9 @@
 package view;
 
 import java.awt.Graphics;
-import java.awt.Point;
 
 import model.GameModel;
+import model.Location;
 
 public class SnakePainter {
 
@@ -14,9 +14,11 @@ public class SnakePainter {
 	}
 
 	public void paint(Graphics graphics) {
-		Point snakeLocation = model.getSnakeLocation();
-		graphics.drawLine(snakeLocation.x, snakeLocation.y,
-				snakeLocation.x + 100, snakeLocation.y);
+		Location snakeLocation = model.getSnakeLocation();
+		graphics.drawLine(snakeLocation.getHorizontalCoordinate(),
+				snakeLocation.getVerticalCoordinate(),
+				snakeLocation.getHorizontalCoordinate() + 100,
+				snakeLocation.getVerticalCoordinate());
 	}
 
 }

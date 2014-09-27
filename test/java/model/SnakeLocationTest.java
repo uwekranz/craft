@@ -1,6 +1,7 @@
 package model;
 
-import static model.Coordinate.*;
+import static model.Coordinate.HORIZONTAL_COORDINATE;
+import static model.Coordinate.VERTICAL_COORDINATE;
 import static model.Direction.RIGHT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -15,14 +16,15 @@ public class SnakeLocationTest {
 
 	@Test
 	public void theSnakesInitialLocationIsTheOrigin() {
-		Point theSnakesInitialLocation = snake.getLocation();
-		Point theOrigin = new Point(0, 0);
+		Location theSnakesInitialLocation = snake.getLocation();
+		Location theOrigin = new Location(new Point(0, 0));
 		assertThat(theSnakesInitialLocation, is(theOrigin));
 	}
 
 	@Test
 	public void theSnakesInitialDirectionOfMovementIsRight() {
-		Direction theSnakesInitialDirectionOfMovement = snake.getDirectionOfMovement();
+		Direction theSnakesInitialDirectionOfMovement = snake
+				.getDirectionOfMovement();
 		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));
 	}
 
@@ -34,20 +36,23 @@ public class SnakeLocationTest {
 	@Test
 	public void theSnakesVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
 		snake.move(RIGHT);
-		SnakeLocationAsserter.assertThatTheSnakes(VERTICAL_COORDINATE, is(0), snake);
+		SnakeLocationAsserter.assertThatTheSnakes(VERTICAL_COORDINATE, is(0),
+				snake);
 	}
-	
+
 	@Test
 	public void theSnakesHorizontalCoordinateIsTenAfterItHasMovedRightOnce() {
 		snake.move(RIGHT);
-		SnakeLocationAsserter.assertThatTheSnakes(HORIZONTAL_COORDINATE, is(10), snake);
+		SnakeLocationAsserter.assertThatTheSnakes(HORIZONTAL_COORDINATE,
+				is(10), snake);
 	}
-	
+
 	@Test
 	public void theSnakesHorizontalCoordinateIsTwentyAfterItHasMovedRightTwice() {
 		snake.move(RIGHT);
 		snake.move(RIGHT);
-		SnakeLocationAsserter.assertThatTheSnakes(HORIZONTAL_COORDINATE, is(20), snake);
+		SnakeLocationAsserter.assertThatTheSnakes(HORIZONTAL_COORDINATE,
+				is(20), snake);
 	}
 
 }

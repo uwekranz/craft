@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import model.Direction;
+
 public class DownKeyListener implements KeyListener {
 
 	private Controller controller;
@@ -14,7 +16,7 @@ public class DownKeyListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println("in keyPressed");
-		controller.goDown();
+		controller.setDirectionOfSnakeMovement(Direction.DOWN);
 	}
 
 	@Override

@@ -12,8 +12,11 @@ import java.awt.Graphics;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
+import model.Direction;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 
 import controller.Controller;
 
@@ -56,7 +59,8 @@ public class UserInterfaceTest {
 		pressTheDownKey();
 
 		Thread.sleep(200);
-		verify(controllerMock).goDown();
+		verify(controllerMock).setDirectionOfSnakeMovement(
+				Matchers.any(Direction.class));
 	}
 
 	private void pressTheDownKey() throws AWTException {
