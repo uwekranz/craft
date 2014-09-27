@@ -2,6 +2,8 @@ package model;
 
 import java.awt.Point;
 
+import applicationBoundary.SnakeGameLogger;
+
 public class Snake {
 
 	private int length = 1;
@@ -29,15 +31,8 @@ public class Snake {
 		return directionOfMovement;
 	}
 
-	public int getCoordinate(Coordinate axis) {
-		if (axis == Coordinate.HORIZONTAL_COORDINATE)
-			return location.getHorizontalCoordinate();
-		else
-			return location.getVerticalCoordinate();
-	}
-
-	public int getSecondLocationCoordinate() {
-		return location.getVerticalCoordinate();
+	public int getCoordinateOf(Axis axis) {
+		return location.getCoordinate(axis);
 	}
 
 	public void move() {
@@ -48,23 +43,28 @@ public class Snake {
 		int stepDistance = 10;
 		switch (direction) {
 		case DOWN:
-			location.move(getLocation().getHorizontalCoordinate(),
-					getLocation().getVerticalCoordinate() + stepDistance);
+			location.setCoordinates(
+					getLocation().getCoordinate(Axis.HORIZONTAL),
+					getLocation().getCoordinate(Axis.VERTICAL) + stepDistance);
 			break;
 		case LEFT:
-			location.move(-stepDistance, getLocation().getVerticalCoordinate());
+			location.setCoordinates(-stepDistance, getLocation()
+					.getCoordinate(Axis.VERTICAL));
 			break;
 		case RIGHT:
-			location.move(getLocation().getHorizontalCoordinate()
-					+ stepDistance, getLocation().getVerticalCoordinate());
+			location.setCoordinates(
+					getLocation().getCoordinate(Axis.HORIZONTAL)
+							+ stepDistance,
+					getLocation().getCoordinate(Axis.VERTICAL));
 			break;
 		case UP:
-			location.move(getLocation().getHorizontalCoordinate(),
+			location.setCoordinates(
+					getLocation().getCoordinate(Axis.HORIZONTAL),
 					-stepDistance);
 			break;
 		}
 		move(stepDistance);
-		System.out.println("Snake location is: " + location);
+		SnakeGameLogger.log("The snakes location is: " + location);
 	}
 
 	private MovementStep move(int stepDistance) {
@@ -72,6 +72,7 @@ public class Snake {
 	}
 
 	public void beginToMove() {
+		System.out.println("The snake begins to move");
 		Thread thread = new SnakeMovement(this);
 		thread.start();
 	}

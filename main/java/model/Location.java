@@ -10,36 +10,35 @@ public class Location {
 		this.coordinates = point;
 	}
 
-	public int getHorizontalCoordinate() {
-		return coordinates.x;
+	@Override
+	public String toString() {
+		return "(" + coordinates.x + "," + coordinates.y + ")";
 	}
 
-	public int getVerticalCoordinate() {
+	public int getCoordinate(Axis axis) {
+		if (axis.equals(Axis.HORIZONTAL))
+			return coordinates.x;
 		return coordinates.y;
 	}
 
-	public void move(int horizontalCoordinate, int verticalCoordinate) {
+	public void setCoordinates(int horizontalCoordinate, int verticalCoordinate) {
 		coordinates.move(horizontalCoordinate, verticalCoordinate);
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((coordinates == null) ? 0 : coordinates.hashCode());
-		return result;
+		return coordinates.hashCode();
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object object) {
+		if (this == object)
 			return true;
-		if (obj == null)
+		if (object == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (getClass() != object.getClass())
 			return false;
-		Location other = (Location) obj;
+		Location other = (Location) object;
 		if (coordinates == null) {
 			if (other.coordinates != null)
 				return false;

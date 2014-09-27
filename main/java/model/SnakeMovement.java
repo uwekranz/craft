@@ -15,10 +15,11 @@ public class SnakeMovement extends Thread {
 			try {
 				int tickerDuration = 1000;
 				Thread.sleep(tickerDuration);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			} catch (InterruptedException exception) {
+				exception.printStackTrace();
+				throw new RuntimeException(exception);
 			}
 		}
 	}
-	
+
 }

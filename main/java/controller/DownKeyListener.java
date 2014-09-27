@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import model.Direction;
+import applicationBoundary.SnakeGameLogger;
 
 public class DownKeyListener implements KeyListener {
 
@@ -15,7 +16,7 @@ public class DownKeyListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("in keyPressed");
+		SnakeGameLogger.log("A key has been pressed");
 		controller.setDirectionOfSnakeMovement(Direction.DOWN);
 	}
 
