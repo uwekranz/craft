@@ -28,8 +28,16 @@ public class SnakeTest {
 		snake.eat();
 
 		int theSnakesLengthAfterEating = snake.getBodyLength();
-		assertThat(theSnakesInitialLength,
-				is(lessThan(theSnakesLengthAfterEating)));
+		assertThat(theSnakesInitialLength, is(lessThan(theSnakesLengthAfterEating)));
+	}
+
+	@Test
+	public void theSnakesInitialLocationIsTheOrigin() {
+
+		Location theSnakesInitialLocation = snake.getLocation();
+		Location theOrigin = new Location(0, 0);
+
+		assertThat(theSnakesInitialLocation, is(theOrigin));
 	}
 
 }

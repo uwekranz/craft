@@ -15,8 +15,8 @@ public class DownKeyListener implements KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
-		SnakeGameLogger.log("A key has been pressed");
+	public void keyPressed(KeyEvent keyEvent) {
+		SnakeGameLogger.log("The key " + KeyEvent.getKeyText(keyEvent.getKeyCode()) + " has been pressed");
 		controller.setDirectionOfSnakeMovement(Direction.DOWN);
 	}
 

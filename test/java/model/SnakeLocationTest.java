@@ -2,9 +2,8 @@ package model;
 
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
+import static model.Direction.DOWN;
 import static model.Direction.RIGHT;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
 
@@ -12,23 +11,6 @@ public class SnakeLocationTest {
 
 	private Snake snake = new Snake();
 	private LocationAsserter locationAsserter = new LocationAsserter(snake);
-
-	@Test
-	public void theSnakesInitialLocationIsTheOrigin() {
-
-		Location theSnakesInitialLocation = snake.getLocation();
-		Location theOrigin = new Location(0, 0);
-
-		assertThat(theSnakesInitialLocation, is(theOrigin));
-	}
-
-	@Test
-	public void theSnakesInitialDirectionOfMovementIsRight() {
-
-		Direction theSnakesInitialDirectionOfMovement = snake.getDirectionOfMovement();
-
-		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));
-	}
 
 	@Test
 	public void theSnakesVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
@@ -39,7 +21,6 @@ public class SnakeLocationTest {
 	@Test
 	public void theSnakesHorizontalCoordinateIsTenAfterItHasMovedRightOnce() {
 		snake.move(RIGHT);
-
 		locationAsserter.assertThatTheSnakeLocation(hasValue(10), onIts(HORIZONTAL_AXIS));
 	}
 
@@ -47,8 +28,40 @@ public class SnakeLocationTest {
 	public void theSnakesHorizontalCoordinateIsTwentyAfterItHasMovedRightTwice() {
 		snake.move(RIGHT);
 		snake.move(RIGHT);
-
 		locationAsserter.assertThatTheSnakeLocation(hasValue(20), onIts(HORIZONTAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesVerticalCoordinateIsZeroAfterItHasMovedRightTwice() {
+		snake.move(RIGHT);
+		snake.move(RIGHT);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(0), onIts(VERTICAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesVerticalCoordinateIsZeroAfterItHasMovedDownOnce() {
+		snake.move(Direction.DOWN);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(10), onIts(VERTICAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesHorizontalCoordinateIsZeroAfterItHasMovedDownOnce() {
+		snake.move(DOWN);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(0), onIts(Axis.HORIZONTAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesHorizontalCoordinateIsTwentyAfterItHasMovedDownTwice() {
+		snake.move(DOWN);
+		snake.move(DOWN);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(0), onIts(HORIZONTAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesVerticalCoordinateIsTwentyAfterItHasMovedRightTwice() {
+		snake.move(DOWN);
+		snake.move(DOWN);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(20), onIts(VERTICAL_AXIS));
 	}
 
 	private Axis onIts(Axis horizontalAxis) {

@@ -7,22 +7,17 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import java.awt.AWTException;
 import java.awt.Graphics;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-
-import model.Direction;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
 
 import controller.Controller;
 
 public class UserInterfaceTest {
 
 	private UserInterface userInterface;
+
 	private SnakePainter snakePainterMock;
 	private Controller controllerMock;
 
@@ -52,20 +47,6 @@ public class UserInterfaceTest {
 	@Test
 	public void itShouldHaveLetSnakeBePainted_WhenViewHasBeenDisplayed() {
 		verify(snakePainterMock, atLeastOnce()).paint(any(Graphics.class));
-	}
-
-	@Test
-	public void itShouldDelegateToControllerIfKeyIsPresses() throws Exception {
-		pressTheDownKey();
-
-		Thread.sleep(200);
-		verify(controllerMock).setDirectionOfSnakeMovement(Matchers.any(Direction.class));
-	}
-
-	private void pressTheDownKey() throws AWTException {
-		Robot robot = new Robot();
-		robot.keyPress(KeyEvent.VK_DOWN);
-		robot.keyRelease(KeyEvent.VK_DOWN);
 	}
 
 	@Test
