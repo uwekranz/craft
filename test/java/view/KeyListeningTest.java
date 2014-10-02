@@ -3,6 +3,7 @@ package view;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import java.awt.AWTException;
@@ -15,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.Mockito;
 
 import controller.Controller;
 
@@ -44,7 +46,14 @@ public class KeyListeningTest {
 	@Test
 	public void whenDownKeyIsPressed_directionOfSnakeMovementGetsSetAccordingly() throws Exception {
 		pressKey(KeyEvent.VK_DOWN);
-		assertThat(directionOfSnakeMovement(), is(Direction.DOWN));
+		assertThat(theNewDirectionOfSnakeMovement(), is(Direction.DOWN));
+	}
+
+	@Test
+	public void whenANonArrowKeyIsPressed_theDirectionOfSnakeMovementDoesNotChange() throws Exception {
+		pressKey(KeyEvent.VK_H);
+		verify(controllerMock, never()).setDirectionOfSnakeMovement(Mockito.any(Direction.class));
+
 	}
 
 	private void pressKey(int keyEvent) throws AWTException, InterruptedException {
@@ -55,7 +64,7 @@ public class KeyListeningTest {
 		Thread.sleep(200);
 	}
 
-	private Direction directionOfSnakeMovement() {
+	private Direction theNewDirectionOfSnakeMovement() {
 		verify(controllerMock).setDirectionOfSnakeMovement(directionCaptor.capture());
 		Direction directionOfSnakeMovement = directionCaptor.getValue();
 		return directionOfSnakeMovement;
