@@ -1,7 +1,12 @@
 package controller;
 
 import static java.awt.event.KeyEvent.VK_DOWN;
+import static java.awt.event.KeyEvent.VK_LEFT;
+import static java.awt.event.KeyEvent.VK_RIGHT;
+import static java.awt.event.KeyEvent.VK_UP;
 import static model.Direction.DOWN;
+import static model.Direction.LEFT;
+import static model.Direction.RIGHT;
 import static model.Direction.UP;
 
 import java.awt.event.KeyEvent;
@@ -22,8 +27,12 @@ public class ArrowKeysListener implements KeyListener {
 		SnakeGameLogger.log("The key " + KeyEvent.getKeyText(keyEvent.getKeyCode()) + " has been pressed");
 		if (keyEvent.getKeyCode() == VK_DOWN)
 			controller.setDirectionOfSnakeMovement(DOWN);
-		if (keyEvent.getKeyCode() == KeyEvent.VK_UP)
+		if (keyEvent.getKeyCode() == VK_UP)
 			controller.setDirectionOfSnakeMovement(UP);
+		if (keyEvent.getKeyCode() == VK_RIGHT)
+			controller.setDirectionOfSnakeMovement(RIGHT);
+		if (keyEvent.getKeyCode() == VK_LEFT)
+			controller.setDirectionOfSnakeMovement(LEFT);
 	}
 
 	@Override
