@@ -1,5 +1,9 @@
 package view;
 
+import static java.awt.event.KeyEvent.VK_DOWN;
+import static java.awt.event.KeyEvent.VK_UP;
+import static model.Direction.DOWN;
+import static model.Direction.UP;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -32,21 +36,23 @@ public class KeyListeningTest {
 
 	@Before
 	public void prepareTests() {
-		createUserInterface_WithMockedSnakePainter();
-		userInterface.displayView();
-	}
-
-	private void createUserInterface_WithMockedSnakePainter() {
 		controllerMock = mock(Controller.class);
 		userInterface = new UserInterface(controllerMock);
 		snakePainterMock = mock(SnakePainter.class);
 		userInterface.setSnakePainter(snakePainterMock);
+		userInterface.displayView();
 	}
 
 	@Test
 	public void whenDownKeyIsPressed_directionOfSnakeMovementGetsSetAccordingly() throws Exception {
-		pressKey(KeyEvent.VK_DOWN);
-		assertThat(theNewDirectionOfSnakeMovement(), is(Direction.DOWN));
+		pressKey(VK_DOWN);
+		assertThat(theNewDirectionOfSnakeMovement(), is(DOWN));
+	}
+
+	@Test
+	public void whenUpKeyIsPressed_directionOfSnakeMovementGetsSetAccordingly() throws Exception {
+		pressKey(VK_UP);
+		assertThat(theNewDirectionOfSnakeMovement(), is(UP));
 	}
 
 	@Test

@@ -5,14 +5,13 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import controller.ArrowKeysListener;
 import controller.Controller;
-import controller.DownKeyListener;
 
 public class UserInterface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private static final Dimension DEFAULT_SCREEN_SIZE = Toolkit
-			.getDefaultToolkit().getScreenSize();
+	private static final Dimension DEFAULT_SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 	private GameView gameView;
 
 	public UserInterface(Controller controller) {
@@ -23,7 +22,7 @@ public class UserInterface extends JFrame {
 		gameView = new GameView(controller.getGameModel());
 		setContentPane(gameView);
 
-		addKeyListener(new DownKeyListener(controller));
+		addKeyListener(new ArrowKeysListener(controller));
 	}
 
 	public void displayView() {
