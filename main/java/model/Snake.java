@@ -56,12 +56,7 @@ public class Snake {
 			location.add(-stepDistance, VERTICAL_AXIS);
 			break;
 		}
-		move(stepDistance);
 		SnakeGameLogger.log("The snakes location is: " + location);
-	}
-
-	private MovementStep move(int stepDistance) {
-		return new MovementStep(stepDistance);
 	}
 
 	public void beginToMove() {
