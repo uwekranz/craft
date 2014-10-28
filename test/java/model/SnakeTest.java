@@ -34,8 +34,8 @@ public class SnakeTest {
 	@Test
 	public void theSnakesInitialLocationIsTheOrigin() {
 
-		Location theSnakesInitialLocation = snake.getLocation();
-		Location theOrigin = new Location(0, 0);
+		SnakeLocation theSnakesInitialLocation = snake.getLocation();
+		SnakeLocation theOrigin = new SnakeLocation();
 
 		assertThat(theSnakesInitialLocation, is(theOrigin));
 	}

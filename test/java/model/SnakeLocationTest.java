@@ -4,6 +4,7 @@ import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
 import static model.Direction.DOWN;
 import static model.Direction.RIGHT;
+import static model.Direction.UP;
 
 import org.junit.Test;
 
@@ -47,7 +48,7 @@ public class SnakeLocationTest {
 	@Test
 	public void theSnakesHorizontalCoordinateIsZeroAfterItHasMovedDownOnce() {
 		snake.move(DOWN);
-		locationAsserter.assertThatTheSnakeLocation(hasValue(0), onIts(Axis.HORIZONTAL_AXIS));
+		locationAsserter.assertThatTheSnakeLocation(hasValue(0), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
@@ -62,6 +63,38 @@ public class SnakeLocationTest {
 		snake.move(DOWN);
 		snake.move(DOWN);
 		locationAsserter.assertThatTheSnakeLocation(hasValue(20), onIts(VERTICAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesHorizontalCoordinateIsZeroAfterItHasMovedUpOnce() {
+		snake.move(Direction.UP);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(0), onIts(HORIZONTAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesVerticalCoordinateIsMinus10AfterItHasMovedUpOnce() {
+		snake.move(UP);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(-10), onIts(VERTICAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesVerticalCoordinateIsZeroAgainAfterItHasMovedDownAndUpOnce() {
+		snake.move(DOWN);
+		snake.move(UP);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(0), onIts(VERTICAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesHorizontalCoordinateIsMinus10AfterItHasMovedLeftOnce() {
+		snake.move(Direction.LEFT);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(-10), onIts(HORIZONTAL_AXIS));
+	}
+
+	@Test
+	public void theSnakesHorizontalCoordinateIsMinus20AfterItHasMovedLeftTwice() {
+		snake.move(Direction.LEFT);
+		snake.move(Direction.LEFT);
+		locationAsserter.assertThatTheSnakeLocation(hasValue(-20), onIts(HORIZONTAL_AXIS));
 	}
 
 	private Axis onIts(Axis horizontalAxis) {

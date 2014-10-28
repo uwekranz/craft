@@ -1,11 +1,10 @@
 package model;
 
-
 public class GameModel {
 
 	private Snake snake = new Snake().whichIsMoving();
 
-	public Location getSnakeLocation() {
+	public SnakeLocation getSnakeLocation() {
 		return snake.getLocation();
 
 	}

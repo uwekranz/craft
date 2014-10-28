@@ -1,11 +1,13 @@
 package model;
 
+import static model.Axis.HORIZONTAL_AXIS;
+import static model.Axis.VERTICAL_AXIS;
 import applicationBoundary.SnakeGameLogger;
 
 public class Snake {
 
 	private int bodyLength = 1;
-	private Location location = new Location(0, 0);
+	private SnakeLocation location = new SnakeLocation();
 	private Direction directionOfMovement = Direction.RIGHT;
 
 	public Snake whichIsMoving() {
@@ -21,7 +23,7 @@ public class Snake {
 		return bodyLength;
 	}
 
-	public Location getLocation() {
+	public SnakeLocation getLocation() {
 		return location;
 	}
 
@@ -41,18 +43,17 @@ public class Snake {
 		int stepDistance = 10;
 		switch (direction) {
 		case DOWN:
-			location.setCoordinates(getLocation().getCoordinate(Axis.HORIZONTAL_AXIS),
-					getLocation().getCoordinate(Axis.VERTICAL_AXIS) + stepDistance);
+			location.add(stepDistance, VERTICAL_AXIS);
 			break;
 		case LEFT:
-			location.setCoordinates(-stepDistance, getLocation().getCoordinate(Axis.VERTICAL_AXIS));
+			location.add(-stepDistance, HORIZONTAL_AXIS);
 			break;
 		case RIGHT:
-			location.setCoordinates(getLocation().getCoordinate(Axis.HORIZONTAL_AXIS) + stepDistance, getLocation()
-					.getCoordinate(Axis.VERTICAL_AXIS));
+			location.add(stepDistance, HORIZONTAL_AXIS);
+			;
 			break;
 		case UP:
-			location.setCoordinates(getLocation().getCoordinate(Axis.HORIZONTAL_AXIS), -stepDistance);
+			location.add(-stepDistance, VERTICAL_AXIS);
 			break;
 		}
 		move(stepDistance);

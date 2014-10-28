@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import model.Axis;
 import model.GameModel;
-import model.Location;
+import model.SnakeLocation;
 
 public class SnakePainter {
 
@@ -15,7 +15,7 @@ public class SnakePainter {
 	}
 
 	public void paint(Graphics graphics) {
-		Location snakeLocation = model.getSnakeLocation();
+		SnakeLocation snakeLocation = model.getSnakeLocation();
 		graphics.drawLine(snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS),
 				snakeLocation.getCoordinate(Axis.VERTICAL_AXIS),
 				snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS) + 100,
