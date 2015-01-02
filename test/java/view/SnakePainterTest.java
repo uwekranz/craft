@@ -2,20 +2,23 @@ package view;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import model.GameModel;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import controller.Controller;
 import controller.SnakeGame;
 
 public class SnakePainterTest {
 	SnakeGame snakeGame;
-	UserInterface userInterface = new UserInterface();
+	UserInterface userInterface;
 
 	@Before
 	public void prepareTests() {
 		snakeGame = new SnakeGame();
-		userInterface = new UserInterface();
+		Controller controller = new Controller(new GameModel());
+		userInterface = new UserInterface(controller);
 		snakeGame.startWithUserInterface(userInterface);
 	}
 

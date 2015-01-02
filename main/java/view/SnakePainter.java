@@ -9,6 +9,7 @@ import model.SnakeLocation;
 public class SnakePainter {
 
 	private GameModel model;
+	private boolean hasSnakeBeenPainted = false;
 
 	public SnakePainter(GameModel model) {
 		this.model = model;
@@ -20,6 +21,12 @@ public class SnakePainter {
 				snakeLocation.getCoordinate(Axis.VERTICAL_AXIS),
 				snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS) + 100,
 				snakeLocation.getCoordinate(Axis.VERTICAL_AXIS));
+		hasSnakeBeenPainted = true;
+	}
+
+	public boolean hasSnakeBeenPainted() {
+		return hasSnakeBeenPainted;
+		
 	}
 
 }

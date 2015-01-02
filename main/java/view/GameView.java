@@ -60,4 +60,8 @@ public class GameView extends JComponent {
 		this.snakePainter = snakePainter;
 	}
 
+	public boolean snakeHasBeenPainted() {
+		return snakePainter.hasSnakeBeenPainted();
+	}
+
 }
