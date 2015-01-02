@@ -3,16 +3,24 @@ package model;
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SnakeLocation {
 
-	private Location location = new Location(0, 0);
+	private List<Location> location ;
+
+	public SnakeLocation() {
+		location = new ArrayList<Location>();
+		location.add(new Location(0,0));
+	}
 
 	public int getCoordinate(Axis axis) {
-		return location.getCoordinate(axis);
+		return location.get(0).getCoordinate(axis);
 	}
 
 	public void setCoordinates(int horizontalCoordinate, int verticalCoordinate) {
-		location.setCoordinates(horizontalCoordinate, verticalCoordinate);
+		location.get(0).setCoordinates(horizontalCoordinate, verticalCoordinate);
 	}
 
 	public void add(int stepDistance, Axis coordinateAxis) {

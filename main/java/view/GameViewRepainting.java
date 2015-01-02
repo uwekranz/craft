@@ -1,10 +1,11 @@
 package view;
 
-public class GameViewRepaintingEverySecond extends Thread {
+public class GameViewRepainting extends Thread {
 
 	private GameView gameView;
+	private int tickerDuration;
 
-	public GameViewRepaintingEverySecond(GameView gameView) {
+	public GameViewRepainting(GameView gameView) {
 		super();
 		this.gameView = gameView;
 	}
@@ -15,7 +16,8 @@ public class GameViewRepaintingEverySecond extends Thread {
 			gameView.repaint();
 			gameView.setIsPaintedRegularly(true);
 			try {
-				Thread.sleep(1000);
+				tickerDuration = 100;
+				Thread.sleep(tickerDuration);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				gameView.setIsPaintedRegularly(false);

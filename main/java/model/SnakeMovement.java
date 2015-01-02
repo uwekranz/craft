@@ -13,7 +13,7 @@ public class SnakeMovement extends Thread {
 		while (true) {
 			snake.move();
 			try {
-				int tickerDuration = 1000;
+				int tickerDuration = 100;
 				Thread.sleep(tickerDuration);
 			} catch (InterruptedException exception) {
 				exception.printStackTrace();
