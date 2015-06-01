@@ -19,22 +19,6 @@ public class Snake {
 		bodyLength += 1;
 	}
 
-	public int getBodyLength() {
-		return bodyLength;
-	}
-
-	public SnakeLocation getLocation() {
-		return location;
-	}
-
-	public Direction getDirectionOfMovement() {
-		return directionOfMovement;
-	}
-
-	public int getCoordinateOf(Axis axis) {
-		return location.getCoordinate(axis);
-	}
-
 	public void move() {
 		move(getDirectionOfMovement());
 	}
@@ -69,4 +53,19 @@ public class Snake {
 		this.directionOfMovement = direction;
 	}
 
+	public int getBodyLength() {
+		return bodyLength;
+	}
+
+	public SnakeLocation getLocation() {
+		return location;
+	}
+
+	public Direction getDirectionOfMovement() {
+		return directionOfMovement;
+	}
+
+	public int getCoordinateOf(Axis axis) {
+		return location.getCoordinate(axis);
+	}
 }

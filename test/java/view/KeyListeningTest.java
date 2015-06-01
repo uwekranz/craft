@@ -39,29 +39,37 @@ public class KeyListeningTest {
 	}
 
 	@Test
-	public void whenDownKeyIsPressed_directionOfSnakeMovementGetsSetAccordingly() throws Exception {
+	public void whenDownKeyIsPressed_directionOfSnakeMovementGetsSetAccordingly()
+			throws Exception {
 		whenTheUserPressesTheKey(VK_DOWN).thenTheSnakesDirectionGetsSetTo(DOWN);
 	}
 
 	@Test
-	public void whenUpKeyIsPressed_directionOfSnakeMovementGetsSetAccordingly() throws Exception {
+	public void whenUpKeyIsPressed_directionOfSnakeMovementGetsSetAccordingly()
+			throws Exception {
 		whenTheUserPressesTheKey(VK_UP).thenTheSnakesDirectionGetsSetTo(UP);
 	}
 
+	// TODO: 01.06.2015, m
 	@Test
-	public void whenKeyRightIsPresses_theDirectionOfSnakeMovementGetsSetAccordingly() throws Exception {
-		whenTheUserPressesTheKey(VK_RIGHT).thenTheSnakesDirectionGetsSetTo(RIGHT);
+	public void whenKeyRightIsPresses_theDirectionOfSnakeMovementGetsSetAccordingly()
+			throws Exception {
+		whenTheUserPressesTheKey(VK_RIGHT).thenTheSnakesDirectionGetsSetTo(
+				RIGHT);
 	}
 
 	@Test
-	public void whenKeyLeftIsPressed_directionOfSnakeMovementGetsSetAccordingly() throws Exception {
+	public void whenKeyLeftIsPressed_directionOfSnakeMovementGetsSetAccordingly()
+			throws Exception {
 		whenTheUserPressesTheKey(VK_LEFT).thenTheSnakesDirectionGetsSetTo(LEFT);
 	}
 
 	@Test
-	public void whenANonArrowKeyIsPressed_theDirectionOfSnakeMovementDoesNotChange() throws Exception {
+	public void whenANonArrowKeyIsPressed_theDirectionOfSnakeMovementDoesNotChange()
+			throws Exception {
 		KeyPresser.pressKeyWithCode(VK_H);
-		verify(controllerMock, never()).setDirectionOfSnakeMovement(Mockito.any(Direction.class));
+		verify(controllerMock, never()).setDirectionOfSnakeMovement(
+				Mockito.any(Direction.class));
 	}
 
 	private AssertionBuilder whenTheUserPressesTheKey(int keyCode) {
