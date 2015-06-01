@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SnakeLocation {
-
 	private List<Location> location;
 
-	public SnakeLocation() {
+	public SnakeLocation(int bodyLength) {
 		location = new ArrayList<Location>();
 		location.add(new Location(0, 0));
+		location.add(new Location(bodyLength, 0));
 	}
 
 	public int getCoordinate(Axis axis) {
@@ -54,6 +54,10 @@ public class SnakeLocation {
 	@Override
 	public String toString() {
 		return location.toString();
+	}
+
+	public Location getTailLocation() {
+		return location.get(0);
 	}
 
 }

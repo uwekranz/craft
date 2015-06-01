@@ -11,7 +11,9 @@ public class UserInterfaceFactory {
 	public static UserInterface createMock() {
 		Controller controller = mock(Controller.class);
 		GameModel gameModel = mock(GameModel.class);
-		when(gameModel.getSnakeLocation()).thenReturn(new SnakeLocation());
+		// TODO: 01.6.2015, find a place for this "constant"
+		int bodyLength = 10;
+		when(gameModel.getSnakeLocation()).thenReturn(new SnakeLocation(bodyLength));
 		when(controller.getGameModel()).thenReturn(gameModel);
 		UserInterface userInterface = new UserInterface(controller);
 		return userInterface;

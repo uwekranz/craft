@@ -26,7 +26,7 @@ public class SnakePainter {
 
 	public boolean hasSnakeBeenPainted() {
 		return hasSnakeBeenPainted;
-		
+
 	}
 
 }

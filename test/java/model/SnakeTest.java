@@ -31,13 +31,14 @@ public class SnakeTest {
 		assertThat(theSnakesInitialLength, is(lessThan(theSnakesLengthAfterEating)));
 	}
 
+	// TODO: 01.06.2015, add a test for the initial head location
 	@Test
-	public void theSnakesInitialLocationIsTheOrigin() {
+	public void theSnakesInitialTailLocationIsTheOrigin() {
 
-		SnakeLocation theSnakesInitialLocation = snake.getLocation();
-		SnakeLocation theOrigin = new SnakeLocation();
+		Location theSnakesInitialTailLocation = snake.getLocation().getTailLocation();
+		Location theOrigin = new Location(0, 0);
 
-		assertThat(theSnakesInitialLocation, is(theOrigin));
+		assertThat(theSnakesInitialTailLocation, is(theOrigin));
 	}
 
 }
