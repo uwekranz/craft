@@ -8,11 +8,11 @@ import java.util.List;
 
 public class SnakeLocation {
 
-	private List<Location> location ;
+	private List<Location> location;
 
 	public SnakeLocation() {
 		location = new ArrayList<Location>();
-		location.add(new Location(0,0));
+		location.add(new Location(0, 0));
 	}
 
 	public int getCoordinate(Axis axis) {
@@ -20,7 +20,8 @@ public class SnakeLocation {
 	}
 
 	public void setCoordinates(int horizontalCoordinate, int verticalCoordinate) {
-		location.get(0).setCoordinates(horizontalCoordinate, verticalCoordinate);
+		location.get(0)
+				.setCoordinates(horizontalCoordinate, verticalCoordinate);
 	}
 
 	public void add(int stepDistance, Axis coordinateAxis) {
@@ -49,4 +50,10 @@ public class SnakeLocation {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return location.toString();
+	}
+
 }
