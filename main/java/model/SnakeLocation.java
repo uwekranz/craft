@@ -20,8 +20,7 @@ public class SnakeLocation {
 	}
 
 	public void setCoordinates(int horizontalCoordinate, int verticalCoordinate) {
-		location.get(0)
-				.setCoordinates(horizontalCoordinate, verticalCoordinate);
+		location.get(0).setCoordinates(horizontalCoordinate, verticalCoordinate);
 	}
 
 	public void add(int stepDistance, Axis coordinateAxis) {
@@ -58,6 +57,10 @@ public class SnakeLocation {
 
 	public Location getTailLocation() {
 		return location.get(0);
+	}
+
+	public Location getHeadLocation() {
+		return location.get(1);
 	}
 
 }

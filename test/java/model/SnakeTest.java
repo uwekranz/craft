@@ -1,5 +1,6 @@
 package model;
 
+import static model.Snake.INITIAL_BODY_LENGTH;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThan;
@@ -20,7 +21,7 @@ public class SnakeTest {
 
 	@Test
 	public void theSnakesInitialLengthIsOne() {
-		assertThat(theSnakesInitialLength, is(1));
+		assertThat(theSnakesInitialLength, is(Snake.INITIAL_BODY_LENGTH));
 	}
 
 	@Test
@@ -31,14 +32,20 @@ public class SnakeTest {
 		assertThat(theSnakesInitialLength, is(lessThan(theSnakesLengthAfterEating)));
 	}
 
-	// TODO: 01.06.2015, add a test for the initial head location
 	@Test
 	public void theSnakesInitialTailLocationIsTheOrigin() {
-
 		Location theSnakesInitialTailLocation = snake.getLocation().getTailLocation();
 		Location theOrigin = new Location(0, 0);
 
 		assertThat(theSnakesInitialTailLocation, is(theOrigin));
+	}
+
+	@Test
+	public void theSnakesInitialHeadLocationIsRightOfTheOrigin() {
+		Location theSnakesInitialHeadLocation = snake.getLocation().getHeadLocation();
+		Location rightOfTheOrigin = new Location(0 + INITIAL_BODY_LENGTH, 0);
+
+		assertThat(theSnakesInitialHeadLocation, is(rightOfTheOrigin));
 	}
 
 }
