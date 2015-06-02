@@ -13,87 +13,87 @@ import org.junit.Test;
 public class SnakeTailLocationTest {
 
 	private Snake snake = new Snake();
-	private LocationAsserter snakeLocationAsserter = new LocationAsserter(snake);
+	private SnakeLocationAsserter snakeLocationAsserter = new SnakeLocationAsserter(snake);
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
+	public void theSnakeTailsVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
 		snake.move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsTenAfterItHasMovedRightOnce() {
+	public void theSnakeTailsHorizontalCoordinateIsTenAfterItHasMovedRightOnce() {
 		snake.move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(10), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsTwentyAfterItHasMovedRightTwice() {
+	public void theSnakeTailsHorizontalCoordinateIsTwentyAfterItHasMovedRightTwice() {
 		snake.move(RIGHT);
 		snake.move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(20), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsZeroAfterItHasMovedRightTwice() {
+	public void theSnakeTailsVerticalCoordinateIsZeroAfterItHasMovedRightTwice() {
 		snake.move(RIGHT);
 		snake.move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsZeroAfterItHasMovedDownOnce() {
-		snake.move(Direction.DOWN);
+	public void theSnakeTailsVerticalCoordinateIsZeroAfterItHasMovedDownOnce() {
+		snake.move(DOWN);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(10), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsZeroAfterItHasMovedDownOnce() {
+	public void theSnakeTailsHorizontalCoordinateIsZeroAfterItHasMovedDownOnce() {
 		snake.move(DOWN);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsTwentyAfterItHasMovedDownTwice() {
+	public void theSnakeTailsHorizontalCoordinateIsTwentyAfterItHasMovedDownTwice() {
 		snake.move(DOWN);
 		snake.move(DOWN);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsTwentyAfterItHasMovedRightTwice() {
+	public void theSnakeTailsVerticalCoordinateIsTwentyAfterItHasMovedRightTwice() {
 		snake.move(DOWN);
 		snake.move(DOWN);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(20), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsZeroAfterItHasMovedUpOnce() {
-		snake.move(Direction.UP);
+	public void theSnakeTailsHorizontalCoordinateIsZeroAfterItHasMovedUpOnce() {
+		snake.move(UP);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsMinus10AfterItHasMovedUpOnce() {
+	public void theSnakeTailsVerticalCoordinateIsMinus10AfterItHasMovedUpOnce() {
 		snake.move(UP);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(-10), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsZeroAgainAfterItHasMovedDownAndUpOnce() {
+	public void theSnakeTailsVerticalCoordinateIsZeroAgainAfterItHasMovedDownAndUpOnce() {
 		snake.move(DOWN);
 		snake.move(UP);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsMinus10AfterItHasMovedLeftOnce() {
+	public void theSnakeTailsHorizontalCoordinateIsMinus10AfterItHasMovedLeftOnce() {
 		snake.move(LEFT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(-10), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsMinus20AfterItHasMovedLeftTwice() {
+	public void theSnakeTailsHorizontalCoordinateIsMinus20AfterItHasMovedLeftTwice() {
 		snake.move(LEFT);
 		snake.move(LEFT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(-20), onIts(HORIZONTAL_AXIS));
