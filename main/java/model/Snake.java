@@ -66,7 +66,7 @@ public class Snake {
 		return directionOfMovement;
 	}
 
-	public int getCoordinateOf(Axis axis) {
+	public int getCoordinateOf(int joint, Axis axis) {
 		return location.getCoordinate(axis);
 	}
 }

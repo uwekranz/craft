@@ -11,8 +11,8 @@ public class LocationAsserter {
 		this.snake = snake;
 	}
 
-	public void assertThatTheSnakeHeadsLocation(int value, Axis axis) {
-		int theSnakesVerticalCoordinate = snake.getCoordinateOf(axis);
+	public void assertLocation(Joint joint, int value, Axis axis) {
+		int theSnakesVerticalCoordinate = snake.getCoordinateOf(joint.ordinal(), axis);
 		assertThat(theSnakesVerticalCoordinate, is(value));
 	}
 }
