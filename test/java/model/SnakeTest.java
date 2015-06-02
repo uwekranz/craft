@@ -20,7 +20,7 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void theSnakesInitialLengthIsOne() {
+	public void theSnakesInitialLengthIsTen() {
 		assertThat(theSnakesInitialLength, is(Snake.INITIAL_BODY_LENGTH));
 	}
 
