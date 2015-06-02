@@ -48,6 +48,7 @@ public class KeyListeningTest {
 		whenTheUserPressesTheKey(VK_UP).thenTheSnakesDirectionGetsSetTo(UP);
 	}
 
+	// TODO Jun 2, 2015 - uwe: This test is wobbly
 	@Test
 	public void whenKeyRightIsPresses_theDirectionOfSnakeMovementGetsSetAccordingly() throws Exception {
 		whenTheUserPressesTheKey(VK_RIGHT).thenTheSnakesDirectionGetsSetTo(RIGHT);
