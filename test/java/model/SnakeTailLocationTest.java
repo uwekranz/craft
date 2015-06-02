@@ -10,7 +10,7 @@ import static model.Joint.TAIL;
 
 import org.junit.Test;
 
-public class SnakeLocationTest {
+public class SnakeTailLocationTest {
 
 	private Snake snake = new Snake();
 	private LocationAsserter snakeLocationAsserter = new LocationAsserter(snake);
