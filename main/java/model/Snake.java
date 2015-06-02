@@ -6,7 +6,7 @@ import applicationBoundary.SnakeGameLogger;
 
 public class Snake {
 
-	public static final int INITIAL_BODY_LENGTH = 10;
+	public static final int INITIAL_BODY_LENGTH = 100;
 	private int bodyLength = INITIAL_BODY_LENGTH;
 	private SnakeLocation location = new SnakeLocation(bodyLength);
 	private Direction directionOfMovement = Direction.RIGHT;

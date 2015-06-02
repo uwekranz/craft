@@ -9,11 +9,11 @@ public class GameModel {
 
 	}
 
-	public Snake getSnake() {
-		return snake;
-	}
-
 	public void letSnakeMoveInDirection(Direction direction) {
 		snake.setDirectionOfMovement(direction);
+	}
+
+	public int getSnakeBodyLength() {
+		return snake.getBodyLength();
 	}
 }

@@ -19,7 +19,7 @@ public class SnakePainter {
 		SnakeLocation snakeLocation = model.getSnakeLocation();
 		graphics.drawLine(snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS),
 				snakeLocation.getCoordinate(Axis.VERTICAL_AXIS),
-				snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS) + 100,
+				snakeLocation.getCoordinate(Axis.HORIZONTAL_AXIS) + model.getSnakeBodyLength(),
 				snakeLocation.getCoordinate(Axis.VERTICAL_AXIS));
 		hasSnakeBeenPainted = true;
 	}
