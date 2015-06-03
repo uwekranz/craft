@@ -2,38 +2,46 @@ package model;
 
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
+import static model.Snake.STEP_DISTANCE;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import applicationBoundary.SnakeGameLogger;
+
 public class SnakeLocation {
-	private List<Location> location;
+	private List<Location> bodyPartLocations;
 
 	public SnakeLocation(int bodyLength) {
-		location = new ArrayList<Location>();
-		location.add(new Location(0, 0));
-		location.add(new Location(bodyLength, 0));
+		bodyPartLocations = new ArrayList<Location>();
+		bodyPartLocations.add(new Location(0, 0));
+		bodyPartLocations.add(new Location(bodyLength, 0));
 	}
 
-	public int getCoordinate(Axis axis) {
-		return location.get(0).getCoordinate(axis);
+	public void setCoordinates(Location bodyPartLocation, int horizontalCoordinate, int verticalCoordinate) {
+		bodyPartLocation.setCoordinates(horizontalCoordinate, verticalCoordinate);
 	}
 
-	public void setCoordinates(int horizontalCoordinate, int verticalCoordinate) {
-		location.get(0).setCoordinates(horizontalCoordinate, verticalCoordinate);
-	}
+	public void update(Location bodyPartLocation, int stepDistance, Axis coordinateAxis) {
+		int newValue = bodyPartLocation.getCoordinate(coordinateAxis) + stepDistance;
 
-	public void add(int stepDistance, Axis coordinateAxis) {
-		int newValue = getCoordinate(coordinateAxis) + stepDistance;
 		if (coordinateAxis.equals(VERTICAL_AXIS))
-			setCoordinates(getCoordinate(HORIZONTAL_AXIS), newValue);
+			updateValueOfVerticalCoordinate(bodyPartLocation, newValue);
 		else
-			setCoordinates(newValue, getCoordinate(VERTICAL_AXIS));
+			updateValueOfHorizontalCoordinate(bodyPartLocation, newValue);
+	}
+
+	private void updateValueOfHorizontalCoordinate(Location bodyPartLocation, int newValue) {
+		setCoordinates(bodyPartLocation, newValue, bodyPartLocation.getCoordinate(VERTICAL_AXIS));
+	}
+
+	private void updateValueOfVerticalCoordinate(Location bodyPartLocation, int newValue) {
+		setCoordinates(bodyPartLocation, bodyPartLocation.getCoordinate(HORIZONTAL_AXIS), newValue);
 	}
 
 	@Override
 	public int hashCode() {
-		return ((location == null) ? 0 : location.hashCode());
+		return ((bodyPartLocations == null) ? 0 : bodyPartLocations.hashCode());
 	}
 
 	@Override
@@ -45,22 +53,47 @@ public class SnakeLocation {
 		if (getClass() != obj.getClass())
 			return false;
 		SnakeLocation other = (SnakeLocation) obj;
-		if (!location.equals(other.location))
+		if (!bodyPartLocations.equals(other.bodyPartLocations))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return location.toString();
+		return bodyPartLocations.toString();
 	}
 
 	public Location getTailLocation() {
-		return location.get(0);
+		return bodyPartLocations.get(0);
 	}
 
 	public Location getHeadLocation() {
-		return location.get(1);
+		return bodyPartLocations.get(1);
+	}
+
+	public void updateAccordingTo(Direction direction) {
+		for (Location bodyPartLocation : bodyPartLocations) {
+			switch (direction) {
+			case DOWN:
+				update(bodyPartLocation, STEP_DISTANCE, VERTICAL_AXIS);
+				break;
+			case LEFT:
+				update(bodyPartLocation, -STEP_DISTANCE, HORIZONTAL_AXIS);
+				break;
+			case RIGHT:
+				update(bodyPartLocation, STEP_DISTANCE, HORIZONTAL_AXIS);
+				break;
+			case UP:
+				update(bodyPartLocation, -STEP_DISTANCE, VERTICAL_AXIS);
+				break;
+			}
+		}
+
+		SnakeGameLogger.log("The snakes location is: " + this);
+	}
+
+	public int getCoordinate(BodyPart bodyPart, Axis axis) {
+		return bodyPartLocations.get(bodyPart.ordinal()).getCoordinate(axis);
 	}
 
 }

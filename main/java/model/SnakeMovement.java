@@ -3,6 +3,7 @@ package model;
 public class SnakeMovement extends Thread {
 
 	private Snake snake;
+	private static final int TICKER_DURATION = 100;
 
 	public SnakeMovement(Snake snake) {
 		this.snake = snake;
@@ -13,8 +14,7 @@ public class SnakeMovement extends Thread {
 		while (true) {
 			snake.move();
 			try {
-				int tickerDuration = 100;
-				Thread.sleep(tickerDuration);
+				Thread.sleep(TICKER_DURATION);
 			} catch (InterruptedException exception) {
 				exception.printStackTrace();
 				throw new RuntimeException(exception);
