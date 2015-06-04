@@ -2,8 +2,10 @@ package model;
 
 public class SnakeMovement extends Thread {
 
-	private Snake snake;
 	private static final int TICKER_DURATION = 100;
+	static final int STEP_DISTANCE = 10;
+
+	private Snake snake;
 
 	public SnakeMovement(Snake snake) {
 		this.snake = snake;
@@ -12,7 +14,7 @@ public class SnakeMovement extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			snake.move();
+			snake.move(STEP_DISTANCE);
 			try {
 				Thread.sleep(TICKER_DURATION);
 			} catch (InterruptedException exception) {

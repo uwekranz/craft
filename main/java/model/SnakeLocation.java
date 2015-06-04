@@ -2,7 +2,6 @@ package model;
 
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
-import static model.Snake.STEP_DISTANCE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,20 +70,20 @@ public class SnakeLocation {
 		return bodyPartLocations.get(1);
 	}
 
-	public void updateAccordingTo(Direction direction) {
+	public void updateAccordingToMovement(Direction direction, int stepDistance) {
 		for (Location bodyPartLocation : bodyPartLocations) {
 			switch (direction) {
 			case DOWN:
-				update(bodyPartLocation, STEP_DISTANCE, VERTICAL_AXIS);
+				update(bodyPartLocation, stepDistance, VERTICAL_AXIS);
 				break;
 			case LEFT:
-				update(bodyPartLocation, -STEP_DISTANCE, HORIZONTAL_AXIS);
+				update(bodyPartLocation, -stepDistance, HORIZONTAL_AXIS);
 				break;
 			case RIGHT:
-				update(bodyPartLocation, STEP_DISTANCE, HORIZONTAL_AXIS);
+				update(bodyPartLocation, stepDistance, HORIZONTAL_AXIS);
 				break;
 			case UP:
-				update(bodyPartLocation, -STEP_DISTANCE, VERTICAL_AXIS);
+				update(bodyPartLocation, -stepDistance, VERTICAL_AXIS);
 				break;
 			}
 		}

@@ -3,7 +3,6 @@ package model;
 public class Snake {
 
 	public static final int INITIAL_BODY_LENGTH = 100;
-	static final int STEP_DISTANCE = 10;
 
 	private int bodyLength = INITIAL_BODY_LENGTH;
 	SnakeLocation location = new SnakeLocation(bodyLength);
@@ -18,8 +17,8 @@ public class Snake {
 		bodyLength += 1;
 	}
 
-	public void move() {
-		location.updateAccordingTo(directionOfMovement);
+	public void move(int stepDistance) {
+		location.updateAccordingToMovement(directionOfMovement, stepDistance);
 	}
 
 	public void beginToMove() {
