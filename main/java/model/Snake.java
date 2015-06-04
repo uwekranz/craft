@@ -3,6 +3,7 @@ package model;
 public class Snake {
 
 	public static final int INITIAL_BODY_LENGTH = 100;
+	private static final int GROWTH_SIZE_CAUSED_BY_EATING = 1;
 
 	private int bodyLength = INITIAL_BODY_LENGTH;
 	SnakeLocation location = new SnakeLocation(bodyLength);
@@ -14,7 +15,7 @@ public class Snake {
 	}
 
 	public void eat() {
-		bodyLength += 1;
+		bodyLength += GROWTH_SIZE_CAUSED_BY_EATING;
 	}
 
 	public void move(Direction direction, int stepDistance) {
