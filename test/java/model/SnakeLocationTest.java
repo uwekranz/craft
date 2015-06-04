@@ -11,19 +11,13 @@ import static model.Direction.UP;
 import static model.Snake.INITIAL_BODY_LENGTH;
 import static model.SnakeMovement.STEP_DISTANCE;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class SnakeLocationTest {
 
-	private SnakeLocation snakeLocation;
 	private Snake snake = new Snake();
 	private SnakeLocationAsserter snakeLocationAsserter = new SnakeLocationAsserter(snake);
-
-	@Before
-	public void setUp() {
-		snakeLocation = snake.getLocation();
-	}
+	private SnakeLocation snakeLocation = snake.getLocation();
 
 	@Test
 	public void theSnakeTailsVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
@@ -78,7 +72,13 @@ public class SnakeLocationTest {
 	}
 
 	@Test
-	public void theSnakeTailsVerticalCoordinateIsZeroAfterItHasMovedDownOnce() {
+	public void theSnakeTailsVerticalCoordinateIsStillZeroAfterItHasMovedDownOnce() {
+		snakeLocation.updateAccordingToMovement(DOWN, STEP_DISTANCE);
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
+	}
+
+	@Test
+	public void theSnakeHeadsVerticalCoordinateIsStepDistanceAfterItHasMovedDownOnce() {
 		snakeLocation.updateAccordingToMovement(DOWN, STEP_DISTANCE);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(STEP_DISTANCE), onIts(VERTICAL_AXIS));
 	}
