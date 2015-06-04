@@ -6,8 +6,6 @@ import static model.Axis.VERTICAL_AXIS;
 import java.util.ArrayList;
 import java.util.List;
 
-import applicationBoundary.SnakeGameLogger;
-
 public class SnakeLocation {
 	private List<Location> bodyPartLocations;
 
@@ -70,40 +68,34 @@ public class SnakeLocation {
 		return bodyPartLocations.get(1);
 	}
 
-	public void updateAccordingToMovement(Direction direction, int stepDistance) {
-		for (Location bodyPartLocation : bodyPartLocations) {
-			switch (direction) {
-			case DOWN:
-				update(bodyPartLocation, stepDistance, VERTICAL_AXIS);
-				break;
-			case LEFT:
-				update(bodyPartLocation, -stepDistance, HORIZONTAL_AXIS);
-				break;
-			case RIGHT:
-				update(bodyPartLocation, stepDistance, HORIZONTAL_AXIS);
-				break;
-			case UP:
-				update(bodyPartLocation, -stepDistance, VERTICAL_AXIS);
-				break;
-			}
-		}
-
-		SnakeGameLogger.log("The snakes location is: " + this);
-	}
-
 	public int getCoordinate(BodyPart bodyPart, Axis axis) {
 		return bodyPartLocations.get(bodyPart.ordinal()).getCoordinate(axis);
 	}
 
-	public List<Location> getBodyPartLocations() {
+	public List<Location> getBodyParts() {
 		return bodyPartLocations;
 	}
 
-	public void addBodyPartAfterHead() {
+	public void addJointAfterHead() {
 		int indexOfHead = bodyPartLocations.size() - 1;
-		int indexOfPositionAfterHead = indexOfHead - 1;
-
 		Location headLocation = bodyPartLocations.get(indexOfHead);
-		bodyPartLocations.add(indexOfPositionAfterHead, headLocation);
+		bodyPartLocations.add(indexOfHead, headLocation);
+	}
+
+	void updateLocationOfBodyPart(SnakeMovement snakeMovement, Location bodyPartLocation, Direction directionOfMovementForBodyPartLocation) {
+		switch (directionOfMovementForBodyPartLocation) {
+		case DOWN:
+			update(bodyPartLocation, snakeMovement.STEP_DISTANCE, VERTICAL_AXIS);
+			break;
+		case LEFT:
+			update(bodyPartLocation, -snakeMovement.STEP_DISTANCE, HORIZONTAL_AXIS);
+			break;
+		case RIGHT:
+			update(bodyPartLocation, snakeMovement.STEP_DISTANCE, HORIZONTAL_AXIS);
+			break;
+		case UP:
+			update(bodyPartLocation, -snakeMovement.STEP_DISTANCE, VERTICAL_AXIS);
+			break;
+		}
 	}
 }

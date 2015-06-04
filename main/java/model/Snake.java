@@ -44,4 +44,8 @@ public class Snake {
 	public int getStepDistanceOfMovement() {
 		return movement.STEP_DISTANCE;
 	}
+
+	public SnakeMovement getMovement() {
+		return movement;
+	}
 }
