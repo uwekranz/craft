@@ -2,10 +2,9 @@ package model;
 
 public class SnakeMovement extends Thread {
 
-	private static final int TICKER_DURATION = 100;
-	static final int STEP_DISTANCE = 10;
-
-	static Direction direction = Direction.RIGHT;
+	private int TICKER_DURATION = 100;
+	final int STEP_DISTANCE = 10;
+	Direction direction = Direction.RIGHT;
 
 	private Snake snake;
 
@@ -25,11 +24,11 @@ public class SnakeMovement extends Thread {
 		}
 	}
 
-	public static Direction getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
 
-	public static void setDirection(Direction newDirection) {
+	public void setDirection(Direction newDirection) {
 		direction = newDirection;
 	}
 }
