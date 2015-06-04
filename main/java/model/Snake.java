@@ -1,5 +1,7 @@
 package model;
 
+import applicationBoundary.SnakeGameLogger;
+
 public class Snake {
 
 	public static final int INITIAL_BODY_LENGTH = 100;
@@ -18,13 +20,9 @@ public class Snake {
 		bodyLength += GROWTH_SIZE_CAUSED_BY_EATING;
 	}
 
-	public void move(Direction direction, int stepDistance) {
-		location.updateAccordingToMovement(direction, stepDistance);
-	}
-
 	public void beginToMove() {
-		System.out.println("The snake begins to move");
 		movement.start();
+		SnakeGameLogger.log("The snake begins to move");
 	}
 
 	public int getBodyLength() {

@@ -95,4 +95,15 @@ public class SnakeLocation {
 		return bodyPartLocations.get(bodyPart.ordinal()).getCoordinate(axis);
 	}
 
+	public List<Location> getBodyPartLocations() {
+		return bodyPartLocations;
+	}
+
+	public void addBodyPartAfterHead() {
+		int indexOfHead = bodyPartLocations.size() - 1;
+		int indexOfPositionAfterHead = indexOfHead - 1;
+
+		Location headLocation = bodyPartLocations.get(indexOfHead);
+		bodyPartLocations.add(indexOfPositionAfterHead, headLocation);
+	}
 }
