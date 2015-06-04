@@ -10,7 +10,7 @@ public class GameModel {
 	}
 
 	public void letSnakeMoveInDirection(Direction direction) {
-		snake.setDirectionOfMovement(direction);
+		SnakeMovement.setDirection(direction);
 	}
 
 	public int getSnakeBodyLength() {

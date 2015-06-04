@@ -6,7 +6,6 @@ public class Snake {
 
 	private int bodyLength = INITIAL_BODY_LENGTH;
 	SnakeLocation location = new SnakeLocation(bodyLength);
-	private Direction directionOfMovement = Direction.RIGHT;
 
 	public Snake whichIsMoving() {
 		beginToMove();
@@ -17,8 +16,8 @@ public class Snake {
 		bodyLength += 1;
 	}
 
-	public void move(int stepDistance) {
-		location.updateAccordingToMovement(directionOfMovement, stepDistance);
+	public void move(Direction direction, int stepDistance) {
+		location.updateAccordingToMovement(direction, stepDistance);
 	}
 
 	public void beginToMove() {
@@ -27,20 +26,12 @@ public class Snake {
 		thread.start();
 	}
 
-	public void setDirectionOfMovement(Direction direction) {
-		this.directionOfMovement = direction;
-	}
-
 	public int getBodyLength() {
 		return bodyLength;
 	}
 
 	public SnakeLocation getLocation() {
 		return location;
-	}
-
-	public Direction getDirectionOfMovement() {
-		return directionOfMovement;
 	}
 
 	public int getCoordinateOf(BodyPart bodyPart, Axis axis) {

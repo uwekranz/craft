@@ -7,11 +7,10 @@ import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 
 public class MovementDirectionTest {
-	private Snake snake = new Snake();
 
 	@Test
 	public void theSnakesInitialDirectionOfMovementIsRight() {
-		Direction theSnakesInitialDirectionOfMovement = snake.getDirectionOfMovement();
+		Direction theSnakesInitialDirectionOfMovement = SnakeMovement.getDirection();
 		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));
 	}
 
