@@ -79,7 +79,9 @@ public class SnakeLocation {
 	public void addJointAfterHead() {
 		int indexOfHead = bodyPartLocations.size() - 1;
 		Location headLocation = bodyPartLocations.get(indexOfHead);
-		bodyPartLocations.add(indexOfHead, headLocation);
+		Location jointLocation = new Location();
+		jointLocation.setCoordinates(headLocation.getCoordinate(HORIZONTAL_AXIS), headLocation.getCoordinate(VERTICAL_AXIS));
+		bodyPartLocations.add(indexOfHead, jointLocation);
 	}
 
 	void updateLocationOfBodyPart(SnakeMovement snakeMovement, Location bodyPartLocation, Direction directionOfMovementForBodyPartLocation) {

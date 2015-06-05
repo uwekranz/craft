@@ -33,7 +33,7 @@ public class SnakeLocationTest {
 	}
 
 	@Test
-	public void theSnakeTailsVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
+	public void tailsVerticalCoordinateIsZeroAfterSnakeMovedRightOnce() {
 		move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
@@ -44,114 +44,126 @@ public class SnakeLocationTest {
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsZeroAfterItHasMovedRightOnce() {
+	public void headsVerticalCoordinateIsZeroAfterSnakeMovedRightOnce() {
 		move(RIGHT);
 		snakeLocationAsserter.assertLocation(HEAD, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsHorizontalCoordinateIsStepDistanceAfterItHasMovedRightOnce() {
+	public void tailsHorizontalCoordinateIsStepDistanceAfterSnakeMovedRightOnce() {
 		move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(stepDistance), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsSumOfStepDistanceAndInitialBodyLengthAfterItHasMovedRightOnce() {
+	public void headsHorizontalCoordinateIsSumOfStepDistanceAndInitialBodyLengthAfterSnakeMovedRightOnce() {
 		move(RIGHT);
 		snakeLocationAsserter.assertLocation(HEAD, hasValue(stepDistance + INITIAL_BODY_LENGTH), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsHorizontalCoordinateIsDoubleStepDistanceAfterItHasMovedRightTwice() {
+	public void tailsHorizontalCoordinateIsDoubleStepDistanceAfterSnakeMovedRightTwice() {
 		moveTwice(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(2 * stepDistance), onIts(HORIZONTAL_AXIS));
 	}
 
-	private void moveTwice(Direction direction) {
-		move(direction);
-		move(RIGHT);
-	}
-
 	@Test
-	public void theSnakeHeadsHorizontalCoordinateIsDoubleStepDistanceAfterItHasMovedRightTwice() {
+	public void headsHorizontalCoordinateIsDoubleStepDistanceAfterSnakeMovedRightTwice() {
 		moveTwice(RIGHT);
 		snakeLocationAsserter.assertLocation(HEAD, hasValue(2 * stepDistance + INITIAL_BODY_LENGTH), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsVerticalCoordinateIsZeroAfterItHasMovedRightTwice() {
+	public void tailsVerticalCoordinateIsZeroAfterSnakeMovedRightTwice() {
 		moveTwice(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsZeroAfterItHasMovedRightTwice() {
+	public void headsVerticalCoordinateIsZeroAfterSnakeMovedRightTwice() {
 		moveTwice(RIGHT);
 		snakeLocationAsserter.assertLocation(HEAD, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsVerticalCoordinateIsStillZeroAfterItHasMovedDownOnce() {
+	public void tailsVerticalCoordinateIsStillZeroAfterSnakeMovedDownOnce() {
 		move(DOWN);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeHeadsVerticalCoordinateIsStepDistanceAfterItHasMovedDownOnce() {
+	public void headsVerticalCoordinateIsStepDistanceAfterSnakeMovedDownOnce() {
 		move(DOWN);
-		snakeLocationAsserter.assertLocation(TAIL, hasValue(stepDistance), onIts(VERTICAL_AXIS));
+		snakeLocationAsserter.assertLocation(HEAD, hasValue(stepDistance), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsHorizontalCoordinateIsZeroAfterItHasMovedDownOnce() {
+	public void tailsHorizontalCoordinateIsStepDistanceAfterSnakeMovedDownOnce() {
 		move(DOWN);
-		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(HORIZONTAL_AXIS));
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(stepDistance), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsHorizontalCoordinateIsTwentyAfterItHasMovedDownTwice() {
-		move(DOWN);
-		move(DOWN);
-		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(HORIZONTAL_AXIS));
+	public void tailsHorizontalCoordinateIsDoubleStepDistanceAfterSnakeMovedDownTwice() {
+		moveTwice(DOWN);
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(2 * stepDistance), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsVerticalCoordinateIsTwentyAfterItHasMovedRightTwice() {
-		move(DOWN);
-		move(DOWN);
-		snakeLocationAsserter.assertLocation(TAIL, hasValue(2 * stepDistance), onIts(VERTICAL_AXIS));
+	public void tailsVerticalCoordinateIsStillZeroAfterSnakeMovedDownTwice() {
+		moveTwice(DOWN);
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsHorizontalCoordinateIsZeroAfterItHasMovedUpOnce() {
+	public void tailsHorizontalCoordinateIsStepDistanceAfterSnakeMovedUpOnce() {
 		move(UP);
-		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(HORIZONTAL_AXIS));
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(stepDistance), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsVerticalCoordinateIsNegativeStepDistanceAfterItHasMovedUpOnce() {
+	public void headsHorizontalCoordinateIsStepDistanceAfterSnakeMovedUpOnce() {
 		move(UP);
-		snakeLocationAsserter.assertLocation(TAIL, hasValue(-stepDistance), onIts(VERTICAL_AXIS));
+		snakeLocationAsserter.assertLocation(HEAD, hasValue(INITIAL_BODY_LENGTH), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsVerticalCoordinateIsZeroAgainAfterItHasMovedDownAndUpOnce() {
+	public void tailsVerticalCoordinateIsStillZeroAfterSnakeMovedUpOnce() {
+		move(UP);
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
+	}
+
+	@Test
+	public void tailsVerticalCoordinateIsZeroAgainAfterSnakeMovedDownAndUpOnce() {
 		move(DOWN);
 		move(UP);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(0), onIts(VERTICAL_AXIS));
 	}
 
 	@Test
-	public void theSnakeTailsHorizontalCoordinateIsNegativeStepDistanceAfterItHasMovedLeftOnce() {
+	public void tailsHorizontalCoordinateIsDoubleStepDistanceAfterSnakeMovedDownAndLeft() {
+		move(DOWN);
 		move(LEFT);
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(2 * stepDistance), onIts(HORIZONTAL_AXIS));
+	}
+
+	@Test
+	public void tailsHorizontalCoordinateIsNegativeStepDistanceAfterSnakeMovedLeftEnoughTimesToPassBodyLength() {
+		move(DOWN);
+		int stepMultiplicity = INITIAL_BODY_LENGTH / stepDistance;
+		moveMultipleTimes(LEFT, stepMultiplicity);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(-stepDistance), onIts(HORIZONTAL_AXIS));
 	}
 
-	@Test
-	public void theSnakeTailsHorizontalCoordinateIsNegativeDoubleStepDistanceAfterItHasMovedLeftTwice() {
-		move(LEFT);
-		move(LEFT);
-		snakeLocationAsserter.assertLocation(TAIL, hasValue(-2 * stepDistance), onIts(HORIZONTAL_AXIS));
+	private void moveMultipleTimes(Direction direction, int multiplicity) {
+		for (int index = 0; index < multiplicity; index++) {
+			move(direction);
+		}
+	}
+
+	private void moveTwice(Direction direction) {
+		move(direction);
+		move(direction);
 	}
 
 	private Axis onIts(Axis horizontalAxis) {

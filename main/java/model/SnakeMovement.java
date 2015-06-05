@@ -48,18 +48,25 @@ public class SnakeMovement extends Thread {
 
 		List<Location> bodyParts = location.getBodyParts();
 
+		updateHeadLocation(location, bodyParts);
+
 		for (int index = 0; index < bodyParts.size() - 1; index++) {
-
-			Location partToMove = bodyParts.get(index);
-			Location partToMoveTo = bodyParts.get(index + 1);
-			Direction directionToMoveBodyPartIn = determineDirectionOfMovement(partToMove, partToMoveTo);
-
-			location.updateLocationOfBodyPart(this, partToMove, directionToMoveBodyPartIn);
+			updateBodyPartLocation(location, bodyParts, index);
 		}
 
-		location.updateLocationOfBodyPart(this, bodyParts.get(bodyParts.size() - 1), direction);
-
 		SnakeGameLogger.log("The snakes location is: " + location);
+	}
+
+	private void updateHeadLocation(SnakeLocation location, List<Location> bodyParts) {
+		location.updateLocationOfBodyPart(this, bodyParts.get(bodyParts.size() - 1), direction);
+	}
+
+	private void updateBodyPartLocation(SnakeLocation location, List<Location> bodyParts, int index) {
+		Location partToMove = bodyParts.get(index);
+		Location partToMoveTo = bodyParts.get(index + 1);
+		Direction directionToMoveBodyPartIn = determineDirectionOfMovement(partToMove, partToMoveTo);
+
+		location.updateLocationOfBodyPart(this, partToMove, directionToMoveBodyPartIn);
 	}
 
 	private Direction determineDirectionOfMovement(Location bodyPartToMove, Location bodyPartToMoveTo) {
