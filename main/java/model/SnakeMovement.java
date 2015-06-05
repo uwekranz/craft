@@ -9,7 +9,7 @@ import applicationBoundary.SnakeGameLogger;
 
 public class SnakeMovement extends Thread {
 
-	private int TICKER_DURATION = 100;
+	private int TICKER_DURATION = 40;
 	final int STEP_DISTANCE;
 	Direction direction = Direction.RIGHT;
 
@@ -18,7 +18,7 @@ public class SnakeMovement extends Thread {
 
 	public SnakeMovement(Snake snake) {
 		this.snake = snake;
-		STEP_DISTANCE = snake.getBodyLength() / 10;
+		STEP_DISTANCE = snake.getBodyLength() / 50;
 	}
 
 	@Override
@@ -45,6 +45,7 @@ public class SnakeMovement extends Thread {
 	public void applyTo(SnakeLocation location) {
 		if (movementCausesChangeOfDirection()) {
 			location.addJointAfterHead();
+			formerDirection = direction;
 		}
 
 		List<Location> bodyParts = location.getBodyParts();

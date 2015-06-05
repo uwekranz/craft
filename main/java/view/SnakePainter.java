@@ -2,11 +2,12 @@ package view;
 
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
-import static model.BodyPart.TAIL;
 
 import java.awt.Graphics;
+import java.util.List;
 
 import model.GameModel;
+import model.Location;
 import model.SnakeLocation;
 
 public class SnakePainter {
@@ -20,9 +21,15 @@ public class SnakePainter {
 
 	public void paint(Graphics graphics) {
 		SnakeLocation snakeLocation = model.getSnakeLocation();
-		graphics.drawLine(snakeLocation.getCoordinate(TAIL, HORIZONTAL_AXIS), snakeLocation.getCoordinate(TAIL, VERTICAL_AXIS), snakeLocation.getCoordinate(TAIL, HORIZONTAL_AXIS)
-				+ model.getSnakeBodyLength(), snakeLocation.getCoordinate(TAIL, VERTICAL_AXIS));
+		List<Location> bodyParts = snakeLocation.getBodyParts();
+		for (int index = 0; index < bodyParts.size() - 1; index++) {
+			Location firstPoint = bodyParts.get(index);
+			Location secondPoint = bodyParts.get(index + 1);
+			graphics.drawLine(firstPoint.getCoordinate(HORIZONTAL_AXIS), firstPoint.getCoordinate(VERTICAL_AXIS), secondPoint.getCoordinate(HORIZONTAL_AXIS),
+					secondPoint.getCoordinate(VERTICAL_AXIS));
+		}
 		hasSnakeBeenPainted = true;
+
 	}
 
 	public boolean hasSnakeBeenPainted() {
