@@ -62,14 +62,27 @@ public class SnakeMovement extends Thread {
 	}
 
 	private void updateBodyPartLocation(SnakeLocation location, List<Location> bodyParts, int index) {
-		Location partToMove = bodyParts.get(index);
-		Location partToMoveTo = bodyParts.get(index + 1);
-		Direction directionToMoveBodyPartIn = determineDirectionOfMovement(partToMove, partToMoveTo);
+		Location bodyPart = bodyParts.get(index);
+		Location nextBodyPart = bodyParts.get(index + 1);
+		Direction directionToMoveBodyPartIn = determineDirectionToNextBodyPart(bodyPart, nextBodyPart);
 
-		location.updateLocationOfBodyPart(this, partToMove, directionToMoveBodyPartIn);
+		location.updateLocationOfBodyPart(this, bodyPart, directionToMoveBodyPartIn);
+
+		if (canBeRemoved(bodyPart, nextBodyPart)) {
+			bodyParts.remove(index);
+			correctIndexOffsetCausedByRemoval(index);
+		}
 	}
 
-	private Direction determineDirectionOfMovement(Location bodyPartToMove, Location bodyPartToMoveTo) {
+	private void correctIndexOffsetCausedByRemoval(int index) {
+		index++;
+	}
+
+	private boolean canBeRemoved(Location bodyPart, Location nextBodyPart) {
+		return bodyPart.equals(nextBodyPart);
+	}
+
+	private Direction determineDirectionToNextBodyPart(Location bodyPartToMove, Location bodyPartToMoveTo) {
 		Axis axisOfMovement = determineAxisOfMovement(bodyPartToMove, bodyPartToMoveTo);
 		Direction direction = determineDirectionOfMovement(axisOfMovement, bodyPartToMove, bodyPartToMoveTo);
 		return direction;

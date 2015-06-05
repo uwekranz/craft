@@ -37,25 +37,6 @@ public class SnakeLocation {
 	}
 
 	@Override
-	public int hashCode() {
-		return ((bodyPartLocations == null) ? 0 : bodyPartLocations.hashCode());
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SnakeLocation other = (SnakeLocation) obj;
-		if (!bodyPartLocations.equals(other.bodyPartLocations))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
 		return bodyPartLocations.toString();
 	}
@@ -99,5 +80,24 @@ public class SnakeLocation {
 			update(bodyPartLocation, -snakeMovement.STEP_DISTANCE, VERTICAL_AXIS);
 			break;
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		return ((bodyPartLocations == null) ? 0 : bodyPartLocations.hashCode());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SnakeLocation other = (SnakeLocation) obj;
+		if (!bodyPartLocations.equals(other.bodyPartLocations))
+			return false;
+		return true;
 	}
 }
