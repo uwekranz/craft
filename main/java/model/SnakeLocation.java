@@ -50,7 +50,14 @@ public class SnakeLocation {
 	}
 
 	public int getCoordinate(BodyPart bodyPart, Axis axis) {
-		return bodyPartLocations.get(bodyPart.ordinal()).getCoordinate(axis);
+		int indexOfBodyPart;
+
+		if (bodyPart.equals(BodyPart.TAIL))
+			indexOfBodyPart = 0;
+		else
+			indexOfBodyPart = bodyPartLocations.size() - 1;
+
+		return bodyPartLocations.get(indexOfBodyPart).getCoordinate(axis);
 	}
 
 	public List<Location> getBodyParts() {

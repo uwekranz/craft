@@ -43,15 +43,21 @@ public class SnakeMovement extends Thread {
 	}
 
 	public void applyTo(SnakeLocation location) {
-		if (movementCausesChangeOfDirection())
+		if (movementCausesChangeOfDirection()) {
 			location.addJointAfterHead();
+		}
 
 		List<Location> bodyParts = location.getBodyParts();
 
 		updateHeadLocation(location, bodyParts);
 
-		for (int index = 0; index < bodyParts.size() - 1; index++) {
-			updateBodyPartLocation(location, bodyParts, index);
+		Location tail = bodyParts.get(0);
+		Location tailsNextBodyPart = bodyParts.get(1);
+
+		Direction directionToMoveTailIn = determineDirectionToNextBodyPart(tail, tailsNextBodyPart);
+		location.updateLocationOfBodyPart(this, tail, directionToMoveTailIn);
+		if (haveMet(tail, tailsNextBodyPart)) {
+			bodyParts.remove(tailsNextBodyPart);
 		}
 
 		SnakeGameLogger.log("The snakes location is: " + location);
@@ -61,24 +67,7 @@ public class SnakeMovement extends Thread {
 		location.updateLocationOfBodyPart(this, bodyParts.get(bodyParts.size() - 1), direction);
 	}
 
-	private void updateBodyPartLocation(SnakeLocation location, List<Location> bodyParts, int index) {
-		Location bodyPart = bodyParts.get(index);
-		Location nextBodyPart = bodyParts.get(index + 1);
-		Direction directionToMoveBodyPartIn = determineDirectionToNextBodyPart(bodyPart, nextBodyPart);
-
-		location.updateLocationOfBodyPart(this, bodyPart, directionToMoveBodyPartIn);
-
-		if (canBeRemoved(bodyPart, nextBodyPart)) {
-			bodyParts.remove(index);
-			correctIndexOffsetCausedByRemoval(index);
-		}
-	}
-
-	private void correctIndexOffsetCausedByRemoval(int index) {
-		index++;
-	}
-
-	private boolean canBeRemoved(Location bodyPart, Location nextBodyPart) {
+	private boolean haveMet(Location bodyPart, Location nextBodyPart) {
 		return bodyPart.equals(nextBodyPart);
 	}
 
