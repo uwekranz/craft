@@ -40,6 +40,7 @@ public class Snake {
 	public void setDirectionOfMovement(Direction direction) {
 		if (direction.isOppositeOfCurrentDirection(movement)) {
 			SnakeGameLogger.log("The snake can not turn into its opposite Direction directly.");
+			throw new RuntimeException();
 		} else {
 			movement.setDirection(direction);
 		}

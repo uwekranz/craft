@@ -48,28 +48,44 @@ public class SnakeMovement extends Thread {
 			formerDirection = direction;
 		}
 
-		List<Location> bodyParts = location.getBodyParts();
+		updateHeadLocation(location);
+		updateTailLocation(location);
 
-		updateHeadLocation(location, bodyParts);
-
-		Location tail = bodyParts.get(0);
-		Location tailsNextBodyPart = bodyParts.get(1);
-
-		Direction directionToMoveTailIn = determineDirectionToNextBodyPart(tail, tailsNextBodyPart);
-		location.updateLocationOfBodyPart(this, tail, directionToMoveTailIn);
-		if (haveMet(tail, tailsNextBodyPart)) {
-			bodyParts.remove(tailsNextBodyPart);
+		if (bodyPartsHaveMet(location)) {
+			location.removeTailsNextBodyPart();
 		}
 
 		SnakeGameLogger.log("The snakes location is: " + location);
 	}
 
-	private void updateHeadLocation(SnakeLocation location, List<Location> bodyParts) {
-		location.updateLocationOfBodyPart(this, bodyParts.get(bodyParts.size() - 1), direction);
+	private void updateTailLocation(SnakeLocation location) {
+		List<Location> bodyParts = location.getBodyParts();
+		Location tail = bodyParts.get(0);
+		Location tailsNextBodyPart = bodyParts.get(1);
+		Direction directionToMoveTailIn = determineDirectionToNextBodyPart(tail, tailsNextBodyPart);
+		location.updateLocationOfBodyPart(this.STEP_DISTANCE, tail, directionToMoveTailIn);
 	}
 
-	private boolean haveMet(Location bodyPart, Location nextBodyPart) {
-		return bodyPart.equals(nextBodyPart);
+	private void updateHeadLocation(SnakeLocation location) {
+		List<Location> bodyParts = location.getBodyParts();
+		Location indexOfHead = bodyParts.get(bodyParts.size() - 1);
+		location.updateLocationOfBodyPart(this.STEP_DISTANCE, indexOfHead, direction);
+		if (headHasMetBody()) {
+			SnakeGameLogger.log("Head has met body");
+			throw new RuntimeException();
+		}
+	}
+
+	private boolean headHasMetBody() {
+		// TODO
+		return false;
+	}
+
+	private boolean bodyPartsHaveMet(SnakeLocation location) {
+		List<Location> bodyParts = location.getBodyParts();
+		Location tail = bodyParts.get(0);
+		Location tailsNextBodyPart = bodyParts.get(1);
+		return tail.equals(tailsNextBodyPart);
 	}
 
 	private Direction determineDirectionToNextBodyPart(Location bodyPartToMove, Location bodyPartToMoveTo) {

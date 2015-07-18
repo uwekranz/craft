@@ -72,20 +72,22 @@ public class SnakeLocation {
 		bodyPartLocations.add(indexOfHead, jointLocation);
 	}
 
-	void updateLocationOfBodyPart(SnakeMovement snakeMovement, Location bodyPartLocation, Direction directionOfMovementForBodyPartLocation) {
+	void updateLocationOfBodyPart(int stepDistance, Location bodyPartLocation, Direction directionOfMovementForBodyPartLocation) {
 		switch (directionOfMovementForBodyPartLocation) {
 		case DOWN:
-			update(bodyPartLocation, snakeMovement.STEP_DISTANCE, VERTICAL_AXIS);
+			update(bodyPartLocation, stepDistance, VERTICAL_AXIS);
 			break;
 		case LEFT:
-			update(bodyPartLocation, -snakeMovement.STEP_DISTANCE, HORIZONTAL_AXIS);
+			update(bodyPartLocation, -stepDistance, HORIZONTAL_AXIS);
 			break;
 		case RIGHT:
-			update(bodyPartLocation, snakeMovement.STEP_DISTANCE, HORIZONTAL_AXIS);
+			update(bodyPartLocation, stepDistance, HORIZONTAL_AXIS);
 			break;
 		case UP:
-			update(bodyPartLocation, -snakeMovement.STEP_DISTANCE, VERTICAL_AXIS);
+			update(bodyPartLocation, -stepDistance, VERTICAL_AXIS);
 			break;
+		case NULL:
+			throw new RuntimeException();
 		}
 	}
 
@@ -106,5 +108,9 @@ public class SnakeLocation {
 		if (!bodyPartLocations.equals(other.bodyPartLocations))
 			return false;
 		return true;
+	}
+
+	public void removeTailsNextBodyPart() {
+		bodyPartLocations.remove(1);
 	}
 }
