@@ -6,6 +6,8 @@ import static model.Axis.VERTICAL_AXIS;
 import java.util.ArrayList;
 import java.util.List;
 
+import applicationBoundary.SnakeGameLogger;
+
 public class SnakeLocation {
 	private List<Location> bodyPartLocations;
 
@@ -13,6 +15,83 @@ public class SnakeLocation {
 		bodyPartLocations = new ArrayList<Location>();
 		bodyPartLocations.add(new Location(0, 0));
 		bodyPartLocations.add(new Location(bodyLength, 0));
+	}
+
+	public void updateHeadLocation(SnakeMovement snakeMovement) {
+		Location head = getHead();
+		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, head, snakeMovement.direction);
+		if (headHasMetBody()) {
+			SnakeGameLogger.log("Head has met body");
+			throw new RuntimeException();
+		}
+	}
+
+	private Location getHead() {
+		List<Location> bodyParts = getBodyParts();
+		Location indexOfHead = bodyParts.get(bodyParts.size() - 1);
+		return indexOfHead;
+	}
+
+	public void updateTailLocation(SnakeMovement snakeMovement) {
+		List<Location> bodyParts = getBodyParts();
+		Location tail = bodyParts.get(0);
+		Location tailsNextBodyPart = bodyParts.get(1);
+		Direction directionToMoveTailIn = snakeMovement.determineDirectionToNextBodyPart(tail, tailsNextBodyPart);
+		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, tail, directionToMoveTailIn);
+	}
+
+	private void updateLocationOfBodyPart(int stepDistance, Location bodyPartLocation, Direction directionOfMovementForBodyPartLocation) {
+		switch (directionOfMovementForBodyPartLocation) {
+		case DOWN:
+			update(bodyPartLocation, stepDistance, VERTICAL_AXIS);
+			break;
+		case LEFT:
+			update(bodyPartLocation, -stepDistance, HORIZONTAL_AXIS);
+			break;
+		case RIGHT:
+			update(bodyPartLocation, stepDistance, HORIZONTAL_AXIS);
+			break;
+		case UP:
+			update(bodyPartLocation, -stepDistance, VERTICAL_AXIS);
+			break;
+		case NULL:
+			throw new RuntimeException();
+		}
+	}
+
+	public void addJointBeforeHead() {
+		int indexOfHead = bodyPartLocations.size() - 1;
+		Location headLocation = bodyPartLocations.get(indexOfHead);
+		Location jointLocation = new Location();
+		jointLocation.setCoordinates(headLocation.getCoordinate(HORIZONTAL_AXIS), headLocation.getCoordinate(VERTICAL_AXIS));
+		bodyPartLocations.add(indexOfHead, jointLocation);
+	}
+
+	public void removeJointAfterTail() {
+		bodyPartLocations.remove(1);
+	}
+
+	private boolean headHasMetBody() {
+		for (int index = 0; index < this.bodyPartLocations.size() - 2; index++) {
+			if (jointAndSuccessorHaveSameCoordinateValueOnSomeAxisAsHead(index)) {
+				SnakeGameLogger.log("Head has met body");
+				// throw new RuntimeException();
+			}
+
+		}
+		return false;
+	}
+
+	private boolean jointAndSuccessorHaveSameCoordinateValueOnSomeAxisAsHead(int index) {
+		return jointAndSuccesorHaveSameCoordinateOnAxisAsHead(index, HORIZONTAL_AXIS)//
+				|| jointAndSuccesorHaveSameCoordinateOnAxisAsHead(index, VERTICAL_AXIS);
+	}
+
+	private boolean jointAndSuccesorHaveSameCoordinateOnAxisAsHead(int index, Axis axis) {
+		Location headLocation = getHeadLocation();
+		int headLocationsCoordinate = headLocation.getCoordinate(axis);
+		return bodyPartLocations.get(index).getCoordinate(axis) == headLocationsCoordinate //
+				&& bodyPartLocations.get(index + 1).getCoordinate(axis) == headLocationsCoordinate;
 	}
 
 	public void setCoordinates(Location bodyPartLocation, int horizontalCoordinate, int verticalCoordinate) {
@@ -64,33 +143,6 @@ public class SnakeLocation {
 		return bodyPartLocations;
 	}
 
-	public void addJointAfterHead() {
-		int indexOfHead = bodyPartLocations.size() - 1;
-		Location headLocation = bodyPartLocations.get(indexOfHead);
-		Location jointLocation = new Location();
-		jointLocation.setCoordinates(headLocation.getCoordinate(HORIZONTAL_AXIS), headLocation.getCoordinate(VERTICAL_AXIS));
-		bodyPartLocations.add(indexOfHead, jointLocation);
-	}
-
-	void updateLocationOfBodyPart(int stepDistance, Location bodyPartLocation, Direction directionOfMovementForBodyPartLocation) {
-		switch (directionOfMovementForBodyPartLocation) {
-		case DOWN:
-			update(bodyPartLocation, stepDistance, VERTICAL_AXIS);
-			break;
-		case LEFT:
-			update(bodyPartLocation, -stepDistance, HORIZONTAL_AXIS);
-			break;
-		case RIGHT:
-			update(bodyPartLocation, stepDistance, HORIZONTAL_AXIS);
-			break;
-		case UP:
-			update(bodyPartLocation, -stepDistance, VERTICAL_AXIS);
-			break;
-		case NULL:
-			throw new RuntimeException();
-		}
-	}
-
 	@Override
 	public int hashCode() {
 		return ((bodyPartLocations == null) ? 0 : bodyPartLocations.hashCode());
@@ -110,7 +162,4 @@ public class SnakeLocation {
 		return true;
 	}
 
-	public void removeTailsNextBodyPart() {
-		bodyPartLocations.remove(1);
-	}
 }

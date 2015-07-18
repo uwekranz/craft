@@ -44,51 +44,28 @@ public class SnakeMovement extends Thread {
 
 	public void applyTo(SnakeLocation location) {
 		if (movementCausesChangeOfDirection()) {
-			location.addJointAfterHead();
+			location.addJointBeforeHead();
 			formerDirection = direction;
 		}
 
-		updateHeadLocation(location);
-		updateTailLocation(location);
+		location.updateHeadLocation(this);
+		location.updateTailLocation(this);
 
-		if (bodyPartsHaveMet(location)) {
-			location.removeTailsNextBodyPart();
+		if (tailHasArrivedAtNextJoint(location)) {
+			location.removeJointAfterTail();
 		}
 
 		SnakeGameLogger.log("The snakes location is: " + location);
 	}
 
-	private void updateTailLocation(SnakeLocation location) {
-		List<Location> bodyParts = location.getBodyParts();
-		Location tail = bodyParts.get(0);
-		Location tailsNextBodyPart = bodyParts.get(1);
-		Direction directionToMoveTailIn = determineDirectionToNextBodyPart(tail, tailsNextBodyPart);
-		location.updateLocationOfBodyPart(this.STEP_DISTANCE, tail, directionToMoveTailIn);
-	}
-
-	private void updateHeadLocation(SnakeLocation location) {
-		List<Location> bodyParts = location.getBodyParts();
-		Location indexOfHead = bodyParts.get(bodyParts.size() - 1);
-		location.updateLocationOfBodyPart(this.STEP_DISTANCE, indexOfHead, direction);
-		if (headHasMetBody()) {
-			SnakeGameLogger.log("Head has met body");
-			throw new RuntimeException();
-		}
-	}
-
-	private boolean headHasMetBody() {
-		// TODO
-		return false;
-	}
-
-	private boolean bodyPartsHaveMet(SnakeLocation location) {
+	private boolean tailHasArrivedAtNextJoint(SnakeLocation location) {
 		List<Location> bodyParts = location.getBodyParts();
 		Location tail = bodyParts.get(0);
 		Location tailsNextBodyPart = bodyParts.get(1);
 		return tail.equals(tailsNextBodyPart);
 	}
 
-	private Direction determineDirectionToNextBodyPart(Location bodyPartToMove, Location bodyPartToMoveTo) {
+	Direction determineDirectionToNextBodyPart(Location bodyPartToMove, Location bodyPartToMoveTo) {
 		Axis axisOfMovement = determineAxisOfMovement(bodyPartToMove, bodyPartToMoveTo);
 		Direction direction = determineDirectionOfMovement(axisOfMovement, bodyPartToMove, bodyPartToMoveTo);
 		return direction;
