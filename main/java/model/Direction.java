@@ -25,4 +25,20 @@ public enum Direction {
 			return NULL;
 		}
 	}
+
+	public Axis getAxis() {
+		switch (this) {
+		case RIGHT:
+			return Axis.HORIZONTAL_AXIS;
+		case LEFT:
+			return Axis.HORIZONTAL_AXIS;
+		case UP:
+			return Axis.VERTICAL_AXIS;
+		case DOWN:
+			return Axis.VERTICAL_AXIS;
+		default:
+			return Axis.NULL;
+		}
+	}
+
 }

@@ -20,16 +20,10 @@ public class SnakeLocation {
 	public void updateHeadLocation(SnakeMovement snakeMovement) {
 		Location head = getHead();
 		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, head, snakeMovement.direction);
-		if (headHasMetBody()) {
+		if (headHasMetBody(snakeMovement.direction)) {
 			SnakeGameLogger.log("Head has met body");
 			throw new RuntimeException();
 		}
-	}
-
-	private Location getHead() {
-		List<Location> bodyParts = getBodyParts();
-		Location indexOfHead = bodyParts.get(bodyParts.size() - 1);
-		return indexOfHead;
 	}
 
 	public void updateTailLocation(SnakeMovement snakeMovement) {
@@ -71,27 +65,35 @@ public class SnakeLocation {
 		bodyPartLocations.remove(1);
 	}
 
-	private boolean headHasMetBody() {
+	private boolean headHasMetBody(Direction direction) {
 		for (int index = 0; index < this.bodyPartLocations.size() - 2; index++) {
-			if (jointAndSuccessorHaveSameCoordinateValueOnSomeAxisAsHead(index)) {
-				SnakeGameLogger.log("Head has met body");
-				// throw new RuntimeException();
+			Axis axisOfMovement = direction.getAxis();
+			if (jointAndSuccessorHaveSameCoordinateOnAxisAsHead(index, axisOfMovement) //
+					&& headCrossesConnectionBetweenJointAndItsSuccessor(index, axisOfMovement)) {
+				SnakeGameLogger.log("Head has met body \n Checked axis: " + axisOfMovement);
+				throw new RuntimeException();
 			}
 
 		}
 		return false;
 	}
 
-	private boolean jointAndSuccessorHaveSameCoordinateValueOnSomeAxisAsHead(int index) {
-		return jointAndSuccesorHaveSameCoordinateOnAxisAsHead(index, HORIZONTAL_AXIS)//
-				|| jointAndSuccesorHaveSameCoordinateOnAxisAsHead(index, VERTICAL_AXIS);
+	private boolean headCrossesConnectionBetweenJointAndItsSuccessor(int index, Axis axisOfMovement) {
+		Location headLocation = getHeadLocation();
+		Axis axisOrthogonalToMovement = axisOfMovement.getOrhogonalAxis();
+		int jointCoordinate = bodyPartLocations.get(index).getCoordinate(axisOrthogonalToMovement);
+		int successorCoordinate = bodyPartLocations.get(index + 1).getCoordinate(axisOrthogonalToMovement);
+		int headCoordinate = headLocation.getCoordinate(axisOrthogonalToMovement);
+		return ((jointCoordinate <= headCoordinate) && (headCoordinate <= successorCoordinate)) //
+				|| ((successorCoordinate <= headCoordinate) && (headCoordinate <= jointCoordinate));
 	}
 
-	private boolean jointAndSuccesorHaveSameCoordinateOnAxisAsHead(int index, Axis axis) {
+	private boolean jointAndSuccessorHaveSameCoordinateOnAxisAsHead(int index, Axis axis) {
 		Location headLocation = getHeadLocation();
 		int headLocationsCoordinate = headLocation.getCoordinate(axis);
-		return bodyPartLocations.get(index).getCoordinate(axis) == headLocationsCoordinate //
-				&& bodyPartLocations.get(index + 1).getCoordinate(axis) == headLocationsCoordinate;
+		int jointsCoordinate = bodyPartLocations.get(index).getCoordinate(axis);
+		int succesorJointsCoordinate = bodyPartLocations.get(index + 1).getCoordinate(axis);
+		return jointsCoordinate == headLocationsCoordinate && succesorJointsCoordinate == headLocationsCoordinate;
 	}
 
 	public void setCoordinates(Location bodyPartLocation, int horizontalCoordinate, int verticalCoordinate) {
@@ -115,6 +117,12 @@ public class SnakeLocation {
 		setCoordinates(bodyPartLocation, bodyPartLocation.getCoordinate(HORIZONTAL_AXIS), newValue);
 	}
 
+	private Location getHead() {
+		List<Location> bodyParts = getBodyParts();
+		Location indexOfHead = bodyParts.get(bodyParts.size() - 1);
+		return indexOfHead;
+	}
+
 	@Override
 	public String toString() {
 		return bodyPartLocations.toString();
@@ -125,7 +133,7 @@ public class SnakeLocation {
 	}
 
 	public Location getHeadLocation() {
-		return bodyPartLocations.get(1);
+		return bodyPartLocations.get(bodyPartLocations.size() - 1);
 	}
 
 	public int getCoordinate(BodyPart bodyPart, Axis axis) {
