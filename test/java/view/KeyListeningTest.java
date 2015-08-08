@@ -35,7 +35,7 @@ public class KeyListeningTest {
 		userInterface.setSnakePainter(snakePainterMock);
 
 		userInterface.displayView();
-		Thread.sleep(1000);
+		Thread.sleep(100);
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class KeyListeningTest {
 		whenTheUserPressesTheKey(VK_LEFT).thenTheSnakesDirectionGetsSetTo(LEFT);
 	}
 
-	// TODO Jun 2, 2015 - uwe: This test is wobbly
+	// TODO Jun 2, 2015 - uwe: This test is wobbly. It is the first one executed of the group of four that fails.
 	@Test
 	public void whenKeyRightIsPresses_theDirectionOfSnakeMovementGetsSetAccordingly() {
 		whenTheUserPressesTheKey(VK_RIGHT).thenTheSnakesDirectionGetsSetTo(RIGHT);
