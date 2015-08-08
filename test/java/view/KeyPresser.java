@@ -5,7 +5,7 @@ import java.awt.Robot;
 
 public class KeyPresser {
 
-	private static Robot robot = tryToCreateKeyPressingRobot();
+	private static Robot robot = createKeyPresserRobot();
 
 	public static void pressKeyWithCode(int keyCode) {
 		robot.keyPress(keyCode);
@@ -13,7 +13,7 @@ public class KeyPresser {
 		robot.delay(200);
 	}
 
-	private static Robot tryToCreateKeyPressingRobot() {
+	private static Robot createKeyPresserRobot() {
 		try {
 			return new Robot();
 		} catch (AWTException exception) {
