@@ -22,7 +22,7 @@ public class Snake {
 
 	public void beginToMove() {
 		movement.start();
-		SnakeGameLogger.info("The snake begins to move");
+		SnakeGameLogger.info(this, "The snake begins to move");
 	}
 
 	public int getBodyLength() {
@@ -39,7 +39,7 @@ public class Snake {
 
 	public void setDirectionOfMovement(Direction direction) {
 		if (direction.isOppositeOfCurrentDirection(movement)) {
-			SnakeGameLogger.info("The snake tried to turn into its opposite Direction directly but it can not.");
+			SnakeGameLogger.info(this, "The snake tried to turn into its opposite Direction directly but it can not.");
 			throw new RuntimeException();
 		} else {
 			movement.setDirection(direction);

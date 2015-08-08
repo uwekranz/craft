@@ -24,7 +24,7 @@ public class ArrowKeysListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent keyEvent) {
-		SnakeGameLogger.debug("The key " + KeyEvent.getKeyText(keyEvent.getKeyCode()) + " has been pressed");
+		SnakeGameLogger.info(this, "The key " + KeyEvent.getKeyText(keyEvent.getKeyCode()) + " has been pressed");
 		if (keyEvent.getKeyCode() == VK_DOWN)
 			controller.setDirectionOfSnakeMovement(DOWN);
 		if (keyEvent.getKeyCode() == VK_UP)

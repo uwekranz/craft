@@ -55,7 +55,7 @@ public class SnakeMovement extends Thread {
 			location.removeJointAfterTail();
 		}
 
-		SnakeGameLogger.debug("The snakes location is: " + location);
+		SnakeGameLogger.debug(this, "The snakes location is: " + location);
 	}
 
 	private boolean tailHasArrivedAtNextJoint(SnakeLocation location) {
