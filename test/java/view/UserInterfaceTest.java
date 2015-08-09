@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 
 import java.awt.Graphics;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,9 +23,8 @@ public class UserInterfaceTest {
 	private Controller controllerMock;
 
 	@Before
-	public void prepareTests() {
+	public void prepareTests() throws InterruptedException {
 		createUserInterface_WithMockedSnakePainter();
-		userInterface.displayView();
 	}
 
 	private void createUserInterface_WithMockedSnakePainter() {
@@ -36,6 +36,7 @@ public class UserInterfaceTest {
 
 	@Test
 	public void itShould_BeVisible_WhenViewHasBeenDisplayed() {
+		userInterface.displayView();
 		assertThat(userInterface.isVisible(), is(true));
 	}
 
@@ -46,13 +47,20 @@ public class UserInterfaceTest {
 
 	@Test
 	public void itShouldHaveLetSnakeBePainted_WhenViewHasBeenDisplayed() {
+		userInterface.displayView();
 		verify(snakePainterMock, atLeastOnce()).paint(any(Graphics.class));
 	}
 
 	@Test
 	public void itShouldPaintRegularly_WhenViewHasBeenDisplayed() throws Exception {
+		userInterface.displayView();
 		Thread.sleep(10);
 		assertThat(userInterface.isPaintedRegularly(), is(true));
+	}
+
+	@After
+	public void tearDown() {
+		userInterface.dispose();
 	}
 
 }

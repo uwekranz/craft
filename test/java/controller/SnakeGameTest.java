@@ -17,6 +17,8 @@ public class SnakeGameTest {
 		snakeGame.startWithUserInterface(userInterface);
 
 		assertThat(userInterface.isVisible(), is(true));
+
+		userInterface.dispose();
 	}
 
 }

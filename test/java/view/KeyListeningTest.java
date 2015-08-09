@@ -14,10 +14,12 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import model.Direction;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import applicationBoundary.SnakeGameLogger;
 import controller.Controller;
 
 public class KeyListeningTest {
@@ -35,7 +37,7 @@ public class KeyListeningTest {
 		userInterface.setSnakePainter(snakePainterMock);
 
 		userInterface.displayView();
-		Thread.sleep(100);
+		waitForUserInterfaceToGainFocus();
 	}
 
 	@Test
@@ -53,7 +55,6 @@ public class KeyListeningTest {
 		whenTheUserPressesTheKey(VK_LEFT).thenTheSnakesDirectionGetsSetTo(LEFT);
 	}
 
-	// TODO Jun 2, 2015 - uwe: This test is wobbly. It is the first one executed of the group of four that fails.
 	@Test
 	public void whenKeyRightIsPresses_theDirectionOfSnakeMovementGetsSetAccordingly() {
 		whenTheUserPressesTheKey(VK_RIGHT).thenTheSnakesDirectionGetsSetTo(RIGHT);
@@ -68,5 +69,21 @@ public class KeyListeningTest {
 	private AssertionBuilder whenTheUserPressesTheKey(int keyCode) {
 		KeyPresser.pressKeyWithCode(keyCode);
 		return new AssertionBuilder(controllerMock);
+	}
+
+	@After
+	public void tearDown() {
+		userInterface.dispose();
+	}
+
+	private void waitForUserInterfaceToGainFocus() throws InterruptedException {
+		int i = 0;
+		while (!userInterface.hasFocus()) {
+			SnakeGameLogger.debug(this, "Waiting for user interface to gain focus ...");
+			Thread.sleep(10);
+			i++;
+			if (i > 40)
+				throw new RuntimeException();
+		}
 	}
 }

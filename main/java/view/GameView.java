@@ -43,8 +43,7 @@ public class GameView extends JComponent {
 	}
 
 	public void repaintGameViewRegularly(GameView gameView) {
-		GameViewRepainting gameViewRepaintingEverySecond = new GameViewRepainting(
-				gameView);
+		GameViewRepainting gameViewRepaintingEverySecond = new GameViewRepainting(gameView);
 		gameViewRepaintingEverySecond.start();
 	}
 
