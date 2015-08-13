@@ -21,7 +21,8 @@ public class SnakeLocation {
 		Location head = getHead();
 		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, head, snakeMovement.direction);
 		if (headHasMetBody(snakeMovement.direction)) {
-			SnakeGameLogger.info(this, "The Snakes Head has run into its body");
+			String message = "The Snakes has run into its own body";
+			SnakeGameLogger.info(this, message);
 			throw new RuntimeException();
 		}
 	}
