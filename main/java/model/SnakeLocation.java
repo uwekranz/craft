@@ -21,7 +21,7 @@ public class SnakeLocation {
 		Location head = getHead();
 		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, head, snakeMovement.direction);
 		if (headHasMetBody(snakeMovement.direction)) {
-			SnakeGameLogger.info(this, "Head has met body");
+			SnakeGameLogger.info(this, "The Snakes Head has run into its body");
 			throw new RuntimeException();
 		}
 	}
@@ -70,8 +70,7 @@ public class SnakeLocation {
 			Axis axisOfMovement = direction.getAxis();
 			if (jointAndSuccessorHaveSameCoordinateOnAxisAsHead(index, axisOfMovement) //
 					&& headCrossesConnectionBetweenJointAndItsSuccessor(index, axisOfMovement)) {
-				SnakeGameLogger.info(this, "The Snakes Head has run into its body");
-				throw new RuntimeException();
+				return true;
 			}
 
 		}
