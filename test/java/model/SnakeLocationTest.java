@@ -32,14 +32,6 @@ public class SnakeLocationTest {
 		snakeLocationAsserter = new SnakeLocationAsserter(snake);
 	}
 
-	@Test(expected = RuntimeException.class)
-	public void itThrowsException_WhenSnakeRunsIntoItself() {
-		move(RIGHT);
-		move(DOWN);
-		move(LEFT);
-		move(UP);
-	}
-
 	@Test
 	public void tailsVerticalCoordinateIsZeroAfterSnakeMovedRightOnce() {
 		move(RIGHT);
