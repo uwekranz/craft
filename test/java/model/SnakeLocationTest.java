@@ -243,6 +243,6 @@ public class SnakeLocationTest {
 
 	private void move(Direction direction) {
 		movement.setDirection(direction);
-		movement.applyTo(location);
+		movement.update(location);
 	}
 }

@@ -24,7 +24,7 @@ public class SnakeMovement extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			applyTo(snake.getLocation());
+			update(snake.getLocation());
 			try {
 				Thread.sleep(TICKER_DURATION);
 			} catch (InterruptedException exception) {
@@ -42,7 +42,7 @@ public class SnakeMovement extends Thread {
 		direction = newDirection;
 	}
 
-	public void applyTo(SnakeLocation location) {
+	public void update(SnakeLocation location) {
 		if (movementCausesChangeOfDirection()) {
 			location.addJointBeforeHead();
 			formerDirection = direction;
