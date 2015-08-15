@@ -6,8 +6,6 @@ import static model.Axis.VERTICAL_AXIS;
 import java.util.ArrayList;
 import java.util.List;
 
-import applicationBoundary.SnakeGameLogger;
-
 public class SnakeLocation {
 	private List<Location> bodyPartLocations;
 
@@ -20,11 +18,6 @@ public class SnakeLocation {
 	public void updateHeadLocation(SnakeMovement snakeMovement) {
 		Location head = getHead();
 		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, head, snakeMovement.direction);
-		if (headHasMetBody(snakeMovement.direction)) {
-			String message = "The Snakes has run into its own body";
-			SnakeGameLogger.info(this, message);
-			throw new RuntimeException();
-		}
 	}
 
 	public void updateTailLocation(SnakeMovement snakeMovement) {
@@ -66,7 +59,7 @@ public class SnakeLocation {
 		bodyPartLocations.remove(1);
 	}
 
-	private boolean headHasMetBody(Direction direction) {
+	boolean headHasMetBody(Direction direction) {
 		for (int index = 0; index < this.bodyPartLocations.size() - 2; index++) {
 			Axis axisOfMovement = direction.getAxis();
 			if (jointAndSuccessorHaveSameCoordinateOnAxisAsHead(index, axisOfMovement) //

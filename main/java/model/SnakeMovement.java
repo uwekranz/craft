@@ -28,7 +28,11 @@ public class SnakeMovement extends Thread {
 			try {
 				Thread.sleep(TICKER_DURATION);
 			} catch (InterruptedException exception) {
-				throw new RuntimeException(exception);
+				if (snake.isDead())
+					SnakeGameLogger.info(this, "The Snakes Movement has stopped and it is dead.");
+				else {
+					throw new RuntimeException(exception);
+				}
 			}
 		}
 	}
@@ -49,6 +53,10 @@ public class SnakeMovement extends Thread {
 		}
 
 		location.updateHeadLocation(this);
+		if (location.headHasMetBody(direction)) {
+			snake.die();
+			interrupt();
+		}
 		location.updateTailLocation(this);
 
 		if (tailHasArrivedAtNextJoint(location)) {

@@ -10,6 +10,7 @@ public class Snake {
 	private int bodyLength = INITIAL_BODY_LENGTH;
 	SnakeLocation location = new SnakeLocation(bodyLength);
 	private SnakeMovement movement = new SnakeMovement(this);
+	private boolean isAlive;
 
 	public Snake whichIsMoving() {
 		beginToMove();
@@ -52,5 +53,17 @@ public class Snake {
 
 	public SnakeMovement getMovement() {
 		return movement;
+	}
+
+	public void die() {
+		isAlive = false;
+	}
+
+	public boolean isDead() {
+		return !isAlive();
+	}
+
+	private boolean isAlive() {
+		return isAlive;
 	}
 }
