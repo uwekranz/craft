@@ -20,7 +20,7 @@ public class ApplicationBoundary {
 	}
 
 	private static void letViewObserveModel(GameModel gameModel, UserInterface userInterface) {
-		gameModel.getSnake().addObserver(userInterface.getGameView());
+		gameModel.getSnake().addObserver(userInterface);
 	}
 
 }

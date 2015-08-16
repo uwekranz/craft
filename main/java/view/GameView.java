@@ -1,15 +1,12 @@
 package view;
 
 import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 
 import model.GameModel;
 
-public class GameView extends JComponent implements Observer {
+public class GameView extends JComponent {
 
 	private static final long serialVersionUID = -837919897890926903L;
 
@@ -64,22 +61,6 @@ public class GameView extends JComponent implements Observer {
 
 	public boolean snakeHasBeenPainted() {
 		return snakePainter.hasSnakeBeenPainted();
-	}
-
-	@Override
-	public void update(Observable observable, Object object) {
-		showGameOverDialog();
-	}
-
-	private void showGameOverDialog() {
-		Object[] options = { "Start New Game", "Quit Game" };
-		JOptionPane.showOptionDialog(null,//
-				"Game Over: The Snake has run into its own body.",//
-				"Game Over",//
-				JOptionPane.YES_NO_OPTION,//
-				JOptionPane.PLAIN_MESSAGE,//
-				null,//
-				options, options[0]);
 	}
 
 }
