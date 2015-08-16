@@ -16,4 +16,8 @@ public class GameModel {
 	public int getSnakeBodyLength() {
 		return snake.getBodyLength();
 	}
+
+	public Snake getSnake() {
+		return snake;
+	}
 }

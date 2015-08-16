@@ -32,7 +32,7 @@ public class UserInterface extends JFrame {
 		gameView.repaintGameViewRegularly(gameView);
 	}
 
-	protected GameView getGameView() {
+	public GameView getGameView() {
 		return (GameView) getContentPane();
 	}
 

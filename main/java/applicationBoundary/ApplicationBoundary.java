@@ -14,7 +14,13 @@ public class ApplicationBoundary {
 		Controller controller = new Controller(gameModel);
 		UserInterface userInterface = new UserInterface(controller);
 
+		letViewObserveModel(gameModel, userInterface);
+
 		snakeGame.startWithUserInterface(userInterface);
+	}
+
+	private static void letViewObserveModel(GameModel gameModel, UserInterface userInterface) {
+		gameModel.getSnake().addObserver(userInterface.getGameView());
 	}
 
 }

@@ -1,8 +1,10 @@
 package model;
 
+import java.util.Observable;
+
 import applicationBoundary.SnakeGameLogger;
 
-public class Snake {
+public class Snake extends Observable {
 
 	public static final int INITIAL_BODY_LENGTH = 100;
 	private static final int GROWTH_SIZE_CAUSED_BY_EATING = 1;
@@ -57,6 +59,8 @@ public class Snake {
 
 	public void die() {
 		isAlive = false;
+		setChanged();
+		notifyObservers(isAlive);
 	}
 
 	public boolean isDead() {
