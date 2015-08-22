@@ -28,7 +28,7 @@ public class UserInterface extends JFrame implements Observer {
 		setContentPane(gameView);
 
 		addKeyListener(new ArrowKeysListener(controller));
-		gameOverDialog = new GameOverDialog(new NewGameListener(), new QuitGameListener(this));
+		gameOverDialog = new GameOverDialog(new NewGameListener(this), new QuitGameListener(this));
 	}
 
 	public void displayView() {

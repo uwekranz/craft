@@ -19,4 +19,8 @@ public class Controller {
 		return gameModel;
 	}
 
+	public void replaceGameModelByInitialGameModel() {
+		gameModel = new GameModel();
+	}
+
 }
