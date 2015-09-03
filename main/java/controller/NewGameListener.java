@@ -2,11 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JOptionPane;
 
 import view.UserInterface;
+import applicationBoundary.ApplicationBoundary;
 import applicationBoundary.SnakeGameLogger;
 
 public class NewGameListener implements ActionListener {
@@ -20,7 +18,15 @@ public class NewGameListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		SnakeGameLogger.info(this, "The New-Game-Button has been pressed.");
-		JOptionPane.getRootFrame().dispose();
-		userInterface.dispatchEvent(new WindowEvent(userInterface, WindowEvent.WINDOW_CLOSING));
+		startNewGame();
+		endOldGameAfterNewGameHasBeenStarted();
+	}
+
+	private void startNewGame() {
+		ApplicationBoundary.main(null);
+	}
+
+	private void endOldGameAfterNewGameHasBeenStarted() {
+		userInterface.dispose();
 	}
 }
