@@ -23,7 +23,7 @@ public class NewGameListener implements ActionListener {
 	}
 
 	private void startNewGame() {
-		ApplicationBoundary.main(null);
+		ApplicationBoundary.startNewGame();
 	}
 
 	private void endOldGameAfterNewGameHasBeenStarted() {

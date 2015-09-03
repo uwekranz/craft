@@ -7,6 +7,10 @@ import controller.SnakeGame;
 
 public class ApplicationBoundary {
 
+	public static void startNewGame() {
+		main(null);
+	}
+
 	public static void main(String[] arguments) {
 		GameModel gameModel = new GameModel();
 		Controller controller = new Controller(gameModel);
