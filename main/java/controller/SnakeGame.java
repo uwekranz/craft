@@ -7,17 +7,12 @@ import view.UserInterface;
 
 public class SnakeGame {
 
-	private UserInterface userInterface;
-	private GameModel gameModel;
-	private Controller controller;
+	private GameModel gameModel = new GameModel();
+	private Controller controller = new Controller(gameModel);
+	private UserInterface userInterface = new UserInterface(controller);;
 
 	public void start() {
-		gameModel = new GameModel();
-		controller = new Controller(gameModel);
-		userInterface = new UserInterface(controller);
-
 		letViewObserveModel(gameModel, userInterface);
-
 		userInterface.displayGameView();
 	}
 
