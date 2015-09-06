@@ -37,15 +37,6 @@ public class SnakeMovement extends Thread {
 		}
 	}
 
-	public Direction getDirection() {
-		return direction;
-	}
-
-	public void setDirection(Direction newDirection) {
-		formerDirection = direction;
-		direction = newDirection;
-	}
-
 	public void update(SnakeLocation location) {
 		if (movementCausesChangeOfDirection()) {
 			location.addJointBeforeHead();
@@ -66,6 +57,10 @@ public class SnakeMovement extends Thread {
 		SnakeGameLogger.debug(this, "The snakes location is: " + location);
 	}
 
+	private boolean movementCausesChangeOfDirection() {
+		return !formerDirection.equals(direction);
+	}
+
 	private boolean tailHasArrivedAtNextJoint(SnakeLocation location) {
 		List<Location> bodyParts = location.getBodyParts();
 		Location tail = bodyParts.get(0);
@@ -77,6 +72,17 @@ public class SnakeMovement extends Thread {
 		Axis axisOfMovement = determineAxisOfMovement(bodyPartToMove, bodyPartToMoveTo);
 		Direction direction = determineDirectionOfMovement(axisOfMovement, bodyPartToMove, bodyPartToMoveTo);
 		return direction;
+	}
+
+	private Axis determineAxisOfMovement(Location bodyPartToMove, Location bodyPartToMoveTo) {
+		if (horizontalCoordinatesMatch(bodyPartToMove, bodyPartToMoveTo))
+			return VERTICAL_AXIS;
+		else
+			return HORIZONTAL_AXIS;
+	}
+
+	private boolean horizontalCoordinatesMatch(Location bodyPartToMove, Location bodyPartToMoveTo) {
+		return bodyPartToMove.getCoordinate(HORIZONTAL_AXIS) == bodyPartToMoveTo.getCoordinate(HORIZONTAL_AXIS);
 	}
 
 	private Direction determineDirectionOfMovement(Axis axisOfMovement, Location bodyPartToMove, Location bodyPartToMoveTo) {
@@ -97,18 +103,13 @@ public class SnakeMovement extends Thread {
 
 	}
 
-	private Axis determineAxisOfMovement(Location bodyPartToMove, Location bodyPartToMoveTo) {
-		if (horizontalCoordinatesMatch(bodyPartToMove, bodyPartToMoveTo))
-			return VERTICAL_AXIS;
-		else
-			return HORIZONTAL_AXIS;
+	public Direction getDirection() {
+		return direction;
 	}
 
-	private boolean horizontalCoordinatesMatch(Location bodyPartToMove, Location bodyPartToMoveTo) {
-		return bodyPartToMove.getCoordinate(HORIZONTAL_AXIS) == bodyPartToMoveTo.getCoordinate(HORIZONTAL_AXIS);
+	public void setDirection(Direction newDirection) {
+		formerDirection = direction;
+		direction = newDirection;
 	}
 
-	private boolean movementCausesChangeOfDirection() {
-		return !formerDirection.equals(direction);
-	}
 }
