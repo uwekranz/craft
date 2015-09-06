@@ -3,6 +3,7 @@ package model;
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +87,28 @@ public class SnakeLocation {
 		int jointsCoordinate = bodyPartLocations.get(index).getCoordinate(axis);
 		int succesorJointsCoordinate = bodyPartLocations.get(index + 1).getCoordinate(axis);
 		return jointsCoordinate == headLocationsCoordinate && succesorJointsCoordinate == headLocationsCoordinate;
+	}
+
+	public boolean headHasMetSnakeCage(SnakeCage snakeCage) {
+		Location headLocation = getHeadLocation();
+		Dimension cageDimensions = snakeCage.getDimensions();
+		return hasSnakeMetCageBoundary(headLocation, cageDimensions);
+	}
+
+	private boolean hasSnakeMetCageBoundary(Location headLocation, Dimension cageDimensions) {
+		return snakeHasMetBoundaryOfCage(headLocation, cageDimensions, HORIZONTAL_AXIS) //
+				|| snakeHasMetBoundaryOfCage(headLocation, cageDimensions, VERTICAL_AXIS);
+	}
+
+	private boolean snakeHasMetBoundaryOfCage(Location headLocation, Dimension cageDimension, Axis axis) {
+		switch (axis) {
+		case HORIZONTAL_AXIS:
+			int horizontalHeadCoordinate = headLocation.getCoordinate(HORIZONTAL_AXIS);
+			return horizontalHeadCoordinate > cageDimension.getWidth() || horizontalHeadCoordinate < 0;
+		default:
+			int verticalHeadCoordinate = headLocation.getCoordinate(VERTICAL_AXIS);
+			return verticalHeadCoordinate > cageDimension.getHeight() || verticalHeadCoordinate < 0;
+		}
 	}
 
 	public void setCoordinates(Location bodyPartLocation, int horizontalCoordinate, int verticalCoordinate) {

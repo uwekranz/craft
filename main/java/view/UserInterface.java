@@ -45,7 +45,7 @@ public class UserInterface extends JFrame implements Observer {
 
 	private GameOverDialog createGameOverDialog() {
 		QuitGameListener quitGameListener = new QuitGameListener(this);
-		NewGameListener newGameListener = new NewGameListener(this);
+		NewGameListener newGameListener = new NewGameListener();
 
 		GameOverDialog gameOverDialog = new GameOverDialog(this, newGameListener, quitGameListener);
 
@@ -54,11 +54,9 @@ public class UserInterface extends JFrame implements Observer {
 
 	public void displayGameView() {
 		setContentPane(snakeCageView);
+
 		setVisible(true);
 		snakeCageView.requestFocusInWindow();
-
-		Dimension dimensions = snakeCageView.getDimensions();
-		controller.setDimensionsOfSnakeCage(dimensions);
 
 		snakeCageView.paintComponent(getGraphics());
 		snakeCageView.repaintGameViewRegularly(snakeCageView);
@@ -91,6 +89,10 @@ public class UserInterface extends JFrame implements Observer {
 
 	public boolean snakeCageViewHasFocus() {
 		return snakeCageView.hasFocus();
+	}
+
+	public SnakeCageView getSnakeCageView() {
+		return snakeCageView;
 	}
 
 }

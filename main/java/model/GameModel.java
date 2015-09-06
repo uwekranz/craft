@@ -6,12 +6,20 @@ import applicationBoundary.SnakeGameLogger;
 
 public class GameModel {
 
-	private Snake snake = new Snake().whichIsMoving();
-	private SnakeCage snakeCage = new SnakeCage();
+	private Snake snake;
+	private SnakeCage cage;
+	private SnakeMovement movement;
+
+	public GameModel() {
+		snake = new Snake(movement);
+		cage = new SnakeCage();
+		movement = new SnakeMovement(snake, cage);
+
+		movement.start();
+	}
 
 	public SnakeLocation getSnakeLocation() {
 		return snake.getLocation();
-
 	}
 
 	public void letSnakeMoveInDirection(Direction direction) {
@@ -27,7 +35,7 @@ public class GameModel {
 	}
 
 	public void setDimensionsOfSnakeCage(Dimension snakeCageViewDimensions) {
-		snakeCage.setDimensions(snakeCageViewDimensions);
-		SnakeGameLogger.info(this, "Dimensions of snake cage:" + snakeCage.getDimensions());
+		cage.setDimensions(snakeCageViewDimensions);
+		SnakeGameLogger.info(this, "Dimensions of snake cage:" + cage.getDimensions());
 	}
 }

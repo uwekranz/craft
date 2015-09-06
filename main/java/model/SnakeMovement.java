@@ -15,26 +15,38 @@ public class SnakeMovement extends Thread {
 
 	private Snake snake;
 	private Direction formerDirection = direction;
+	private SnakeCage snakeCage;
 
-	public SnakeMovement(Snake snake) {
+	public SnakeMovement(Snake snake, SnakeCage snakeCage) {
 		this.snake = snake;
+		this.snakeCage = snakeCage;
+
+		snake.setMovement(this);
+
 		STEP_DISTANCE = snake.getBodyLength() / 50;
 	}
 
 	@Override
 	public void run() {
-		while (true) {
+		SnakeGameLogger.info(this, "The snake movement begins");
+		SnakeGameLogger.info(this, "Snake cage dimensions:" + snakeCage.getDimensions());
+		try {
+			// TODO get rid of sleep
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		SnakeGameLogger.info(this, "Snake cage dimensions:" + snakeCage.getDimensions());
+		SnakeGameLogger.info(this, "Snake is dead:" + snake.isDead());
+		while (snakeCage.getDimensions() != null && !snake.isDead()) {
 			update(snake.getLocation());
 			try {
 				Thread.sleep(TICKER_DURATION);
 			} catch (InterruptedException exception) {
-				if (snake.isDead())
-					SnakeGameLogger.info(this, "The Snakes Movement has stopped and it is dead.");
-				else {
-					throw new RuntimeException(exception);
-				}
+				throw new RuntimeException(exception);
 			}
 		}
+		SnakeGameLogger.info(this, "The Snakes Movement has stopped and it is dead.");
 	}
 
 	public void update(SnakeLocation location) {
@@ -44,10 +56,10 @@ public class SnakeMovement extends Thread {
 		}
 
 		location.updateHeadLocation(this);
-		if (location.headHasMetBody(direction)) {
+		if (location.headHasMetBody(direction) || location.headHasMetSnakeCage(snakeCage)) {
 			snake.die();
-			interrupt();
 		}
+
 		location.updateTailLocation(this);
 
 		if (tailHasArrivedAtNextJoint(location)) {

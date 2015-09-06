@@ -20,7 +20,9 @@ public class ApplicationBoundaryTest {
 	@Test
 	public void itShould_DisplayTheUserInterface_WhenStarted() {
 		UserInterface userInterface = mock(UserInterface.class);
-		new SnakeGame().startWithUserInterface(userInterface);
+		SnakeGame snakeGame = new SnakeGame();
+		snakeGame.setUserInterface(userInterface);
+		snakeGame.start();
 
 		verify(userInterface).displayGameView();
 

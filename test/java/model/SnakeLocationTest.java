@@ -10,6 +10,8 @@ import static model.Direction.RIGHT;
 import static model.Direction.UP;
 import static model.Snake.INITIAL_BODY_LENGTH;
 
+import java.awt.Dimension;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,12 +26,19 @@ public class SnakeLocationTest {
 
 	@Before
 	public void setUp() {
-		snake = new Snake();
+		snake = new Snake(movement);
+		SnakeCage snakeCage = createSnakeCage();
+		movement = new SnakeMovement(snake, snakeCage);
 		location = snake.getLocation();
-		movement = snake.getMovement();
 		stepDistance = movement.STEP_DISTANCE;
-
 		snakeLocationAsserter = new SnakeLocationAsserter(snake);
+	}
+
+	private SnakeCage createSnakeCage() {
+		SnakeCage snakeCage = new SnakeCage();
+		Dimension cageDimensions = new Dimension(3000, 10000);
+		snakeCage.setDimensions(cageDimensions);
+		return snakeCage;
 	}
 
 	@Test

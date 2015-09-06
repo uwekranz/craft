@@ -20,7 +20,8 @@ public class SnakePainterTest {
 		snakeGame = new SnakeGame();
 		Controller controller = new Controller(new GameModel());
 		userInterface = new UserInterface(controller);
-		snakeGame.startWithUserInterface(userInterface);
+		snakeGame.setUserInterface(userInterface);
+		snakeGame.start();
 	}
 
 	@Test

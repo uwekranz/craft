@@ -11,21 +11,15 @@ public class Snake extends Observable {
 
 	private int bodyLength = INITIAL_BODY_LENGTH;
 	SnakeLocation location = new SnakeLocation(bodyLength);
-	private SnakeMovement movement = new SnakeMovement(this);
-	private boolean isAlive;
+	private SnakeMovement movement;
+	private boolean isAlive = true;
 
-	public Snake whichIsMoving() {
-		beginToMove();
-		return this;
+	public Snake(SnakeMovement movement) {
+		this.movement = movement;
 	}
 
 	public void eat() {
 		bodyLength += GROWTH_SIZE_CAUSED_BY_EATING;
-	}
-
-	public void beginToMove() {
-		movement.start();
-		SnakeGameLogger.info(this, "The snake begins to move");
 	}
 
 	public int getBodyLength() {
@@ -70,4 +64,9 @@ public class Snake extends Observable {
 	private boolean isAlive() {
 		return isAlive;
 	}
+
+	public void setMovement(SnakeMovement movement) {
+		this.movement = movement;
+	}
+
 }

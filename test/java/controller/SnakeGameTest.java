@@ -14,7 +14,8 @@ public class SnakeGameTest {
 		SnakeGame snakeGame = new SnakeGame();
 		UserInterface userInterface = UserInterfaceFactory.createMock();
 
-		snakeGame.startWithUserInterface(userInterface);
+		snakeGame.setUserInterface(userInterface);
+		snakeGame.start();
 
 		assertThat(userInterface.isVisible(), is(true));
 
