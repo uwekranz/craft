@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 
 import model.GameModel;
+import controller.ArrowKeysListener;
+import controller.Controller;
 
 public class SnakeCageView extends JComponent {
 
@@ -15,9 +17,18 @@ public class SnakeCageView extends JComponent {
 
 	private Boolean isPaintedRegularly = false;
 
-	public SnakeCageView(GameModel gameModel) {
+	public SnakeCageView(Controller controller) {
+		GameModel gameModel = controller.getGameModel();
 		snakePainter = new SnakePainter(gameModel);
+
 		foodPainter = new FoodPainter();
+
+		addKeyListeners(controller);
+	}
+
+	private void addKeyListeners(Controller controller) {
+		ArrowKeysListener arrowKeysListener = new ArrowKeysListener(controller);
+		addKeyListener(arrowKeysListener);
 	}
 
 	@Override

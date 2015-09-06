@@ -78,7 +78,7 @@ public class KeyListeningTest {
 
 	private void waitForUserInterfaceToGainFocus() throws InterruptedException {
 		int i = 0;
-		while (!userInterface.hasFocus()) {
+		while (!userInterface.snakeCageViewHasFocus()) {
 			SnakeGameLogger.debug(this, "Waiting for user interface to gain focus ...");
 			Thread.sleep(10);
 			i++;

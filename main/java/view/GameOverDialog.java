@@ -10,8 +10,10 @@ public class GameOverDialog {
 	private GameOverOption gameOverOption;
 	private ActionListener newGameListener;
 	private ActionListener quitGameListener;
+	private UserInterface userInterface;
 
-	public GameOverDialog(ActionListener newGameListener, ActionListener quitGameListener) {
+	public GameOverDialog(UserInterface userInterface, ActionListener newGameListener, ActionListener quitGameListener) {
+		this.userInterface = userInterface;
 		this.newGameListener = newGameListener;
 		this.quitGameListener = quitGameListener;
 	}
@@ -19,7 +21,7 @@ public class GameOverDialog {
 	public void show() {
 		JButton newGameButton = createButton("New Game", newGameListener);
 		JButton quitGameButton = createButton("Quit Game", quitGameListener);
-		JOptionPane.showOptionDialog(null,//
+		JOptionPane.showOptionDialog(userInterface,//
 				"Game Over: The Snake has run into its own body.",//
 				"Game Over",//
 				JOptionPane.YES_NO_OPTION,//
