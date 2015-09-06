@@ -6,7 +6,7 @@ import applicationBoundary.SnakeGameLogger;
 
 public class Snake extends Observable {
 
-	public static final int INITIAL_BODY_LENGTH = 100;
+	public static final int INITIAL_BODY_LENGTH = 500;
 	private static final int GROWTH_SIZE_CAUSED_BY_EATING = 1;
 
 	private int bodyLength = INITIAL_BODY_LENGTH;
