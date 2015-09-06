@@ -9,7 +9,7 @@ import applicationBoundary.SnakeGameLogger;
 
 public class SnakeMovement extends Thread {
 
-	private int TICKER_DURATION = 40;
+	private int TICKER_DURATION = 10;
 	final int STEP_DISTANCE;
 	Direction direction = Direction.RIGHT;
 
@@ -23,7 +23,7 @@ public class SnakeMovement extends Thread {
 
 		snake.setMovement(this);
 
-		STEP_DISTANCE = snake.getBodyLength() / 50;
+		STEP_DISTANCE = 1;
 	}
 
 	@Override
