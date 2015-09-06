@@ -60,6 +60,9 @@ public class UserInterface extends JFrame implements Observer {
 
 		snakeCageView.paintComponent(getGraphics());
 		snakeCageView.repaintGameViewRegularly(snakeCageView);
+
+		Dimension dimensions = snakeCageView.getDimensions();
+		controller.setDimensionsOfSnakeCage(dimensions);
 	}
 
 	@Override

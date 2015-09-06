@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.Dimension;
-
 import javax.swing.JOptionPane;
 
 import model.GameModel;
@@ -21,12 +19,6 @@ public class SnakeGame {
 		letViewObserveModel(gameModel, userInterface);
 
 		userInterface.displayGameView();
-		setCageDimensionsInModelAccordingToView();
-	}
-
-	private void setCageDimensionsInModelAccordingToView() {
-		Dimension dimensions = userInterface.getSnakeCageView().getDimensions();
-		controller.setDimensionsOfSnakeCage(dimensions);
 	}
 
 	public void restart() {
@@ -40,8 +32,6 @@ public class SnakeGame {
 		letViewObserveModel(gameModel, userInterface);
 
 		userInterface.displayGameView();
-
-		setCageDimensionsInModelAccordingToView();
 	}
 
 	private static void letViewObserveModel(GameModel gameModel, UserInterface userInterface) {
@@ -52,15 +42,8 @@ public class SnakeGame {
 		this.userInterface = userInterface;
 	}
 
-	public void end() {
-		JOptionPane.getRootFrame().dispose();
-		userInterface.dispose();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public UserInterface getUserInterface() {
+		return userInterface;
 	}
 
 }

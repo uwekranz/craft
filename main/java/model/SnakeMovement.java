@@ -32,7 +32,7 @@ public class SnakeMovement extends Thread {
 		SnakeGameLogger.info(this, "Snake cage dimensions:" + snakeCage.getDimensions());
 		try {
 			// TODO get rid of sleep
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
