@@ -21,7 +21,6 @@ public class SnakePainterTest {
 		Controller controller = new Controller(new GameModel());
 		userInterface = new UserInterface(controller);
 		snakeGame.setUserInterface(userInterface);
-		snakeGame.start();
 	}
 
 	@Test
@@ -31,6 +30,7 @@ public class SnakePainterTest {
 
 	@Test
 	public void itShouldHavePainted_WhenGameHasStarted() {
+		snakeGame.start();
 		assertThat(snakeHasBeenPainted(snakeGame), is(true));
 	}
 
@@ -40,6 +40,8 @@ public class SnakePainterTest {
 
 	@Test
 	public void itShouldPaintRegularly_WhenGameHasStarted() throws InterruptedException {
+		snakeGame.start();
+		// TODO Sep 6, 2015 - ano: get rid of sleep
 		Thread.sleep(100);
 		assertThat(userInterface.isPaintedRegularly(), is(true));
 	}
