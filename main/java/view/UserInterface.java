@@ -1,6 +1,7 @@
 package view;
 
-import java.awt.Color;
+import static java.awt.Color.BLUE;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Observable;
@@ -54,7 +55,7 @@ public class UserInterface extends JFrame implements Observer {
 	}
 
 	public void displayGameView() {
-		setBackground(Color.BLUE);
+		setBackground(BLUE);
 		setUndecorated(true);
 
 		setContentPane(snakeCageView);
