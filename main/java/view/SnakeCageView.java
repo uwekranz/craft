@@ -19,7 +19,6 @@ public class SnakeCageView extends JComponent {
 
 	public SnakeCageView(GameModel gameModel, KeyListener arrowKeysListener) {
 		snakePainter = new SnakePainter(gameModel);
-
 		foodPainter = new FoodPainter();
 
 		addKeyListener(arrowKeysListener);
