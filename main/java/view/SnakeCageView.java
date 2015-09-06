@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
@@ -26,6 +27,7 @@ public class SnakeCageView extends JComponent {
 
 	@Override
 	protected void paintComponent(Graphics graphics) {
+		graphics.setColor(Color.PINK);
 		paintFood(graphics);
 		paintSnake(graphics);
 	}
