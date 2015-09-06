@@ -1,8 +1,11 @@
 package view;
 
 import static java.awt.Color.BLUE;
+import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
@@ -57,6 +60,7 @@ public class UserInterface extends JFrame implements Observer {
 	public void displayGameView() {
 		setBackground(BLUE);
 		setUndecorated(true);
+		setAsFullScreenWindow();
 
 		setContentPane(snakeCageView);
 
@@ -68,6 +72,12 @@ public class UserInterface extends JFrame implements Observer {
 
 		Dimension dimensions = snakeCageView.getDimensions();
 		controller.setDimensionsOfSnakeCage(dimensions);
+	}
+
+	private void setAsFullScreenWindow() {
+		GraphicsEnvironment graphicsEnvironment = getLocalGraphicsEnvironment();
+		GraphicsDevice screenDevice = graphicsEnvironment.getDefaultScreenDevice();
+		screenDevice.setFullScreenWindow(this);
 	}
 
 	@Override
