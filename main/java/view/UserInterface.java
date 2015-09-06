@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import model.GameModel;
 import controller.ArrowKeysListener;
 import controller.Controller;
 import controller.NewGameListener;
@@ -15,27 +16,35 @@ import controller.QuitGameListener;
 public class UserInterface extends JFrame implements Observer {
 
 	private static final long serialVersionUID = 1L;
-	private static final Dimension DEFAULT_SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-	private GameView gameView;
+	private static final Dimension DEFAULT_SCREEN_SIZE = getDimensionOfScreen();
+
+	private SnakeCageView snakeCageView;
 	private GameOverDialog gameOverDialog;
 
 	public UserInterface(Controller controller) {
 		super();
 		setSize(DEFAULT_SCREEN_SIZE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		gameView = new GameView(controller.getGameModel());
-		setContentPane(gameView);
+		GameModel gameModel = controller.getGameModel();
+		snakeCageView = new SnakeCageView(gameModel);
+		setContentPane(snakeCageView);
 
 		addKeyListener(new ArrowKeysListener(controller));
-		gameOverDialog = new GameOverDialog(new NewGameListener(this), new QuitGameListener(this));
+		gameOverDialog = createGameOverDialog();
 	}
 
-	public void displayView() {
-		setContentPane(gameView);
+	private GameOverDialog createGameOverDialog() {
+		QuitGameListener quitGameListener = new QuitGameListener(this);
+		NewGameListener newGameListener = new NewGameListener(this);
+		return new GameOverDialog(newGameListener, quitGameListener);
+	}
+
+	public void displayGameView() {
+		setContentPane(snakeCageView);
 		setVisible(true);
-		gameView.paintComponent(getGraphics());
-		gameView.repaintGameViewRegularly(gameView);
+		snakeCageView.paintComponent(getGraphics());
+		snakeCageView.repaintGameViewRegularly(snakeCageView);
 	}
 
 	@Override
@@ -43,16 +52,20 @@ public class UserInterface extends JFrame implements Observer {
 		gameOverDialog.show();
 	}
 
-	public GameView getGameView() {
-		return (GameView) getContentPane();
+	public SnakeCageView getGameView() {
+		return (SnakeCageView) getContentPane();
 	}
 
 	public void setSnakePainter(SnakePainter snakePainter) {
-		gameView.setSnakePainter(snakePainter);
+		snakeCageView.setSnakePainter(snakePainter);
 	}
 
 	public Boolean isPaintedRegularly() {
-		return gameView.isPaintedRegularly();
+		return snakeCageView.isPaintedRegularly();
+	}
+
+	private static Dimension getDimensionOfScreen() {
+		return Toolkit.getDefaultToolkit().getScreenSize();
 	}
 
 }

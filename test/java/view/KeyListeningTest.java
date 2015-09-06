@@ -36,7 +36,7 @@ public class KeyListeningTest {
 		snakePainterMock = mock(SnakePainter.class);
 		userInterface.setSnakePainter(snakePainterMock);
 
-		userInterface.displayView();
+		userInterface.displayGameView();
 		waitForUserInterfaceToGainFocus();
 	}
 

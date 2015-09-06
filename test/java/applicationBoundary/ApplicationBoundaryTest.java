@@ -22,7 +22,7 @@ public class ApplicationBoundaryTest {
 		UserInterface userInterface = mock(UserInterface.class);
 		new SnakeGame().startWithUserInterface(userInterface);
 
-		verify(userInterface).displayView();
+		verify(userInterface).displayGameView();
 
 		userInterface.dispose();
 	}

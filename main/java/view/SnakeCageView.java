@@ -6,7 +6,7 @@ import javax.swing.JComponent;
 
 import model.GameModel;
 
-public class GameView extends JComponent {
+public class SnakeCageView extends JComponent {
 
 	private static final long serialVersionUID = -837919897890926903L;
 
@@ -15,7 +15,7 @@ public class GameView extends JComponent {
 
 	private Boolean isPaintedRegularly = false;
 
-	public GameView(GameModel gameModel) {
+	public SnakeCageView(GameModel gameModel) {
 		snakePainter = new SnakePainter(gameModel);
 		foodPainter = new FoodPainter();
 	}
@@ -42,7 +42,7 @@ public class GameView extends JComponent {
 		return snakePainter;
 	}
 
-	public void repaintGameViewRegularly(GameView gameView) {
+	public void repaintGameViewRegularly(SnakeCageView gameView) {
 		GameViewRepainter gameViewRepainter = new GameViewRepainter(gameView);
 		gameViewRepainter.start();
 	}

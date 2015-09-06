@@ -66,7 +66,6 @@ public class SnakeLocation {
 					&& headCrossesConnectionBetweenJointAndItsSuccessor(index, axisOfMovement)) {
 				return true;
 			}
-
 		}
 		return false;
 	}

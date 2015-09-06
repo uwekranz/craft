@@ -36,7 +36,7 @@ public class UserInterfaceTest {
 
 	@Test
 	public void itShould_BeVisible_WhenViewHasBeenDisplayed() {
-		userInterface.displayView();
+		userInterface.displayGameView();
 		assertThat(userInterface.isVisible(), is(true));
 	}
 
@@ -47,13 +47,13 @@ public class UserInterfaceTest {
 
 	@Test
 	public void itShouldHaveLetSnakeBePainted_WhenViewHasBeenDisplayed() {
-		userInterface.displayView();
+		userInterface.displayGameView();
 		verify(snakePainterMock, atLeastOnce()).paint(any(Graphics.class));
 	}
 
 	@Test
 	public void itShouldPaintRegularly_WhenViewHasBeenDisplayed() throws Exception {
-		userInterface.displayView();
+		userInterface.displayGameView();
 		Thread.sleep(10);
 		assertThat(userInterface.isPaintedRegularly(), is(true));
 	}

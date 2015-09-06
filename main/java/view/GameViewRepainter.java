@@ -2,10 +2,10 @@ package view;
 
 public class GameViewRepainter extends Thread {
 
-	private GameView gameView;
+	private SnakeCageView gameView;
 	private int tickerDuration;
 
-	public GameViewRepainter(GameView gameView) {
+	public GameViewRepainter(SnakeCageView gameView) {
 		super();
 		this.gameView = gameView;
 	}
