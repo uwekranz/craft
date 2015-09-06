@@ -55,6 +55,7 @@ public class UserInterface extends JFrame implements Observer {
 
 	public void displayGameView() {
 		setBackground(Color.BLUE);
+		setUndecorated(true);
 
 		setContentPane(snakeCageView);
 
