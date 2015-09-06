@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Dimension;
+
 import model.Direction;
 import model.GameModel;
 
@@ -21,6 +23,10 @@ public class Controller {
 
 	public void replaceGameModelByInitialGameModel() {
 		gameModel = new GameModel();
+	}
+
+	public void setDimensionsOfSnakeCage(Dimension dimensions) {
+		gameModel.setDimensionsOfSnakeCage(dimensions);
 	}
 
 }

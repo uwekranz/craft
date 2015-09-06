@@ -7,6 +7,8 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import model.GameModel;
+import controller.ArrowKeysListener;
 import controller.Controller;
 import controller.NewGameListener;
 import controller.QuitGameListener;
@@ -18,16 +20,27 @@ public class UserInterface extends JFrame implements Observer {
 	private SnakeCageView snakeCageView;
 	private GameOverDialog gameOverDialog;
 
+	private Controller controller;
+
 	public UserInterface(Controller controller) {
 		super();
 
-		snakeCageView = new SnakeCageView(controller);
+		this.controller = controller;
+
+		createSnakeCageView(controller);
 		setContentPane(snakeCageView);
 
 		gameOverDialog = createGameOverDialog();
 
 		setSizeAccordingToScreen();
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	private void createSnakeCageView(Controller controller) {
+		GameModel gameModel = controller.getGameModel();
+		ArrowKeysListener arrowKeysListener = new ArrowKeysListener(controller);
+		snakeCageView = new SnakeCageView(gameModel, arrowKeysListener);
 	}
 
 	private GameOverDialog createGameOverDialog() {
@@ -43,6 +56,10 @@ public class UserInterface extends JFrame implements Observer {
 		setContentPane(snakeCageView);
 		setVisible(true);
 		snakeCageView.requestFocusInWindow();
+
+		Dimension dimensions = snakeCageView.getDimensions();
+		controller.setDimensionsOfSnakeCage(dimensions);
+
 		snakeCageView.paintComponent(getGraphics());
 		snakeCageView.repaintGameViewRegularly(snakeCageView);
 	}

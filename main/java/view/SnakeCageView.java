@@ -1,33 +1,27 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
 
 import model.GameModel;
-import controller.ArrowKeysListener;
-import controller.Controller;
 
 public class SnakeCageView extends JComponent {
 
-	private static final long serialVersionUID = -837919897890926903L;
+	private static final long serialVersionUID = 1L;
 
 	private SnakePainter snakePainter;
 	private FoodPainter foodPainter;
 
 	private Boolean isPaintedRegularly = false;
 
-	public SnakeCageView(Controller controller) {
-		GameModel gameModel = controller.getGameModel();
+	public SnakeCageView(GameModel gameModel, KeyListener arrowKeysListener) {
 		snakePainter = new SnakePainter(gameModel);
 
 		foodPainter = new FoodPainter();
 
-		addKeyListeners(controller);
-	}
-
-	private void addKeyListeners(Controller controller) {
-		ArrowKeysListener arrowKeysListener = new ArrowKeysListener(controller);
 		addKeyListener(arrowKeysListener);
 	}
 
@@ -72,6 +66,12 @@ public class SnakeCageView extends JComponent {
 
 	public boolean snakeHasBeenPainted() {
 		return snakePainter.hasSnakeBeenPainted();
+	}
+
+	public Dimension getDimensions() {
+		int width = getWidth();
+		int height = getHeight();
+		return new Dimension(width, height);
 	}
 
 }
