@@ -8,11 +8,11 @@ import org.junit.Test;
 
 public class MovementDirectionTest {
 
-	private SnakeMovement snakeMovement;
+	private Movement snakeMovement;
 
 	@Test
 	public void theSnakesInitialDirectionOfMovementIsRight() {
-		snakeMovement = new SnakeMovement(new Snake(snakeMovement), new SnakeCage());
+		snakeMovement = new Movement(new Snake(snakeMovement), new Food(), new SnakeCage());
 
 		Direction theSnakesInitialDirectionOfMovement = snakeMovement.getDirection();
 		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));

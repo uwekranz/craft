@@ -9,9 +9,9 @@ import static model.Direction.DOWN;
 import static model.Direction.LEFT;
 import static model.Direction.RIGHT;
 import static model.Direction.UP;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import model.ControllerFactory;
 import model.Direction;
 
 import org.junit.After;
@@ -21,22 +21,21 @@ import org.mockito.Mockito;
 
 import applicationBoundary.SnakeGameLogger;
 import controller.Controller;
+import controller.UserInterfaceFactory;
 
 public class KeyListeningTest {
 
 	private UserInterface userInterface;
 
-	private SnakePainter snakePainterMock;
 	private Controller controllerMock;
 
 	@Before
 	public void setUp() throws InterruptedException {
-		controllerMock = mock(Controller.class);
-		userInterface = new UserInterface(controllerMock);
-		snakePainterMock = mock(SnakePainter.class);
-		userInterface.setSnakePainter(snakePainterMock);
+		controllerMock = ControllerFactory.createControllerMock();
+		userInterface = UserInterfaceFactory.createMockWithController(controllerMock);
 
 		userInterface.displayGameView();
+
 		waitForUserInterfaceToGainFocus();
 	}
 

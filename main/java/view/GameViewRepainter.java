@@ -16,7 +16,7 @@ public class GameViewRepainter extends Thread {
 			gameView.repaint();
 			gameView.setIsPaintedRegularly(true);
 			try {
-				tickerDuration = 4;
+				tickerDuration = 10;
 				Thread.sleep(tickerDuration);
 			} catch (InterruptedException e) {
 				gameView.setIsPaintedRegularly(false);

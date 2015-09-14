@@ -7,14 +7,14 @@ import applicationBoundary.SnakeGameLogger;
 public class Snake extends Observable {
 
 	public static final int INITIAL_BODY_LENGTH = 500;
-	private static final int GROWTH_SIZE_CAUSED_BY_EATING = 1;
+	private static final int GROWTH_SIZE_CAUSED_BY_EATING = 50;
 
 	private int bodyLength = INITIAL_BODY_LENGTH;
 	SnakeLocation location = new SnakeLocation(bodyLength);
-	private SnakeMovement movement;
+	private Movement movement;
 	private boolean isAlive = true;
 
-	public Snake(SnakeMovement movement) {
+	public Snake(Movement movement) {
 		this.movement = movement;
 	}
 
@@ -47,7 +47,7 @@ public class Snake extends Observable {
 		return movement.STEP_DISTANCE;
 	}
 
-	public SnakeMovement getMovement() {
+	public Movement getMovement() {
 		return movement;
 	}
 
@@ -65,7 +65,7 @@ public class Snake extends Observable {
 		return isAlive;
 	}
 
-	public void setMovement(SnakeMovement movement) {
+	public void setMovement(Movement movement) {
 		this.movement = movement;
 	}
 

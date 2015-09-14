@@ -21,7 +21,7 @@ public class SnakeCageView extends JComponent {
 
 	public SnakeCageView(GameModel gameModel, KeyListener arrowKeysListener) {
 		snakePainter = new SnakePainter(gameModel);
-		foodPainter = new FoodPainter();
+		foodPainter = new FoodPainter(gameModel.getFood());
 
 		addKeyListener(arrowKeysListener);
 	}
@@ -74,6 +74,10 @@ public class SnakeCageView extends JComponent {
 		int width = getWidth();
 		int height = getHeight();
 		return new Dimension(width, height);
+	}
+
+	public void setFoodPainter(FoodPainter foodPainter) {
+		this.foodPainter = foodPainter;
 	}
 
 }

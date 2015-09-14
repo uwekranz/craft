@@ -4,7 +4,6 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.awt.Graphics;
@@ -12,26 +11,19 @@ import java.awt.Graphics;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
-import controller.Controller;
+import controller.UserInterfaceFactory;
 
 public class UserInterfaceTest {
 
 	private UserInterface userInterface;
-
-	private SnakePainter snakePainterMock;
-	private Controller controllerMock;
+	private SnakePainter snakePainter;
 
 	@Before
 	public void prepareTests() throws InterruptedException {
-		createUserInterface_WithMockedSnakePainter();
-	}
-
-	private void createUserInterface_WithMockedSnakePainter() {
-		controllerMock = mock(Controller.class);
-		userInterface = new UserInterface(controllerMock);
-		snakePainterMock = mock(SnakePainter.class);
-		userInterface.setSnakePainter(snakePainterMock);
+		snakePainter = Mockito.mock(SnakePainter.class);
+		userInterface = UserInterfaceFactory.createMockWithSnakePainter(snakePainter);
 	}
 
 	@Test
@@ -48,7 +40,7 @@ public class UserInterfaceTest {
 	@Test
 	public void itShouldHaveLetSnakeBePainted_WhenViewHasBeenDisplayed() {
 		userInterface.displayGameView();
-		verify(snakePainterMock, atLeastOnce()).paint(any(Graphics.class));
+		verify(snakePainter, atLeastOnce()).paint(any(Graphics.class));
 	}
 
 	@Test

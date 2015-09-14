@@ -16,7 +16,7 @@ import org.junit.Test;
 public class LocationTest {
 
 	private Snake snake;
-	private SnakeMovement movement;
+	private Movement movement;
 	private Step step;
 	private int stepDistance;
 
@@ -26,7 +26,7 @@ public class LocationTest {
 	public void setUp() {
 		snake = new Snake(movement);
 		SnakeCage snakeCage = CageFactory.createSnakeCage();
-		movement = new SnakeMovement(snake, snakeCage);
+		movement = new Movement(snake, new Food(), snakeCage);
 		step = new Step(movement);
 		stepDistance = movement.STEP_DISTANCE;
 		snakeLocationAsserter = new LocationAsserter(snake);

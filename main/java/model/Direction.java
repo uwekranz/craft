@@ -3,7 +3,7 @@ package model;
 public enum Direction {
 	RIGHT, LEFT, UP, DOWN, NULL;
 
-	public boolean isOppositeOfCurrentDirection(SnakeMovement movement) {
+	public boolean isOppositeOfCurrentDirection(Movement movement) {
 		Direction currentDirection = movement.getDirection();
 		Direction oppositeOfCurrentDirection = currentDirection.getOppositeDirection();
 		if (this.equals(oppositeOfCurrentDirection))

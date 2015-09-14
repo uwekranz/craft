@@ -13,7 +13,7 @@ import org.junit.Test;
 public class SnakeTest {
 
 	private Snake snake;
-	private SnakeMovement movement;
+	private Movement movement;
 	int theSnakesInitialLength;
 
 	@Before
@@ -21,7 +21,7 @@ public class SnakeTest {
 		snake = new Snake(movement);
 		Dimension cageDimensions = new Dimension(3000, 1000);
 		SnakeCage snakeCage = new SnakeCage(cageDimensions);
-		movement = new SnakeMovement(snake, snakeCage);
+		movement = new Movement(snake, new Food(), snakeCage);
 		theSnakesInitialLength = snake.getBodyLength();
 	}
 

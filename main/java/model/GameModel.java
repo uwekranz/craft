@@ -8,12 +8,15 @@ public class GameModel {
 
 	private Snake snake;
 	private SnakeCage cage;
-	private SnakeMovement movement;
+	private Movement movement;
+	private Food food;
 
 	public GameModel() {
 		snake = new Snake(movement);
 		cage = new SnakeCage();
-		movement = new SnakeMovement(snake, cage);
+		food = new Food();
+
+		movement = new Movement(snake, food, cage);
 
 		movement.start();
 	}
@@ -37,5 +40,13 @@ public class GameModel {
 	public void setDimensionsOfSnakeCage(Dimension snakeCageViewDimensions) {
 		cage.setDimensions(snakeCageViewDimensions);
 		SnakeGameLogger.info(this, "Dimensions of snake cage:" + cage.getDimensions());
+	}
+
+	public Location getFoodLocation() {
+		return food.getLocation();
+	}
+
+	public Food getFood() {
+		return food;
 	}
 }

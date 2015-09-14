@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
+import applicationBoundary.SnakeGameLogger;
+
 public class SnakeLocation {
 	private List<Location> bodyPartLocations;
 
@@ -16,12 +18,12 @@ public class SnakeLocation {
 		bodyPartLocations.add(new Location(bodyLength, 0));
 	}
 
-	public void updateHeadLocation(SnakeMovement snakeMovement) {
+	public void updateHeadLocation(Movement snakeMovement) {
 		Location head = getHead();
 		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, head, snakeMovement.direction);
 	}
 
-	public void updateTailLocation(SnakeMovement snakeMovement) {
+	public void updateTailLocation(Movement snakeMovement) {
 		List<Location> bodyParts = getBodyParts();
 		Location tail = bodyParts.get(0);
 		Location tailsNextBodyPart = bodyParts.get(1);
@@ -52,7 +54,7 @@ public class SnakeLocation {
 		int indexOfHead = bodyPartLocations.size() - 1;
 		Location headLocation = bodyPartLocations.get(indexOfHead);
 		Location jointLocation = new Location();
-		jointLocation.setCoordinates(headLocation.getCoordinate(HORIZONTAL_AXIS), headLocation.getCoordinate(VERTICAL_AXIS));
+		jointLocation.setCoordinates(coordinateOf(headLocation, HORIZONTAL_AXIS), headLocation.getCoordinate(VERTICAL_AXIS));
 		bodyPartLocations.add(indexOfHead, jointLocation);
 	}
 
@@ -103,7 +105,7 @@ public class SnakeLocation {
 	private boolean snakeHasMetBoundaryOfCage(Location headLocation, Dimension cageDimension, Axis axis) {
 		switch (axis) {
 		case HORIZONTAL_AXIS:
-			int horizontalHeadCoordinate = headLocation.getCoordinate(HORIZONTAL_AXIS);
+			int horizontalHeadCoordinate = coordinateOf(headLocation, HORIZONTAL_AXIS);
 			return horizontalHeadCoordinate > cageDimension.getWidth() || horizontalHeadCoordinate < 0;
 		default:
 			int verticalHeadCoordinate = headLocation.getCoordinate(VERTICAL_AXIS);
@@ -129,7 +131,7 @@ public class SnakeLocation {
 	}
 
 	private void updateValueOfVerticalCoordinate(Location bodyPartLocation, int newValue) {
-		setCoordinates(bodyPartLocation, bodyPartLocation.getCoordinate(HORIZONTAL_AXIS), newValue);
+		setCoordinates(bodyPartLocation, coordinateOf(bodyPartLocation, HORIZONTAL_AXIS), newValue);
 	}
 
 	private Location getHead() {
@@ -183,6 +185,35 @@ public class SnakeLocation {
 		if (!bodyPartLocations.equals(other.bodyPartLocations))
 			return false;
 		return true;
+	}
+
+	public boolean headHasMetFood(Food food) {
+		Location headLocation = getHeadLocation();
+		Location foodLocation = food.getLocation();
+		int sizeOfFood = food.getSize();
+		if (headHasMetFood(headLocation, foodLocation, sizeOfFood)) {
+			SnakeGameLogger.info(this, "Snake head has met food.");
+			return true;
+		}
+		return false;
+	}
+
+	private boolean headHasMetFood(Location headLocation, Location foodLocation, int sizeOfFood) {
+		int halfFoodSize = sizeOfFood / 2;
+		return absoluteDifferenceOfCoordinates(headLocation, foodLocation, HORIZONTAL_AXIS) <= halfFoodSize//
+				&& absoluteDifferenceOfCoordinates(headLocation, foodLocation, VERTICAL_AXIS) <= halfFoodSize;
+	}
+
+	private int absoluteDifferenceOfCoordinates(Location headLocation, Location foodLocation, Axis axis) {
+		return Math.abs(differenceOfCoordinates(headLocation, foodLocation, axis));
+	}
+
+	private int differenceOfCoordinates(Location headLocation, Location foodLocation, Axis axis) {
+		return coordinateOf(headLocation, axis) - coordinateOf(foodLocation, HORIZONTAL_AXIS);
+	}
+
+	private int coordinateOf(Location headLocation, Axis axis) {
+		return headLocation.getCoordinate(axis);
 	}
 
 }

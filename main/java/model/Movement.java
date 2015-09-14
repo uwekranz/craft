@@ -7,19 +7,21 @@ import java.util.List;
 
 import applicationBoundary.SnakeGameLogger;
 
-public class SnakeMovement extends Thread {
+public class Movement extends Thread {
 
-	private int TICKER_DURATION = 10;
+	private int TICKER_DURATION = 20;
 	final static int STEP_DISTANCE = 1;
 	Direction direction = Direction.RIGHT;
 
 	private Snake snake;
 	private Direction formerDirection = direction;
 	private SnakeCage snakeCage;
+	private Food food;
 
-	public SnakeMovement(Snake snake, SnakeCage snakeCage) {
+	public Movement(Snake snake, Food food, SnakeCage snakeCage) {
 		this.snake = snake;
 		this.snakeCage = snakeCage;
+		this.food = food;
 
 		// TODO Sep 14, 2015 - ano: Get rid of this.
 		snake.setMovement(this);
@@ -59,6 +61,9 @@ public class SnakeMovement extends Thread {
 		if (location.headHasMetBody(direction) || location.headHasMetSnakeCage(snakeCage)) {
 			snake.die();
 		}
+
+		if (location.headHasMetFood(food))
+			snake.eat();
 
 		location.updateTailLocation(this);
 

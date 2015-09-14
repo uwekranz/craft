@@ -12,7 +12,7 @@ import org.junit.Test;
 public class GameOverTest {
 
 	private Snake snake;
-	private SnakeMovement movement;
+	private Movement movement;
 	private Step step;
 	private int tinyCagesWidth;
 
@@ -47,7 +47,7 @@ public class GameOverTest {
 	}
 
 	private SnakeCage tinyCage() {
-		int stepDistance = SnakeMovement.STEP_DISTANCE;
+		int stepDistance = Movement.STEP_DISTANCE;
 		tinyCagesWidth = INITIAL_BODY_LENGTH + stepDistance;
 		return CageFactory.createSnakeCage(tinyCagesWidth, stepDistance);
 	}
@@ -89,7 +89,7 @@ public class GameOverTest {
 
 	private void setUpMovementIn(SnakeCage snakeCage) {
 		snake = new Snake(movement);
-		movement = new SnakeMovement(snake, snakeCage);
+		movement = new Movement(snake, new Food(), snakeCage);
 		step = new Step(movement);
 	}
 

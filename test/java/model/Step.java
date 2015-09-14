@@ -1,9 +1,9 @@
 package model;
 
 public class Step {
-	SnakeMovement movement;
+	Movement movement;
 
-	public Step(SnakeMovement movement) {
+	public Step(Movement movement) {
 		this.movement = movement;
 	}
 
