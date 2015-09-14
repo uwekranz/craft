@@ -1,0 +1,17 @@
+teste, dass das alte Spiel verschwindet beim neustart. D.h. OptionPane und UserInterface sind weg.
+
+enable enter as a key in the game over dialog
+
+test the game over dialog
+
+make use of dependency injection
+
+test snake cage dimensions (in model)
+
+test new game action
+
+test bottom and right cage boundary contact
+
+adapt game over message for boundary contact
+
+teile SnakeMovement in Movement und MovementStep
