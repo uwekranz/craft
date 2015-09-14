@@ -7,13 +7,13 @@ import applicationBoundary.SnakeGameLogger;
 public class GameModel {
 
 	private Snake snake;
-	private SnakeCage cage;
+	private Cage cage;
 	private Movement movement;
 	private Food food;
 
 	public GameModel() {
 		snake = new Snake(movement);
-		cage = new SnakeCage();
+		cage = new Cage();
 		food = new Food();
 
 		movement = new Movement(snake, food, cage);
@@ -42,11 +42,15 @@ public class GameModel {
 		SnakeGameLogger.info(this, "Dimensions of snake cage:" + cage.getDimensions());
 	}
 
-	public Location getFoodLocation() {
+	public Food getFood() {
+		return food;
+	}
+
+	public Location getLocationOfFood() {
 		return food.getLocation();
 	}
 
-	public Food getFood() {
-		return food;
+	public int getSizeOfFood() {
+		return food.getSize();
 	}
 }

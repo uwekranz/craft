@@ -10,17 +10,17 @@ import applicationBoundary.SnakeGameLogger;
 public class Movement extends Thread {
 
 	private int TICKER_DURATION = 20;
-	final static int STEP_DISTANCE = 1;
+	final static int STEP_DISTANCE = 2;
 	Direction direction = Direction.RIGHT;
 
 	private Snake snake;
 	private Direction formerDirection = direction;
-	private SnakeCage snakeCage;
+	private Cage cage;
 	private Food food;
 
-	public Movement(Snake snake, Food food, SnakeCage snakeCage) {
+	public Movement(Snake snake, Food food, Cage cage) {
 		this.snake = snake;
-		this.snakeCage = snakeCage;
+		this.cage = cage;
 		this.food = food;
 
 		// TODO Sep 14, 2015 - ano: Get rid of this.
@@ -30,16 +30,12 @@ public class Movement extends Thread {
 	@Override
 	public void run() {
 		SnakeGameLogger.info(this, "The snake movement begins");
-		SnakeGameLogger.info(this, "Snake cage dimensions:" + snakeCage.getDimensions());
-		try {
-			// TODO get rid of sleep
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		SnakeGameLogger.info(this, "Snake cage dimensions:" + snakeCage.getDimensions());
-		SnakeGameLogger.info(this, "Snake is dead:" + snake.isDead());
-		while (snakeCage.getDimensions() != null && !snake.isDead()) {
+
+		SnakeGameLogger.info(this, "Snake cage dimensions:" + cage.getDimensions());
+		waitForDimesnionsToBeAvailableInSnakeCage();
+		SnakeGameLogger.info(this, "Snake cage dimensions:" + cage.getDimensions());
+
+		while (cage.getDimensions() != null && !snake.isDead()) {
 			updateSnakeLocation();
 			try {
 				Thread.sleep(TICKER_DURATION);
@@ -47,6 +43,7 @@ public class Movement extends Thread {
 				throw new RuntimeException(exception);
 			}
 		}
+
 		SnakeGameLogger.info(this, "The Snakes Movement has stopped and it is dead.");
 	}
 
@@ -58,12 +55,16 @@ public class Movement extends Thread {
 		}
 
 		location.updateHeadLocation(this);
-		if (location.headHasMetBody(direction) || location.headHasMetSnakeCage(snakeCage)) {
+
+		if (location.headHasMetBody(direction) || location.headHasMetSnakeCage(cage)) {
 			snake.die();
 		}
 
-		if (location.headHasMetFood(food))
+		if (location.hasHeadMetFood(food)) {
+			SnakeGameLogger.info(this, "Snake head has met food.");
 			snake.eat();
+			food.setLocation(RandomLocation.createWithin(cage.getDimensions()));
+		}
 
 		location.updateTailLocation(this);
 
@@ -129,4 +130,12 @@ public class Movement extends Thread {
 		direction = newDirection;
 	}
 
+	// TODO Sep 14, 2015 - ano: get rid of this
+	private void waitForDimesnionsToBeAvailableInSnakeCage() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

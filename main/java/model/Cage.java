@@ -2,14 +2,14 @@ package model;
 
 import java.awt.Dimension;
 
-public class SnakeCage {
+public class Cage {
 
 	private Dimension dimensions;
 
-	public SnakeCage() {
+	public Cage() {
 	}
 
-	public SnakeCage(Dimension dimensions) {
+	public Cage(Dimension dimensions) {
 		this.dimensions = dimensions;
 	}
 

@@ -46,7 +46,7 @@ public class GameOverTest {
 		assertTrue(snake.isDead());
 	}
 
-	private SnakeCage tinyCage() {
+	private Cage tinyCage() {
 		int stepDistance = Movement.STEP_DISTANCE;
 		tinyCagesWidth = INITIAL_BODY_LENGTH + stepDistance;
 		return CageFactory.createSnakeCage(tinyCagesWidth, stepDistance);
@@ -87,13 +87,13 @@ public class GameOverTest {
 		step.step(direction);
 	}
 
-	private void setUpMovementIn(SnakeCage snakeCage) {
+	private void setUpMovementIn(Cage snakeCage) {
 		snake = new Snake(movement);
 		movement = new Movement(snake, new Food(), snakeCage);
 		step = new Step(movement);
 	}
 
-	private SnakeCage snakeCage() {
+	private Cage snakeCage() {
 		return CageFactory.createSnakeCage();
 	}
 }

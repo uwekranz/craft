@@ -34,7 +34,7 @@ public class SnakePainterTest {
 		assertThat(snakeHasBeenPainted(snakeGame), is(true));
 	}
 
-	private Boolean snakeHasBeenPainted(SnakeGame snakeGame2) {
+	private Boolean snakeHasBeenPainted(SnakeGame snakeGame) {
 		return userInterface.getGameView().snakeHasBeenPainted();
 	}
 

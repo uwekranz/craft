@@ -91,7 +91,7 @@ public class SnakeLocation {
 		return jointsCoordinate == headLocationsCoordinate && succesorJointsCoordinate == headLocationsCoordinate;
 	}
 
-	public boolean headHasMetSnakeCage(SnakeCage snakeCage) {
+	public boolean headHasMetSnakeCage(Cage snakeCage) {
 		Location headLocation = getHeadLocation();
 		Dimension cageDimensions = snakeCage.getDimensions();
 		return hasSnakeMetCageBoundary(headLocation, cageDimensions);
@@ -187,21 +187,24 @@ public class SnakeLocation {
 		return true;
 	}
 
-	public boolean headHasMetFood(Food food) {
+	public boolean hasHeadMetFood(Food food) {
 		Location headLocation = getHeadLocation();
 		Location foodLocation = food.getLocation();
 		int sizeOfFood = food.getSize();
-		if (headHasMetFood(headLocation, foodLocation, sizeOfFood)) {
-			SnakeGameLogger.info(this, "Snake head has met food.");
+		if (hasHeadMetFood(headLocation, foodLocation, sizeOfFood)) {
 			return true;
 		}
 		return false;
 	}
 
-	private boolean headHasMetFood(Location headLocation, Location foodLocation, int sizeOfFood) {
-		int halfFoodSize = sizeOfFood / 2;
-		return absoluteDifferenceOfCoordinates(headLocation, foodLocation, HORIZONTAL_AXIS) <= halfFoodSize//
-				&& absoluteDifferenceOfCoordinates(headLocation, foodLocation, VERTICAL_AXIS) <= halfFoodSize;
+	private boolean hasHeadMetFood(Location headLocation, Location foodLocation, int sizeOfFood) {
+		int horizontalDistanceToFood = absoluteDifferenceOfCoordinates(headLocation, foodLocation, HORIZONTAL_AXIS);
+		int verticalDistanceToFood = absoluteDifferenceOfCoordinates(headLocation, foodLocation, VERTICAL_AXIS);
+
+		SnakeGameLogger.debug(this, "Heads distance to food:" + "(" + horizontalDistanceToFood + "," + verticalDistanceToFood + ")");
+
+		int halfFoodSize = sizeOfFood;
+		return horizontalDistanceToFood <= halfFoodSize && verticalDistanceToFood <= halfFoodSize;
 	}
 
 	private int absoluteDifferenceOfCoordinates(Location headLocation, Location foodLocation, Axis axis) {
@@ -209,7 +212,7 @@ public class SnakeLocation {
 	}
 
 	private int differenceOfCoordinates(Location headLocation, Location foodLocation, Axis axis) {
-		return coordinateOf(headLocation, axis) - coordinateOf(foodLocation, HORIZONTAL_AXIS);
+		return coordinateOf(headLocation, axis) - coordinateOf(foodLocation, axis);
 	}
 
 	private int coordinateOf(Location headLocation, Axis axis) {

@@ -11,7 +11,9 @@ import view.UserInterface;
 public class UserInterfaceFactory {
 
 	public static UserInterface createMockWithFoodPainter(FoodPainter foodPainter) {
-		UserInterface userInterface = createMock();
+		Controller controller = ControllerFactory.createControllerMock();
+		UserInterface userInterface = new UserInterface(controller);
+		userInterface.setSnakePainter(mock(SnakePainter.class));
 		userInterface.setFoodPainter(foodPainter);
 
 		return userInterface;
@@ -22,7 +24,7 @@ public class UserInterfaceFactory {
 	}
 
 	public static UserInterface createMockWithSnakePainter(SnakePainter snakePainter) {
-		GameModel gameModel = GameModelFactory.createGameModelMock();
+		GameModel gameModel = GameModelFactory.createMock();
 		Controller controller = ControllerFactory.createControllerMock(gameModel, mock(Controller.class));
 		FoodPainter foodPainter = mock(FoodPainter.class);
 

@@ -22,7 +22,7 @@ public class GameOverDialog {
 		JButton newGameButton = createButton("New Game", newGameListener);
 		JButton quitGameButton = createButton("Quit Game", quitGameListener);
 		JOptionPane.showOptionDialog(userInterface,//
-				"Game Over: The Snake has run into its own body.",//
+				"Game Over: The Snake has met an obstruction.",//
 				"Game Over",//
 				JOptionPane.YES_NO_OPTION,//
 				JOptionPane.PLAIN_MESSAGE,//

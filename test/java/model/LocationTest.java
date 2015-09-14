@@ -25,7 +25,7 @@ public class LocationTest {
 	@Before
 	public void setUp() {
 		snake = new Snake(movement);
-		SnakeCage snakeCage = CageFactory.createSnakeCage();
+		Cage snakeCage = CageFactory.createSnakeCage();
 		movement = new Movement(snake, new Food(), snakeCage);
 		step = new Step(movement);
 		stepDistance = movement.STEP_DISTANCE;

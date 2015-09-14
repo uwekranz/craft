@@ -20,7 +20,7 @@ public class SnakeTest {
 	public void setUp() {
 		snake = new Snake(movement);
 		Dimension cageDimensions = new Dimension(3000, 1000);
-		SnakeCage snakeCage = new SnakeCage(cageDimensions);
+		Cage snakeCage = new Cage(cageDimensions);
 		movement = new Movement(snake, new Food(), snakeCage);
 		theSnakesInitialLength = snake.getBodyLength();
 	}

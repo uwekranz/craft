@@ -93,8 +93,8 @@ public class UserInterface extends JFrame implements Observer {
 		snakeCageView.setSnakePainter(snakePainter);
 	}
 
-	public void setFoodPainter(FoodPainter foodPainterMock) {
-		snakeCageView.setFoodPainter(foodPainterMock);
+	public void setFoodPainter(FoodPainter foodPainter) {
+		snakeCageView.setFoodPainter(foodPainter);
 	}
 
 	public Boolean isPaintedRegularly() {

@@ -20,7 +20,7 @@ public class ControllerFactory {
 	}
 
 	public static Controller createControllerMock() {
-		GameModel gameModel = GameModelFactory.createGameModelMock();
+		GameModel gameModel = GameModelFactory.createMock();
 		return createControllerMock(gameModel);
 	}
 

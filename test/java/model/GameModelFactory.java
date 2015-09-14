@@ -6,13 +6,16 @@ import static org.mockito.Mockito.when;
 
 public class GameModelFactory {
 
-	public static GameModel createGameModelMock() {
+	public static GameModel createMock() {
 		GameModel gameModel = mock(GameModel.class);
+
 		SnakeLocation snakeLocation = new SnakeLocation(INITIAL_BODY_LENGTH);
 		when(gameModel.getSnakeLocation()).thenReturn(snakeLocation);
-		when(gameModel.getFood()).thenReturn(new Food());
-	
+		Food food = new Food();
+		when(gameModel.getFood()).thenReturn(food);
+		Location foodLocation = food.getLocation();
+		when(gameModel.getLocationOfFood()).thenReturn(foodLocation);
+
 		return gameModel;
 	}
-
 }

@@ -12,7 +12,7 @@ public class MovementDirectionTest {
 
 	@Test
 	public void theSnakesInitialDirectionOfMovementIsRight() {
-		snakeMovement = new Movement(new Snake(snakeMovement), new Food(), new SnakeCage());
+		snakeMovement = new Movement(new Snake(snakeMovement), new Food(), new Cage());
 
 		Direction theSnakesInitialDirectionOfMovement = snakeMovement.getDirection();
 		assertThat(theSnakesInitialDirectionOfMovement, is(RIGHT));

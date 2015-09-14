@@ -5,23 +5,23 @@ import static model.Axis.VERTICAL_AXIS;
 
 import java.awt.Graphics;
 
-import model.Food;
+import model.GameModel;
 import model.Location;
 
 public class FoodPainter {
 
 	private boolean foodHasBeenPainted;
-	private Food food;
+	private GameModel gameModel;
 
-	public FoodPainter(Food food) {
-		this.food = food;
+	public FoodPainter(GameModel gameModel) {
+		this.gameModel = gameModel;
 	}
 
 	public void paint(Graphics graphics) {
-		Location foodLocation = food.getLocation();
+		Location foodLocation = gameModel.getLocationOfFood();
 		int horizontalCoordinate = foodLocation.getCoordinate(HORIZONTAL_AXIS);
 		int verticalCoordinate = foodLocation.getCoordinate(VERTICAL_AXIS);
-		int sizeOfFood = food.getSize();
+		int sizeOfFood = gameModel.getSizeOfFood();
 		graphics.drawOval(horizontalCoordinate, verticalCoordinate, sizeOfFood, sizeOfFood);
 		foodHasBeenPainted = true;
 	}
