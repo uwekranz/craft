@@ -22,7 +22,7 @@ public class FoodPainter {
 		int horizontalCoordinate = foodLocation.getCoordinate(HORIZONTAL_AXIS);
 		int verticalCoordinate = foodLocation.getCoordinate(VERTICAL_AXIS);
 		int sizeOfFood = gameModel.getSizeOfFood();
-		graphics.drawOval(horizontalCoordinate, verticalCoordinate, sizeOfFood, sizeOfFood);
+		graphics.fillRect(horizontalCoordinate - sizeOfFood / 2, verticalCoordinate - sizeOfFood / 2, sizeOfFood, sizeOfFood);
 		foodHasBeenPainted = true;
 	}
 

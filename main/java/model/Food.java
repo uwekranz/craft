@@ -25,7 +25,7 @@ public class Food {
 	}
 
 	public int getSize() {
-		return 25;
+		return 20;
 	}
 
 }

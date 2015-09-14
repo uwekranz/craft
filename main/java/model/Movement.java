@@ -3,6 +3,7 @@ package model;
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
 
+import java.awt.Dimension;
 import java.util.List;
 
 import applicationBoundary.SnakeGameLogger;

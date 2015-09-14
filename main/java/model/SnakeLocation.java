@@ -20,7 +20,7 @@ public class SnakeLocation {
 
 	public void updateHeadLocation(Movement snakeMovement) {
 		Location head = getHead();
-		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, head, snakeMovement.direction);
+		updateLocationOfBodyPart(Movement.STEP_DISTANCE, head, snakeMovement.direction);
 	}
 
 	public void updateTailLocation(Movement snakeMovement) {
@@ -28,7 +28,7 @@ public class SnakeLocation {
 		Location tail = bodyParts.get(0);
 		Location tailsNextBodyPart = bodyParts.get(1);
 		Direction directionToMoveTailIn = snakeMovement.determineDirectionToNextBodyPart(tail, tailsNextBodyPart);
-		updateLocationOfBodyPart(snakeMovement.STEP_DISTANCE, tail, directionToMoveTailIn);
+		updateLocationOfBodyPart(Movement.STEP_DISTANCE, tail, directionToMoveTailIn);
 	}
 
 	private void updateLocationOfBodyPart(int stepDistance, Location bodyPartLocation, Direction directionOfMovementForBodyPartLocation) {
@@ -203,7 +203,7 @@ public class SnakeLocation {
 
 		SnakeGameLogger.debug(this, "Heads distance to food:" + "(" + horizontalDistanceToFood + "," + verticalDistanceToFood + ")");
 
-		int halfFoodSize = sizeOfFood;
+		int halfFoodSize = sizeOfFood / 2;
 		return horizontalDistanceToFood <= halfFoodSize && verticalDistanceToFood <= halfFoodSize;
 	}
 
