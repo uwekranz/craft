@@ -10,35 +10,26 @@ import static model.Direction.RIGHT;
 import static model.Direction.UP;
 import static model.Snake.INITIAL_BODY_LENGTH;
 
-import java.awt.Dimension;
-
 import org.junit.Before;
 import org.junit.Test;
 
-public class SnakeLocationTest {
+public class LocationTest {
 
 	private Snake snake;
-	private SnakeLocation location;
 	private SnakeMovement movement;
+	private Step step;
 	private int stepDistance;
 
-	private SnakeLocationAsserter snakeLocationAsserter;
+	private LocationAsserter snakeLocationAsserter;
 
 	@Before
 	public void setUp() {
 		snake = new Snake(movement);
-		SnakeCage snakeCage = createSnakeCage();
+		SnakeCage snakeCage = CageFactory.createSnakeCage();
 		movement = new SnakeMovement(snake, snakeCage);
-		location = snake.getLocation();
+		step = new Step(movement);
 		stepDistance = movement.STEP_DISTANCE;
-		snakeLocationAsserter = new SnakeLocationAsserter(snake);
-	}
-
-	private SnakeCage createSnakeCage() {
-		SnakeCage snakeCage = new SnakeCage();
-		Dimension cageDimensions = new Dimension(3000, 10000);
-		snakeCage.setDimensions(cageDimensions);
-		return snakeCage;
+		snakeLocationAsserter = new LocationAsserter(snake);
 	}
 
 	@Test
@@ -223,6 +214,11 @@ public class SnakeLocationTest {
 		snakeLocationAsserter.assertLocation(HEAD, hasValue(stepDistance), onIts(VERTICAL_AXIS));
 	}
 
+	@Test
+	public void snakeDiesWhenItMeetsTheCageBoundary() throws Exception {
+
+	}
+
 	private void moveMultipleTimes(Direction direction, int multiplicity) {
 		for (int index = 0; index < multiplicity; index++) {
 			move(direction);
@@ -243,7 +239,6 @@ public class SnakeLocationTest {
 	}
 
 	private void move(Direction direction) {
-		movement.setDirection(direction);
-		movement.update(location);
+		step.step(direction);
 	}
 }

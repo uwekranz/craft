@@ -3,11 +3,11 @@ package model;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class SnakeLocationAsserter {
+public class LocationAsserter {
 
 	private Snake snake;
 
-	public SnakeLocationAsserter(Snake snake) {
+	public LocationAsserter(Snake snake) {
 		this.snake = snake;
 	}
 

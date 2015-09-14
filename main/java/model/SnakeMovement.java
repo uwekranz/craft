@@ -21,6 +21,7 @@ public class SnakeMovement extends Thread {
 		this.snake = snake;
 		this.snakeCage = snakeCage;
 
+		// TODO Sep 14, 2015 - ano: Get rid of this.
 		snake.setMovement(this);
 
 		STEP_DISTANCE = 1;
@@ -39,7 +40,7 @@ public class SnakeMovement extends Thread {
 		SnakeGameLogger.info(this, "Snake cage dimensions:" + snakeCage.getDimensions());
 		SnakeGameLogger.info(this, "Snake is dead:" + snake.isDead());
 		while (snakeCage.getDimensions() != null && !snake.isDead()) {
-			update(snake.getLocation());
+			updateSnakeLocation();
 			try {
 				Thread.sleep(TICKER_DURATION);
 			} catch (InterruptedException exception) {
@@ -49,7 +50,8 @@ public class SnakeMovement extends Thread {
 		SnakeGameLogger.info(this, "The Snakes Movement has stopped and it is dead.");
 	}
 
-	public void update(SnakeLocation location) {
+	public void updateSnakeLocation() {
+		SnakeLocation location = snake.getLocation();
 		if (movementCausesChangeOfDirection()) {
 			location.addJointBeforeHead();
 			formerDirection = direction;

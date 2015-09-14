@@ -40,6 +40,7 @@ public class KeyListeningTest {
 		waitForUserInterfaceToGainFocus();
 	}
 
+	// TODO Sep 14, 2015 - ano: stabelize
 	@Test
 	public void whenKeyDownIsPressed_directionOfSnakeMovementGetsSetAccordingly() {
 		whenTheUserPressesTheKey(VK_DOWN).thenTheSnakesDirectionGetsSetTo(DOWN);
@@ -50,6 +51,7 @@ public class KeyListeningTest {
 		whenTheUserPressesTheKey(VK_UP).thenTheSnakesDirectionGetsSetTo(UP);
 	}
 
+	// TODO Sep 14, 2015 - ano: stabelize
 	@Test
 	public void whenKeyLeftIsPressed_directionOfSnakeMovementGetsSetAccordingly() {
 		whenTheUserPressesTheKey(VK_LEFT).thenTheSnakesDirectionGetsSetTo(LEFT);
