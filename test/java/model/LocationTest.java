@@ -55,7 +55,7 @@ public class LocationTest {
 	public void tailsHorizontalCoordinateDoesNotChangeWithSnakesFirstStepAfterHavingEaten() {
 		int tailsInitialHorizontalCoordinate = 0;
 
-		snake.eat();
+		snake.eat(new Food());
 		move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(tailsInitialHorizontalCoordinate), onIts(HORIZONTAL_AXIS));
 	}

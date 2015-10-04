@@ -12,15 +12,15 @@ public class Snake extends Observable {
 
 	SnakeLocation location = new SnakeLocation(INITIAL_BODY_LENGTH);
 	private Movement movement;
+	private Food foodToDigest;
 	private boolean isAlive = true;
-	private boolean isDigesting = false;
 
 	public Snake(Movement movement) {
 		this.movement = movement;
 	}
 
-	public void eat() {
-		isDigesting = true;
+	public void eat(Food food) {
+		foodToDigest = food;
 	}
 
 	public int getBodyLength() {
@@ -71,11 +71,14 @@ public class Snake extends Observable {
 	}
 
 	public boolean isDigesting() {
-		return isDigesting;
+		return foodToDigest != null && foodToDigest.getSize() != 0;
 	}
 
-	public void setDigesting(boolean isDigesting) {
-		this.isDigesting = isDigesting;
+	public Food getFoodToDigest() {
+		return foodToDigest;
 	}
 
+	public void setFoodToDigest(Food toDigest) {
+		foodToDigest = null;
+	}
 }

@@ -62,14 +62,19 @@ public class Movement extends Thread {
 
 		if (location.hasHeadMetFood(food)) {
 			SnakeGameLogger.info(this, "Snake head has met food.");
-			snake.eat();
-			food.setLocation(RandomLocation.createWithin(cage.getDimensions()));
+			snake.eat(food);
 		}
 
-		if (!snake.isDigesting()) {
-			location.updateTailLocation(this);
+		if (snake.isDigesting()) {
+			Food food = snake.getFoodToDigest();
+			food.decreaseSize();
+			if (!snake.isDigesting()) {
+				snake.setFoodToDigest(null);
+				food.setSize(20);
+				food.renewLocation();
+			}
 		} else {
-			snake.setDigesting(true);
+			location.updateTailLocation(this);
 		}
 
 		if (tailHasArrivedAtNextJoint(location)) {

@@ -4,15 +4,19 @@ import java.awt.Dimension;
 
 public class Food {
 
-	Dimension cageDimensions;
+	Cage cage;
 	Location location;
+	private int size;
 
-	public Food(Dimension cageDimensions) {
-		this.cageDimensions = cageDimensions;
-		location = RandomLocation.createWithin(cageDimensions);
+	public Food(Cage cage) {
+		this.cage = cage;
+		location = RandomLocation.createWithin(new Dimension(500, 500));
+		size = 20;
 	}
 
 	public Food() {
+		this.cage = new Cage();
+		size = 20;
 		location = RandomLocation.createWithin(new Dimension(500, 500));
 	}
 
@@ -25,7 +29,26 @@ public class Food {
 	}
 
 	public int getSize() {
-		return 20;
+		return size;
+	}
+
+	public void decreaseSize() {
+		this.size = size - 1;
+	}
+
+	public boolean isDigested() {
+		return size == 0;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+
+	}
+
+	public void renewLocation() {
+		if (cage.getDimensions() != null) {
+			location = RandomLocation.createWithin(cage.getDimensions());
+		}
 	}
 
 }

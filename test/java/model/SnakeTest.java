@@ -1,9 +1,9 @@
 package model;
 
+import static model.Movement.STEP_DISTANCE;
 import static model.Snake.INITIAL_BODY_LENGTH;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThan;
 
 import java.awt.Dimension;
 
@@ -31,12 +31,34 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void theSnakeBecomesLongerWhenItEatsAndHasMovedAfterwards() {
-		snake.eat();
-		new Step(movement).step(Direction.DOWN);
+	public void theSnakeBecomesLongerWhenItEatsAndHasMovesAfterwards() {
+		Food food = new Food();
+		snake.eat(food);
+		int initialSizeOfFood = food.getSize();
+		for (int i = 0; i < initialSizeOfFood; i++) {
+			moveDown();
+		}
 
-		int theSnakesLengthAfterEating = snake.getBodyLength();
-		assertThat(theSnakesInitialLength, is(lessThan(theSnakesLengthAfterEating)));
+		int theSnakesLengthAfterDigesting = snake.getBodyLength();
+		assertThat(theSnakesLengthAfterDigesting, is(INITIAL_BODY_LENGTH + initialSizeOfFood * STEP_DISTANCE));
+	}
+
+	@Test
+	public void theSnakeLengthDoesNotIncreaseWhenDigestianHasFinished() {
+		Food food = new Food();
+		snake.eat(food);
+		int NUMBER_OF_MOVEMENT_STEPS_AFTER_DIGESTION_HAS_FINISHED = 2;
+		int initialSizeOfFood = food.getSize();
+		for (int i = 0; i < initialSizeOfFood + NUMBER_OF_MOVEMENT_STEPS_AFTER_DIGESTION_HAS_FINISHED; i++) {
+			moveDown();
+		}
+
+		int theSnakesLengthAfterDigesting = snake.getBodyLength();
+		assertThat(theSnakesLengthAfterDigesting, is(theSnakesInitialLength + initialSizeOfFood * STEP_DISTANCE));
+	}
+
+	private void moveDown() {
+		new Step(movement).step(Direction.DOWN);
 	}
 
 	@Test
