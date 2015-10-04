@@ -9,23 +9,22 @@ import applicationBoundary.SnakeGameLogger;
 public class Snake extends Observable {
 
 	public static final int INITIAL_BODY_LENGTH = 500;
-	private static final int GROWTH_SIZE_CAUSED_BY_EATING = 50;
 
-	private int bodyLength = INITIAL_BODY_LENGTH;
-	SnakeLocation location = new SnakeLocation(bodyLength);
+	SnakeLocation location = new SnakeLocation(INITIAL_BODY_LENGTH);
 	private Movement movement;
 	private boolean isAlive = true;
+	private boolean isDigesting = false;
 
 	public Snake(Movement movement) {
 		this.movement = movement;
 	}
 
 	public void eat() {
-		bodyLength += GROWTH_SIZE_CAUSED_BY_EATING;
+		isDigesting = true;
 	}
 
 	public int getBodyLength() {
-		return location.getHeadLocation().getCoordinate(Axis.HORIZONTAL_AXIS) - location.getTailLocation().getCoordinate(Axis.HORIZONTAL_AXIS);
+		return location.getLength();
 	}
 
 	public SnakeLocation getLocation() {
@@ -69,6 +68,14 @@ public class Snake extends Observable {
 
 	public void setMovement(Movement movement) {
 		this.movement = movement;
+	}
+
+	public boolean isDigesting() {
+		return isDigesting;
+	}
+
+	public void setDigesting(boolean isDigesting) {
+		this.isDigesting = isDigesting;
 	}
 
 }

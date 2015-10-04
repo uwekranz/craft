@@ -219,4 +219,11 @@ public class SnakeLocation {
 		return headLocation.getCoordinate(axis);
 	}
 
+	public int getLength() {
+		return getHeadLocation().getCoordinate(HORIZONTAL_AXIS)//
+				- getTailLocation().getCoordinate(HORIZONTAL_AXIS) //
+				+ getHeadLocation().getCoordinate(VERTICAL_AXIS)//
+				- getTailLocation().getCoordinate(VERTICAL_AXIS);
+	}
+
 }

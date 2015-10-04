@@ -3,7 +3,6 @@ package model;
 import static model.Axis.HORIZONTAL_AXIS;
 import static model.Axis.VERTICAL_AXIS;
 
-import java.awt.Dimension;
 import java.util.List;
 
 import applicationBoundary.SnakeGameLogger;
@@ -67,7 +66,11 @@ public class Movement extends Thread {
 			food.setLocation(RandomLocation.createWithin(cage.getDimensions()));
 		}
 
-		location.updateTailLocation(this);
+		if (!snake.isDigesting()) {
+			location.updateTailLocation(this);
+		} else {
+			snake.setDigesting(true);
+		}
 
 		if (tailHasArrivedAtNextJoint(location)) {
 			location.removeJointAfterTail();

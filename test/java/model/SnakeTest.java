@@ -31,8 +31,9 @@ public class SnakeTest {
 	}
 
 	@Test
-	public void theSnakeBecomesLongerWhenItEats() {
+	public void theSnakeBecomesLongerWhenItEatsAndHasMovedAfterwards() {
 		snake.eat();
+		new Step(movement).step(Direction.DOWN);
 
 		int theSnakesLengthAfterEating = snake.getBodyLength();
 		assertThat(theSnakesInitialLength, is(lessThan(theSnakesLengthAfterEating)));
