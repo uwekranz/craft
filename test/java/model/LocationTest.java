@@ -8,6 +8,7 @@ import static model.Direction.DOWN;
 import static model.Direction.LEFT;
 import static model.Direction.RIGHT;
 import static model.Direction.UP;
+import static model.Movement.STEP_DISTANCE;
 import static model.Snake.INITIAL_BODY_LENGTH;
 
 import org.junit.Before;
@@ -28,7 +29,7 @@ public class LocationTest {
 		Cage snakeCage = CageFactory.createSnakeCage();
 		movement = new Movement(snake, new Food(), snakeCage);
 		step = new Step(movement);
-		stepDistance = movement.STEP_DISTANCE;
+		stepDistance = STEP_DISTANCE;
 		snakeLocationAsserter = new LocationAsserter(snake);
 	}
 
@@ -48,6 +49,15 @@ public class LocationTest {
 	public void tailsHorizontalCoordinateIsStepDistanceAfterSnakeMovedRightOnce() {
 		move(RIGHT);
 		snakeLocationAsserter.assertLocation(TAIL, hasValue(stepDistance), onIts(HORIZONTAL_AXIS));
+	}
+
+	@Test
+	public void tailsHorizontalCoordinateDoesNotChangeWithSnakesFirstStepAfterHavingEaten() {
+		int tailsInitialHorizontalCoordinate = 0;
+
+		snake.eat();
+		move(RIGHT);
+		snakeLocationAsserter.assertLocation(TAIL, hasValue(tailsInitialHorizontalCoordinate), onIts(HORIZONTAL_AXIS));
 	}
 
 	@Test

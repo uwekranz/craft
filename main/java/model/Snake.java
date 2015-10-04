@@ -1,5 +1,7 @@
 package model;
 
+import static model.Movement.STEP_DISTANCE;
+
 import java.util.Observable;
 
 import applicationBoundary.SnakeGameLogger;
@@ -23,7 +25,7 @@ public class Snake extends Observable {
 	}
 
 	public int getBodyLength() {
-		return bodyLength;
+		return location.getHeadLocation().getCoordinate(Axis.HORIZONTAL_AXIS) - location.getTailLocation().getCoordinate(Axis.HORIZONTAL_AXIS);
 	}
 
 	public SnakeLocation getLocation() {
@@ -44,7 +46,7 @@ public class Snake extends Observable {
 	}
 
 	public int getStepDistanceOfMovement() {
-		return movement.STEP_DISTANCE;
+		return STEP_DISTANCE;
 	}
 
 	public Movement getMovement() {
