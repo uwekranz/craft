@@ -20,6 +20,7 @@ public class QuitGameListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		SnakeGameLogger.info(this, "The Quit-Game-Button has been pressed.");
+
 		JOptionPane.getRootFrame().dispose();
 		userInterface.dispatchEvent(new WindowEvent(userInterface, WindowEvent.WINDOW_CLOSING));
 	}

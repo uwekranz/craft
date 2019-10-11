@@ -11,6 +11,7 @@ public class NewGameListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		SnakeGameLogger.info(this, "The New-Game-Button has been pressed.");
+
 		ApplicationBoundary.restart();
 	}
 

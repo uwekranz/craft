@@ -25,7 +25,6 @@ public class SnakeGame {
 		userInterface = new UserInterface(controller);
 
 		letViewObserveModel(gameModel, userInterface);
-
 		userInterface.displayGameView();
 	}
 
