@@ -1,6 +1,7 @@
 teste, dass das alte Spiel verschwindet beim neustart. D.h. OptionPane und UserInterface sind weg.
 
 enable enter as a key in the game over dialog
+right now enter trigger new game even if one first moves to quit via the tab key
 
 test the game over dialog
 
@@ -14,4 +15,9 @@ test bottom and right cage boundary contact
 
 adapt game over message for boundary contact
 
-teile SnakeMovement in Movement und MovementStep
+device SnakeMovement in Movement und MovementStep
+
+port from swing to javafx
+
+add a menu that appears via esc key, which pauses game and allows to continue, quit or restart game
+maybe use gameoverdialog to start with

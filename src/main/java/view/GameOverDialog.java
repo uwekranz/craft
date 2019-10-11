@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 public class GameOverDialog {
 
-	private GameOverOption gameOverOption;
 	private ActionListener newGameListener;
 	private ActionListener quitGameListener;
 	private UserInterface userInterface;
@@ -37,12 +36,7 @@ public class GameOverDialog {
 		return newGameButton;
 	}
 
-	public GameOverOption getUsersChoice() {
-		return gameOverOption;
-	}
-
 	public void close() {
-
 	}
 
 }

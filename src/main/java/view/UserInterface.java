@@ -52,9 +52,7 @@ public class UserInterface extends JFrame implements Observer {
 		QuitGameListener quitGameListener = new QuitGameListener(this);
 		NewGameListener newGameListener = new NewGameListener();
 
-		GameOverDialog gameOverDialog = new GameOverDialog(this, newGameListener, quitGameListener);
-
-		return gameOverDialog;
+		return new GameOverDialog(this, newGameListener, quitGameListener);
 	}
 
 	public void displayGameView() {
