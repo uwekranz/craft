@@ -21,7 +21,7 @@ public class Controller {
 		return gameModel;
 	}
 
-	public void replaceGameModelByInitialGameModel() {
+	public void replaceCurrentGameModelWithNewGameModel() {
 		gameModel = new GameModel();
 	}
 
