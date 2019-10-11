@@ -3,7 +3,7 @@ package model;
 public enum Axis {
 	HORIZONTAL_AXIS, VERTICAL_AXIS, NULL;
 
-	public Axis getOrhogonalAxis() {
+	public Axis getOrthogonalAxis() {
 		switch (this) {
 		case HORIZONTAL_AXIS:
 			return VERTICAL_AXIS;

@@ -16,7 +16,6 @@ public class ApplicationBoundary {
 	}
 
 	public static void restart() {
-		
 		snakeGame.restart();
 	}
 }

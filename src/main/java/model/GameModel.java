@@ -14,7 +14,7 @@ public class GameModel {
 	public GameModel() {
 		snake = new Snake(movement);
 		cage = new Cage();
-		food = new Food(cage);
+		food = new Food();
 
 		movement = new Movement(snake, food, cage);
 

@@ -75,7 +75,7 @@ public class SnakeLocation {
 
 	private boolean headCrossesConnectionBetweenJointAndItsSuccessor(int index, Axis axisOfMovement) {
 		Location headLocation = getHeadLocation();
-		Axis axisOrthogonalToMovement = axisOfMovement.getOrhogonalAxis();
+		Axis axisOrthogonalToMovement = axisOfMovement.getOrthogonalAxis();
 		int jointCoordinate = bodyPartLocations.get(index).getCoordinate(axisOrthogonalToMovement);
 		int successorCoordinate = bodyPartLocations.get(index + 1).getCoordinate(axisOrthogonalToMovement);
 		int headCoordinate = headLocation.getCoordinate(axisOrthogonalToMovement);
