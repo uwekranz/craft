@@ -7,9 +7,13 @@ import view.UserInterface;
 
 public class SnakeGame {
 
-	private GameModel gameModel = new GameModel();
-	private Controller controller = new Controller(gameModel);
-	private UserInterface userInterface = new UserInterface(controller);;
+	private GameModel gameModel;
+	private Controller controller;
+	private UserInterface userInterface;
+
+	public SnakeGame() {
+		initialize();
+	}
 
 	public void start() {
 		letViewObserveModel(gameModel, userInterface);
@@ -20,12 +24,16 @@ public class SnakeGame {
 		JOptionPane.getRootFrame().dispose();
 		userInterface.dispose();
 
-		gameModel = new GameModel();
-		controller = new Controller(gameModel);
-		userInterface = new UserInterface(controller);
+		initialize();
 
 		letViewObserveModel(gameModel, userInterface);
 		userInterface.displayGameView();
+	}
+
+	private void initialize() {
+		gameModel = new GameModel();
+		controller = new Controller(gameModel);
+		userInterface = new UserInterface(controller);
 	}
 
 	private static void letViewObserveModel(GameModel gameModel, UserInterface userInterface) {
