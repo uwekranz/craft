@@ -1,6 +1,7 @@
 package applicationBoundary;
 
 import controller.SnakeGame;
+import javafx.stage.Stage;
 
 public class ApplicationBoundary {
 

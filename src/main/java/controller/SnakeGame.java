@@ -2,8 +2,11 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import model.GameModel;
 import view.UserInterface;
+import view.fx.UserInterfaceFX;
 
 public class SnakeGame {
 
@@ -17,7 +20,7 @@ public class SnakeGame {
 
 	public void start() {
 		letViewObserveModel(gameModel, userInterface);
-		userInterface.displayGameView();
+		UserInterfaceFX.main(null);
 	}
 
 	public void restart() {
