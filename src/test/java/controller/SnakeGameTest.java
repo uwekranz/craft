@@ -3,6 +3,7 @@ package controller;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import javafx.stage.Stage;
 import org.junit.Test;
 
 public class SnakeGameTest {

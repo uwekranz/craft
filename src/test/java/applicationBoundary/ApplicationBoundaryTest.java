@@ -3,6 +3,7 @@ package applicationBoundary;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import javafx.stage.Stage;
 import org.junit.Test;
 
 import view.UserInterface;
@@ -22,6 +23,7 @@ public class ApplicationBoundaryTest {
 		UserInterface userInterface = mock(UserInterface.class);
 		SnakeGame snakeGame = new SnakeGame();
 		snakeGame.setUserInterface(userInterface);
+
 		snakeGame.start();
 
 		verify(userInterface).displayGameView();

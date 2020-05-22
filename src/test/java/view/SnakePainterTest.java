@@ -2,6 +2,8 @@ package view;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+
+import javafx.stage.Stage;
 import model.GameModel;
 
 import org.junit.After;
