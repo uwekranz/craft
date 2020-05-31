@@ -16,6 +16,10 @@ public class GameModel {
 		cage = new Cage();
 		food = new Food();
 
+		startMovement();
+	}
+
+	public void startMovement() {
 		movement = new Movement(snake, food, cage);
 
 		movement.start();

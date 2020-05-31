@@ -24,6 +24,7 @@ public class FoodPainterFX {
 		int verticalCoordinate = foodLocation.getCoordinate(VERTICAL_AXIS);
 		int sizeOfFood = gameModel.getSizeOfFood();
 		graphics.fillRect(horizontalCoordinate - sizeOfFood / 2, verticalCoordinate - sizeOfFood / 2, sizeOfFood, sizeOfFood);
+
 		foodHasBeenPainted = true;
 	}
 

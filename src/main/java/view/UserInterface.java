@@ -32,7 +32,7 @@ public class UserInterface extends JFrame implements Observer {
 
 		this.controller = controller;
 
-		createSnakeCageView(controller);
+		initializeSnakeCageView(controller);
 		setContentPane(snakeCageView);
 
 		gameOverDialog = createGameOverDialog();
@@ -42,7 +42,7 @@ public class UserInterface extends JFrame implements Observer {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	private void createSnakeCageView(Controller controller) {
+	private void initializeSnakeCageView(Controller controller) {
 		GameModel gameModel = controller.getGameModel();
 		ArrowKeysListener arrowKeysListener = new ArrowKeysListener(controller);
 		snakeCageView = new SnakeCageView(gameModel, arrowKeysListener);

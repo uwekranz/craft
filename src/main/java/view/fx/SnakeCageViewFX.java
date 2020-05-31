@@ -3,12 +3,8 @@ package view.fx;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import model.GameModel;
-import view.FoodPainter;
-import view.SnakePainter;
 
 import java.awt.*;
-
-import static java.awt.Color.RED;
 
 
 public class SnakeCageViewFX extends Stage {
@@ -19,6 +15,7 @@ public class SnakeCageViewFX extends Stage {
 	private FoodPainterFX foodPainter;
 
 	private Boolean isPaintedRegularly = false;
+	private GraphicsContext graphics;
 
 	public SnakeCageViewFX(GameModel gameModel) {
 		snakePainter = new SnakePainterFX(gameModel);
@@ -42,12 +39,19 @@ public class SnakeCageViewFX extends Stage {
 	}
 
 	protected void paintComponent(GraphicsContext graphics) {
+		this.graphics = graphics;
+		graphics.setFill(javafx.scene.paint.Color.BLUE);
+
+		repaint();
+	}
+
+	public void repaint() {
 		paintFood(graphics);
 		paintSnake(graphics);
 	}
 
-	public void repaintGameViewRegularly(SnakeCageViewFX gameView) {
-		GameViewRepainterFX gameViewRepainter = new GameViewRepainterFX(gameView);
+	public void repaintGameViewRegularly() {
+		GameViewRepainterFX gameViewRepainter = new GameViewRepainterFX(this);
 		gameViewRepainter.start();
 	}
 
@@ -77,6 +81,5 @@ public class SnakeCageViewFX extends Stage {
 		this.foodPainter = foodPainter;
 	}
 
-	public void repaint() {
-	}
+
 }
