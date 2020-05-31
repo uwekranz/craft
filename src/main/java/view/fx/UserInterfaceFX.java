@@ -1,15 +1,22 @@
 package view.fx;
 
 import controller.Controller;
+import controller.NewGameListener;
+import controller.QuitGameListener;
+import controller.fx.ArrowKeysHandlerFX;
+import controller.fx.NewGameListenerFX;
+import controller.fx.QuitGameListenerFX;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import model.GameModel;
+import view.GameOverDialog;
 
 import java.awt.*;
 
@@ -17,6 +24,7 @@ public class UserInterfaceFX extends Application {
 
 	private SnakeCageViewFX snakeCageView;
 	private Controller controller;
+	private GameOverDialogFX gameOverDialog;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -24,6 +32,8 @@ public class UserInterfaceFX extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		gameOverDialog = createGameOverDialog();
+
 		GameModel gameModel = new GameModel();
 		controller = new Controller(gameModel);
 		snakeCageView = new SnakeCageViewFX(gameModel);
@@ -37,6 +47,8 @@ public class UserInterfaceFX extends Application {
 		stage.setScene(scene);
 		stage.sizeToScene();
 		stage.show();
+		ArrowKeysHandlerFX arrowKeysHandler = new ArrowKeysHandlerFX(controller);
+		scene.addEventHandler(KeyEvent.ANY, arrowKeysHandler);
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 		snakeCageView.paintComponent(graphicsContext);
 		snakeCageView.repaintGameViewRegularly();
@@ -49,6 +61,13 @@ public class UserInterfaceFX extends Application {
 		controller.setDimensionsOfSnakeCage(dimensions);
 		snakeCageView.setWidth(width);
 		snakeCageView.setHeight(height);
+	}
+
+	private GameOverDialogFX createGameOverDialog() {
+		QuitGameListenerFX quitGameListener = new QuitGameListenerFX(this);
+		NewGameListenerFX newGameListener = new NewGameListenerFX();
+
+		return new GameOverDialogFX(this, newGameListener, quitGameListener);
 	}
 
 	public Boolean isPaintedRegularly() {

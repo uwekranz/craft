@@ -1,6 +1,8 @@
 package view.fx;
 
+import controller.fx.ArrowKeysHandlerFX;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.GameModel;
 
