@@ -12,6 +12,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
@@ -44,6 +46,7 @@ public class UserInterfaceFX extends Application {
 		Group group = new Group();
 		group.getChildren().add(canvas);
 		Scene scene = new Scene(group);
+		scene.setFill(Color.GREEN);
 		stage.setScene(scene);
 		stage.sizeToScene();
 		stage.show();

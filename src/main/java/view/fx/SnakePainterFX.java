@@ -5,8 +5,6 @@ import javafx.scene.paint.Color;
 import model.GameModel;
 import model.Location;
 import model.SnakeLocation;
-
-import java.awt.*;
 import java.util.List;
 
 import static model.Axis.HORIZONTAL_AXIS;
@@ -28,12 +26,12 @@ public class SnakePainterFX {
 		for (int index = 0; index < bodyParts.size() - 1; index++) {
 			Location firstPoint = bodyParts.get(index);
 			Location secondPoint = bodyParts.get(index + 1);
-			graphics.moveTo(firstPoint.getCoordinate(HORIZONTAL_AXIS), firstPoint.getCoordinate(VERTICAL_AXIS));
-			graphics.lineTo(secondPoint.getCoordinate(HORIZONTAL_AXIS), secondPoint.getCoordinate(VERTICAL_AXIS));
 
-            graphics.setStroke(Color.BROWN);
-            graphics.setLineWidth(10);
-			graphics.stroke();
+			graphics.setStroke(Color.RED);
+			graphics.setLineWidth(10);
+
+			graphics.strokeLine(firstPoint.getCoordinate(HORIZONTAL_AXIS), firstPoint.getCoordinate(VERTICAL_AXIS),
+					secondPoint.getCoordinate(HORIZONTAL_AXIS), secondPoint.getCoordinate(VERTICAL_AXIS));
 		}
 
 		hasSnakeBeenPainted = true;

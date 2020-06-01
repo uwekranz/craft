@@ -1,6 +1,7 @@
 package view.fx;
 
 import controller.fx.ArrowKeysHandlerFX;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -48,6 +49,8 @@ public class SnakeCageViewFX extends Stage {
 	}
 
 	public void repaint() {
+		Canvas canvas = graphics.getCanvas();
+		graphics.clearRect(0,0, canvas.getWidth(), canvas.getHeight());
 		paintFood(graphics);
 		paintSnake(graphics);
 	}
