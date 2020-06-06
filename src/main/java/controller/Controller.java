@@ -1,16 +1,22 @@
 package controller;
 
 import java.awt.Dimension;
+import java.util.Observable;
+import java.util.Observer;
 
 import model.Direction;
 import model.GameModel;
+import view.fx.UserInterfaceFX;
 
-public class Controller {
+public class Controller implements Observer {
 
 	GameModel gameModel;
+	UserInterfaceFX userInterface;
 
-	public Controller(GameModel model) {
+	public Controller(GameModel model, UserInterfaceFX userInterface) {
 		this.gameModel = model;
+		this.userInterface = userInterface;
+		model.getSnake().addObserver(this);
 	}
 
 	public void setDirectionOfSnakeMovement(Direction direction) {
@@ -29,4 +35,8 @@ public class Controller {
 		gameModel.setDimensionsOfSnakeCage(dimensions);
 	}
 
+	@Override
+	public void update(Observable observable, Object o) {
+		userInterface.showGameOverDialog();
+	}
 }

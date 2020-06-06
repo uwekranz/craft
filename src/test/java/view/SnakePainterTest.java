@@ -3,7 +3,6 @@ package view;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import javafx.stage.Stage;
 import model.GameModel;
 
 import org.junit.After;
@@ -20,8 +19,6 @@ public class SnakePainterTest {
 	@Before
 	public void prepareTests() {
 		snakeGame = new SnakeGame();
-		Controller controller = new Controller(new GameModel());
-		userInterface = new UserInterface(controller);
 		snakeGame.setUserInterface(userInterface);
 	}
 
