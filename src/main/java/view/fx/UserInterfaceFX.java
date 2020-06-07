@@ -1,40 +1,26 @@
 package view.fx;
 
 import controller.Controller;
-import controller.NewGameListener;
-import controller.QuitGameListener;
 import controller.fx.ArrowKeysHandlerFX;
-import controller.fx.NewGameListenerFX;
-import controller.fx.QuitGameListenerFX;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import model.GameModel;
-import view.GameOverDialog;
 
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 public class UserInterfaceFX extends Application {
 
@@ -51,8 +37,6 @@ public class UserInterfaceFX extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.stage = stage;
-
-		gameOverDialog = createGameOverDialog();
 
 		GameModel gameModel = new GameModel();
 		controller = new Controller(gameModel, this);
@@ -101,13 +85,6 @@ public class UserInterfaceFX extends Application {
 		controller.setDimensionsOfSnakeCage(dimensions);
 		snakeCageView.setWidth(width);
 		snakeCageView.setHeight(height);
-	}
-
-	private GameOverDialogFX createGameOverDialog() {
-		QuitGameListenerFX quitGameListener = new QuitGameListenerFX(this);
-		NewGameListenerFX newGameListener = new NewGameListenerFX();
-
-		return new GameOverDialogFX(this, newGameListener, quitGameListener);
 	}
 
 	public Boolean isPaintedRegularly() {

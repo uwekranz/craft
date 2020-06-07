@@ -4,14 +4,11 @@ import applicationBoundary.SnakeGameLogger;
 import controller.Controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import static java.awt.event.KeyEvent.*;
 import static model.Direction.*;
 
-public class ArrowKeysHandlerFX implements EventHandler<javafx.scene.input.KeyEvent> {
+public class ArrowKeysHandlerFX implements EventHandler<KeyEvent> {
 
 	private Controller controller;
 
@@ -20,7 +17,7 @@ public class ArrowKeysHandlerFX implements EventHandler<javafx.scene.input.KeyEv
 	}
 
 	@Override
-	public void handle(javafx.scene.input.KeyEvent keyEvent) {
+	public void handle(KeyEvent keyEvent) {
 		String message = "The key " + keyEvent.getCode() + " has been pressed";
 		SnakeGameLogger.info(this, message);
 
