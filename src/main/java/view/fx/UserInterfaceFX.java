@@ -23,8 +23,6 @@ public class UserInterfaceFX extends Application {
 
 	private SnakeCageViewFX snakeCageView;
 	private Controller controller;
-	private GameOverDialogFX gameOverDialog;
-
 	private Scene scene;
 
 	public static void main(String[] args) {
@@ -32,7 +30,7 @@ public class UserInterfaceFX extends Application {
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) {
 		GameModel gameModel = new GameModel();
 		controller = new Controller(gameModel, this);
 		snakeCageView = new SnakeCageViewFX(gameModel);
@@ -67,17 +65,5 @@ public class UserInterfaceFX extends Application {
 		controller.setDimensionsOfSnakeCage(dimensions);
 		snakeCageView.setWidth(width);
 		snakeCageView.setHeight(height);
-	}
-
-	public Boolean isPaintedRegularly() {
-		return snakeCageView.isPaintedRegularly();
-	}
-
-	private static Dimension getDimensionOfScreen() {
-		return Toolkit.getDefaultToolkit().getScreenSize();
-	}
-
-	public SnakeCageViewFX getSnakeCageView() {
-		return snakeCageView;
 	}
 }

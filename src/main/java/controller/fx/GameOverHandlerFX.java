@@ -3,8 +3,8 @@ package controller.fx;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
+import javafx.stage.StageStyle;
 
 public class GameOverHandlerFX implements EventHandler<ActionEvent> {
 
@@ -12,11 +12,19 @@ public class GameOverHandlerFX implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent keyEvent) {
 		Platform.runLater(new Runnable() {
 			@Override public void run() {
+				ButtonType newGameButton = new ButtonType("New Game", ButtonBar.ButtonData.OK_DONE);
+				ButtonType quitGameButton = new ButtonType("Quit Game", ButtonBar.ButtonData.CANCEL_CLOSE);
+
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-						"Present options 'new game' and 'quit game' to player'",
-						ButtonType.YES,
-						ButtonType.NO);
+						"Game Over!",
+						newGameButton,
+						quitGameButton);
+				alert.setHeaderText(null);
+				alert.setGraphic(null);
+				alert.setTitle(null);
+				alert.initStyle(StageStyle.UNDECORATED);
 				alert.showAndWait();
+
 			}
 		});
 	}
