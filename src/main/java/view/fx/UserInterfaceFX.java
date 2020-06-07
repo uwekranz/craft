@@ -3,18 +3,13 @@ package view.fx;
 import controller.Controller;
 import controller.fx.ArrowKeysHandlerFX;
 import controller.fx.GameOverHandlerFX;
-import controller.fx.QuitGameHandlerFX;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -30,7 +25,7 @@ public class UserInterfaceFX extends Application {
 	private Controller controller;
 	private GameOverDialogFX gameOverDialog;
 
-	private Stage stage;
+	private Scene scene;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -38,8 +33,6 @@ public class UserInterfaceFX extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		this.stage = stage;
-
 		GameModel gameModel = new GameModel();
 		controller = new Controller(gameModel, this);
 		snakeCageView = new SnakeCageViewFX(gameModel);
@@ -50,13 +43,13 @@ public class UserInterfaceFX extends Application {
 		final Canvas canvas = new Canvas(bounds.getWidth(), bounds.getHeight());
 		Group group = new Group();
 		group.getChildren().add(canvas);
-		Scene scene = new Scene(group);
+		this.scene = new Scene(group);
 		scene.setFill(Color.GREEN);
 		stage.setScene(scene);
 		stage.sizeToScene();
 		stage.show();
 		scene.addEventHandler(KeyEvent.ANY, new ArrowKeysHandlerFX(controller));
-		stage.addEventHandler(ActionEvent.ANY, new GameOverHandlerFX());
+		scene.addEventHandler(ActionEvent.ANY, new GameOverHandlerFX());
 
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 		snakeCageView.paintComponent(graphicsContext);
@@ -64,7 +57,7 @@ public class UserInterfaceFX extends Application {
 	}
 
 	public void fireGameOverEvent() {
-		Event.fireEvent(stage, new ActionEvent());
+		Event.fireEvent(scene, new ActionEvent());
 	}
 
 	private void initializeSnakeCageView(Rectangle2D bounds) {
