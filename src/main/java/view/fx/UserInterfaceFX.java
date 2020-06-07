@@ -2,6 +2,8 @@ package view.fx;
 
 import controller.Controller;
 import controller.fx.ArrowKeysHandlerFX;
+import controller.fx.GameOverHandlerFX;
+import controller.fx.QuitGameHandlerFX;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,37 +46,24 @@ public class UserInterfaceFX extends Application {
 		stage.setFullScreen(true);
 		Rectangle2D bounds = Screen.getPrimary().getBounds();
 		initializeSnakeCageView(bounds);
+
 		final Canvas canvas = new Canvas(bounds.getWidth(), bounds.getHeight());
 		Group group = new Group();
 		group.getChildren().add(canvas);
 		Scene scene = new Scene(group);
-
-		stage.addEventHandler(ActionEvent.ANY,
-				new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent e) {
-						Platform.runLater(new Runnable() {
-							@Override public void run() {
-								Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-										"Present options 'new game' and 'quit game' to player'", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-								alert.showAndWait();
-							}
-						});
-
-					}
-				});
-
 		scene.setFill(Color.GREEN);
 		stage.setScene(scene);
 		stage.sizeToScene();
 		stage.show();
-		ArrowKeysHandlerFX arrowKeysHandler = new ArrowKeysHandlerFX(controller);
-		scene.addEventHandler(KeyEvent.ANY, arrowKeysHandler);
+		scene.addEventHandler(KeyEvent.ANY, new ArrowKeysHandlerFX(controller));
+		stage.addEventHandler(ActionEvent.ANY, new GameOverHandlerFX());
+
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 		snakeCageView.paintComponent(graphicsContext);
 		snakeCageView.repaintGameViewRegularly();
 	}
 
-	public void showGameOverDialog() {
+	public void fireGameOverEvent() {
 		Event.fireEvent(stage, new ActionEvent());
 	}
 

@@ -37,6 +37,6 @@ public class Controller implements Observer {
 
 	@Override
 	public void update(Observable observable, Object o) {
-		userInterface.showGameOverDialog();
+		userInterface.fireGameOverEvent();
 	}
 }
